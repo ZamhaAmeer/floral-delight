@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Saved Wishlist | Floral Delight Boutique</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Images/logo.png">
+
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Shared Core & Wishlist Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="css/common.css">
+  <link rel="stylesheet" type="text/css" href="css/style-p.css">
+  <link rel="stylesheet" type="text/css" href="css/wishlist.css">
+  
+  <!-- Core Data & Page Scripts -->
+  <script src="js/core.js" defer></script>
+  <script src="js/wishlist.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="bar-content">
+        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Handcrafted Floral Artistry &amp; Botanical Designs</span>
+        <span class="bullet">•</span>
+        <span>Same-Day Dedicated Hand Delivery Across Colombo</span>
+        <span class="bullet">•</span>
+        <span><a href="Contact.html">Call Studio: +94 76 123 4567</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="home.html" class="brand" aria-label="Floral Delight Home">
+        <img src="Images/logo.png" alt="Floral Delight Boutique Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Floral Delight</span>
+          <span class="brand-tagline">Boutique Florist</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="home.html" class="nav-link">Home</a></li>
+          <li><a href="About.html" class="nav-link">About Us</a></li>
+          <li><a href="Products.html" class="nav-link">Shop</a></li>
+          <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+          <li><a href="bouquet-builder.html" class="nav-link">Build Bouquet</a></li>
+          <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="Contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="wishlist-nav-btn" style="background-color: var(--dusty-rose); color: #fff;" aria-label="View Saved Wishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span class="wishlist-count-badge">0</span>
+        </a>
+        <a href="Products.html" class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-bag-shopping"></i> Browse Shop
+        </a>
+        <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About Us</a>
+      <a href="Products.html" class="nav-link">Shop Flowers</a>
+      <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
+      <a href="bouquet-builder.html" class="nav-link">Build Your Bouquet</a>
+      <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
+      <a href="reviews.html" class="nav-link">Customer Reviews</a>
+      <a href="wishlist.html" class="nav-link active">Saved Wishlist</a>
+      <a href="Contact.html" class="nav-link">Contact &amp; Inquiries</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Private Collector's Salon Hero Header -->
+    <section class="wishlist-salon-hero">
+      <div class="container">
+        <div class="salon-hero-grid">
+          <div class="salon-intro-text">
+            <div class="salon-kicker-badge">
+              <i class="fa-solid fa-bookmark"></i> Private Collector's Salon
+            </div>
+            <h1>Curated Floral <span class="title-accent">Wishlist</span></h1>
+            <p>
+              Revisit your personal botanical curations, seasonal blooms saved for upcoming milestones, and artisan arrangements. Everything is seamlessly preserved in your browser's private vault.
+            </p>
+          </div>
+
+          <div class="salon-curator-card">
+            <h3><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--dusty-rose);"></i> Atelier Studio Transfer</h3>
+            <p>
+              Ready to turn your favorite blooms into a handcrafted arrangement? You can seed any saved stem directly into our Custom Bouquet Builder canvas with a single click.
+            </p>
+            <div class="salon-card-actions">
+              <a href="bouquet-builder.html" class="btn btn-sm btn-secondary">
+                <i class="fa-solid fa-palette"></i> Open Bouquet Studio
+              </a>
+              <a href="recommendations.html" class="btn btn-sm btn-outline">
+                <i class="fa-solid fa-compass"></i> Discover More
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wishlist Items Section -->
+    <section class="wishlist-content-section">
+      <div class="container">
+        
+        <div class="wishlist-header-bar">
+          <span class="wishlist-count-text" id="wishlist-total-display">You have 0 Saved Items</span>
+          <div style="display: flex; gap: 12px; align-items: center;">
+            <a href="Products.html" class="btn btn-sm btn-outline">
+              <i class="fa-solid fa-plus"></i> Add More Stems
+            </a>
+            <button type="button" class="btn btn-sm btn-outline" id="clear-wishlist-btn" onclick="clearAllWishlist()" style="color: #b94a48; border-color: #e8c5c4;">
+              <i class="fa-solid fa-trash-can"></i> Clear Wishlist
+            </button>
+          </div>
+        </div>
+
+        <div id="wishlist-container">
+          <!-- Dynamically populated by js/wishlist.js -->
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Unified Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="home.html" class="brand">
+            <img src="Images/logo.png" alt="Floral Delight Logo" class="brand-logo-img">
+            <div class="brand-text">
+              <span class="brand-name">Floral Delight</span>
+              <span class="brand-tagline">Boutique Florist</span>
+            </div>
+          </a>
+          <p>
+            Creating unforgettable moments with every petal we arrange. Handcrafting bespoke floral arrangements with ethically sourced blooms since 2018.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Boutique Links</h4>
+          <ul class="footer-links">
+            <li><a href="home.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a></li>
+            <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our Story</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Floral Collections</a></li>
+            <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Recommendations</a></li>
+            <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Custom Bouquet Studio</a></li>
+            <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Flower Meanings</a></li>
+            <li><a href="reviews.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Customer Reviews</a></li>
+            <li><a href="wishlist.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Saved Wishlist</a></li>
+            <li><a href="Contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Curated Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Wedding &amp; Romance</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Birthdays &amp; Parties</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Anniversaries</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Graduations</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Get Well Soon</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Thanksgiving</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Studio &amp; Atelier</h4>
+          <div class="footer-contact-list">
+            <div class="contact-line">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>45 Rosewood Avenue,<br>Colombo 00700, Sri Lanka</span>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+94761234567">+94 76 123 4567</a>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:shop@blossom.lk">shop@blossom.lk</a>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-clock"></i>
+              <span>Mon – Sat: 8:00 AM – 7:00 PM<br>Sunday: 9:00 AM – 4:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Floral Delight Atelier. All rights reserved. Handcrafted with botanical passion.
+        </div>
+        <button type="button" class="back-to-top-btn" aria-label="Back to top">
+          Back to Top <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+

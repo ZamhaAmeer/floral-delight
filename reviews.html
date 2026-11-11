@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Impressions &amp; Reviews | Floral Delight</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Images/logo.png">
+
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Shared Core & Reviews Stylesheet -->
+  <link rel="stylesheet" type="text/css" href="css/common.css">
+  <link rel="stylesheet" type="text/css" href="css/reviews.css">
+  
+  <!-- Core Data & Page Scripts -->
+  <script src="js/core.js" defer></script>
+  <script src="js/reviews.js" defer></script>
+</head>
+<body>
+
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="container">
+      <div class="bar-content">
+        <span><i class="fa-solid fa-wand-magic-sparkles"></i> Handcrafted Floral Artistry &amp; Botanical Designs</span>
+        <span class="bullet">•</span>
+        <span>Same-Day Dedicated Hand Delivery Across Colombo</span>
+        <span class="bullet">•</span>
+        <span><a href="Contact.html">Call Studio: +94 76 123 4567</a></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="home.html" class="brand" aria-label="Floral Delight Home">
+        <img src="Images/logo.png" alt="Floral Delight Boutique Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Floral Delight</span>
+          <span class="brand-tagline">Boutique Florist</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="home.html" class="nav-link">Home</a></li>
+          <li><a href="About.html" class="nav-link">About Us</a></li>
+          <li><a href="Products.html" class="nav-link">Shop</a></li>
+          <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+          <li><a href="bouquet-builder.html" class="nav-link">Build Bouquet</a></li>
+          <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
+          <li><a href="reviews.html" class="nav-link active">Reviews</a></li>
+          <li><a href="Contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="wishlist-nav-btn" aria-label="View Saved Wishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span class="wishlist-count-badge">0</span>
+        </a>
+        <a href="Products.html" class="btn btn-sm btn-primary">
+          <i class="fa-solid fa-bag-shopping"></i> Browse Shop
+        </a>
+        <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About Us</a>
+      <a href="Products.html" class="nav-link">Shop Flowers</a>
+      <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
+      <a href="bouquet-builder.html" class="nav-link">Build Your Bouquet</a>
+      <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
+      <a href="reviews.html" class="nav-link active">Customer Reviews</a>
+      <a href="wishlist.html" class="nav-link">Saved Wishlist</a>
+      <a href="Contact.html" class="nav-link">Contact &amp; Inquiries</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Editorial Magazine Praise Hero Header -->
+    <section class="reviews-editorial-hero">
+      <div class="container">
+        <div class="editorial-hero-grid">
+          <div class="editorial-intro-text">
+            <div class="editorial-praise-badge">
+              <i class="fa-solid fa-quote-left"></i> Patron Chronicles &bull; Volume 2026
+            </div>
+            <h1>Letters &amp; Floral <span class="title-accent">Praise</span></h1>
+            <p>
+              Discover heartfelt reflections, verified celebratory milestones, and thoughtful notes from patrons across Colombo who have marked life's defining moments with our handcrafted bouquets and botanical creations.
+            </p>
+            <div class="editorial-hero-cta">
+              <a href="#review-form-anchor" class="btn btn-sm btn-primary">
+                <i class="fa-solid fa-pen"></i> Write a Review
+              </a>
+              <a href="#reviews-anchor" class="btn btn-sm btn-outline">
+                <i class="fa-solid fa-star"></i> Browse Letters
+              </a>
+            </div>
+          </div>
+
+          <div class="editorial-critic-card">
+            <p class="critic-quote">
+              &ldquo;Floral Delight’s arrangements do not merely adorn a room; they elevate its atmosphere with understated poetry and immaculate petal craft.&rdquo;
+            </p>
+            <span class="critic-author">Colombo Lifestyle &amp; Botanical Review</span>
+            <div class="critic-stats-pill">
+              <i class="fa-solid fa-star" style="color: #E29B38;"></i> 4.9 Atelier Score &bull; 94% 5-Star Reviews
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rating Overview & Breakdown -->
+    <section class="rating-overview-section" id="reviews-anchor">
+      <div class="container">
+        <div class="rating-score-card">
+          
+          <div class="score-main-col">
+            <div class="big-rating-number">4.9</div>
+            <div class="stars-row">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+            </div>
+            <p style="font-size: 0.95rem; font-weight: 600; color: var(--dark-charcoal); margin-bottom: 12px;">
+              Overall Atelier Rating
+            </p>
+            <a href="#review-form-anchor" class="btn btn-sm btn-outline">
+              <i class="fa-solid fa-pen"></i> Write a Review
+            </a>
+          </div>
+
+          <div class="bars-col">
+            <div class="rating-bar-line">
+              <span>5 Stars</span>
+              <div class="progress-track"><div class="progress-fill" style="width: 94%;"></div></div>
+              <span>94%</span>
+            </div>
+            <div class="rating-bar-line">
+              <span>4 Stars</span>
+              <div class="progress-track"><div class="progress-fill" style="width: 6%;"></div></div>
+              <span>6%</span>
+            </div>
+            <div class="rating-bar-line">
+              <span>3 Stars</span>
+              <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+              <span>0%</span>
+            </div>
+            <div class="rating-bar-line">
+              <span>2 Stars</span>
+              <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+              <span>0%</span>
+            </div>
+            <div class="rating-bar-line">
+              <span>1 Star</span>
+              <div class="progress-track"><div class="progress-fill" style="width: 0%;"></div></div>
+              <span>0%</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- LocalStorage & Sample Transparency Notice -->
+        <div class="storage-disclaimer-box">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            <strong>Client Storage Transparency Note:</strong>
+            New customer reviews submitted through the form below are stored locally in your current browser’s LocalStorage until a centralized server backend is integrated. Curated demonstration reviews are clearly labeled as sample demonstration reviews.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Grid Section -->
+    <section class="reviews-feed-section">
+      <div class="container">
+        <div class="reviews-grid" id="reviews-container">
+          <!-- Dynamically populated by js/reviews.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Write a Review Form Section -->
+    <section class="review-form-section" id="review-form-anchor">
+      <div class="container">
+        <div class="review-form-card">
+          <div style="text-align: center; margin-bottom: 28px;">
+            <span class="kicker">[ Share Your Floral Story ]</span>
+            <h2 style="font-size: 2.1rem; margin-bottom: 8px;">Leave a Customer Review</h2>
+            <p style="font-size: 0.96rem; color: var(--dark-charcoal-muted);">
+              Tell us about your experience, the flower variety you received, or the occasion you celebrated.
+            </p>
+          </div>
+
+          <form id="customer-review-form">
+            <!-- Full Name -->
+            <div class="form-group">
+              <label for="review-name">Your Full Name *</label>
+              <input type="text" id="review-name" class="form-input" placeholder="e.g. Anjali Wijesinghe" required>
+            </div>
+
+            <!-- Occasion -->
+            <div class="form-group">
+              <label for="review-occasion">Occasion Celebrated *</label>
+              <select id="review-occasion" class="form-select">
+                <option value="Wedding &amp; Romance">Wedding &amp; Romance</option>
+                <option value="Birthday Celebration">Birthday Celebration</option>
+                <option value="Anniversary">Anniversary</option>
+                <option value="Graduation &amp; Milestone">Graduation &amp; Milestone</option>
+                <option value="Thanksgiving &amp; Gratitude">Thanksgiving &amp; Gratitude</option>
+                <option value="Get Well Soon &amp; Comfort">Get Well Soon &amp; Comfort</option>
+                <option value="Everyday Sanctuary Gift">Everyday Sanctuary Gift</option>
+              </select>
+            </div>
+
+            <!-- Interactive Star Rating -->
+            <div class="form-group">
+              <label>Your Rating *</label>
+              <div class="interactive-stars-wrap" id="rating-star-picker">
+                <i class="fa-solid fa-star" data-star="1"></i>
+                <i class="fa-solid fa-star" data-star="2"></i>
+                <i class="fa-solid fa-star" data-star="3"></i>
+                <i class="fa-solid fa-star" data-star="4"></i>
+                <i class="fa-solid fa-star" data-star="5"></i>
+              </div>
+            </div>
+
+            <!-- Review Message -->
+            <div class="form-group">
+              <label for="review-text">Written Review *</label>
+              <textarea id="review-text" class="form-textarea" placeholder="Describe the freshness, arrangement styling, packaging, or recipient's reaction..." required></textarea>
+            </div>
+
+            <!-- Optional Photo Upload -->
+            <div class="form-group">
+              <label for="review-photo-input">Upload Arrangement Photo (Optional, max 2MB)</label>
+              <input type="file" id="review-photo-input" accept="image/*" class="form-input" style="padding: 8px;">
+              <div id="photo-preview-box"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 14px; font-size: 1rem;">
+              <i class="fa-solid fa-paper-plane"></i> Submit Your Review
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Unified Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="home.html" class="brand">
+            <img src="Images/logo.png" alt="Floral Delight Logo" class="brand-logo-img">
+            <div class="brand-text">
+              <span class="brand-name">Floral Delight</span>
+              <span class="brand-tagline">Boutique Florist</span>
+            </div>
+          </a>
+          <p>
+            Creating unforgettable moments with every petal we arrange. Handcrafting bespoke floral arrangements with ethically sourced blooms since 2018.
+          </p>
+          <div class="footer-socials">
+            <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="social-icon-btn" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Boutique Links</h4>
+          <ul class="footer-links">
+            <li><a href="home.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a></li>
+            <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our Story</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Floral Collections</a></li>
+            <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Recommendations</a></li>
+            <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Custom Bouquet Studio</a></li>
+            <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Flower Meanings</a></li>
+            <li><a href="reviews.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Customer Reviews</a></li>
+            <li><a href="wishlist.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Saved Wishlist</a></li>
+            <li><a href="Contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Inquiries</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Curated Occasions</h4>
+          <ul class="footer-links">
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Wedding &amp; Romance</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Birthdays &amp; Parties</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Anniversaries</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Graduations</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Get Well Soon</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Thanksgiving</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Studio &amp; Atelier</h4>
+          <div class="footer-contact-list">
+            <div class="contact-line">
+              <i class="fa-solid fa-location-dot"></i>
+              <span>45 Rosewood Avenue,<br>Colombo 00700, Sri Lanka</span>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-phone"></i>
+              <a href="tel:+94761234567">+94 76 123 4567</a>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-envelope"></i>
+              <a href="mailto:shop@blossom.lk">shop@blossom.lk</a>
+            </div>
+            <div class="contact-line">
+              <i class="fa-solid fa-clock"></i>
+              <span>Mon – Sat: 8:00 AM – 7:00 PM<br>Sunday: 9:00 AM – 4:00 PM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Floral Delight Atelier. All rights reserved. Handcrafted with botanical passion.
+        </div>
+        <button type="button" class="back-to-top-btn" aria-label="Back to top">
+          Back to Top <i class="fa-solid fa-arrow-up"></i>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+

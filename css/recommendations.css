@@ -1,0 +1,343 @@
+/* ==========================================================================
+   Floral Delight - Flower Recommendations Stylesheet (Botanical Matchmaker Wizard)
+   Colour Theme: Soft Blush & Sage
+   ========================================================================== */
+
+/* 1. Botanical Wizard Hero with Visual Progress Tracker */
+.rec-hero-wizard {
+  position: relative;
+  padding: 60px 0 65px 0;
+  background: radial-gradient(circle at 82% 22%, rgba(232, 197, 196, 0.45) 0%, transparent 45%),
+              radial-gradient(circle at 18% 78%, rgba(137, 153, 130, 0.3) 0%, transparent 45%),
+              var(--warm-ivory);
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+  overflow: hidden;
+}
+
+.rec-hero-wizard h1 {
+  font-size: clamp(2.5rem, 4.2vw, 3.8rem);
+  font-weight: 600;
+  margin-bottom: 14px;
+  color: var(--dark-charcoal);
+}
+
+.rec-hero-wizard .title-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--dusty-rose);
+}
+
+.rec-hero-wizard p {
+  font-size: 1.12rem;
+  max-width: 660px;
+  margin: 0 auto 30px auto;
+  color: var(--dark-charcoal-muted);
+}
+
+/* Wizard Step Progress Tracker */
+.wizard-progress-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.wizard-step-node {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--dark-charcoal-muted);
+}
+
+.wizard-step-node.active {
+  color: var(--dusty-rose-dark);
+}
+
+.node-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: var(--warm-ivory-light);
+  border: 2px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--dark-charcoal);
+  transition: var(--transition-fast);
+}
+
+.wizard-step-node.active .node-circle {
+  background-color: var(--dusty-rose);
+  border-color: var(--dusty-rose);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(185, 130, 140, 0.35);
+}
+
+.node-divider {
+  width: 32px;
+  height: 2px;
+  background-color: var(--border-subtle);
+}
+
+/* ==========================================================================
+   2. Interactive Questionnaire Section (Deck Card Styling)
+   ========================================================================== */
+.rec-quiz-section {
+  padding: 55px 0 75px 0;
+  background-color: var(--warm-ivory);
+}
+
+.quiz-card-wrapper {
+  background-color: var(--warm-ivory-light);
+  border-radius: var(--radius-xl);
+  padding: 46px 44px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  max-width: 980px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.quiz-step-block {
+  margin-bottom: 34px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.quiz-step-block:last-of-type {
+  border-bottom: none;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+}
+
+.quiz-step-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.step-num-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background-color: var(--blush-pink-light);
+  color: var(--dusty-rose-dark);
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.quiz-step-header h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--dark-charcoal);
+}
+
+.option-chips-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+
+.option-chip-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  background-color: var(--warm-ivory);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--dark-charcoal);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  text-align: left;
+}
+
+.option-chip-btn:hover {
+  border-color: var(--dusty-rose);
+  background-color: var(--blush-pink-light);
+  transform: translateY(-2px);
+}
+
+.option-chip-btn.selected {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+  border-color: var(--dusty-rose);
+  box-shadow: 0 4px 14px rgba(185, 130, 140, 0.35);
+  transform: translateY(-2px);
+}
+
+.option-chip-btn i {
+  font-size: 1.15rem;
+  color: var(--sage-green-dark);
+}
+
+.option-chip-btn.selected i {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   3. Recommendations Output Section
+   ========================================================================== */
+.rec-results-section {
+  padding: 30px 0 90px 0;
+  background-color: var(--warm-ivory);
+}
+
+.results-header-banner {
+  background-color: var(--warm-ivory-light);
+  border-left: 4px solid var(--sage-green);
+  padding: 26px 32px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.results-header-banner h2 {
+  font-size: 1.85rem;
+  margin-bottom: 6px;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.rec-card {
+  background-color: var(--warm-ivory-light);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  position: relative;
+}
+
+.rec-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-rose);
+}
+
+.rec-card-media {
+  position: relative;
+  width: 100%;
+  height: 270px;
+  overflow: hidden;
+}
+
+.rec-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.rec-card:hover .rec-card-media img {
+  transform: scale(1.07);
+}
+
+.match-score-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: var(--sage-green);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  box-shadow: 0 4px 12px rgba(137, 153, 130, 0.4);
+}
+
+.rec-card-body {
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.rec-card-title {
+  font-size: 1.45rem;
+  margin-bottom: 4px;
+}
+
+.rec-card-price {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--dusty-rose-dark);
+  margin-bottom: 14px;
+}
+
+.why-recommended-box {
+  background-color: var(--blush-pink-light);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  margin-bottom: 22px;
+  border-left: 3px solid var(--dusty-rose);
+}
+
+.why-recommended-box h4 {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--dusty-rose-dark);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.why-recommended-box p {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--dark-charcoal);
+}
+
+.rec-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+@media (max-width: 1024px) {
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .quiz-card-wrapper {
+    padding: 28px 20px;
+  }
+  .option-chips-grid {
+    grid-template-columns: 1fr;
+  }
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+  .node-divider {
+    display: none;
+  }
+}

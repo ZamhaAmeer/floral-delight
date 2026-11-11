@@ -1,0 +1,209 @@
+/* ==========================================================================
+   Floral Delight - Design System & Theme Stylesheet
+   Soft Blush & Sage Colour Theme
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Official Soft Blush & Sage Theme Palette */
+  --warm-ivory: #F9F1EF;
+  --blush-pink: #E8C5C4;
+  --dusty-rose: #B9828C;
+  --sage-green: #899982;
+  --dark-charcoal: #453B3B;
+
+  /* Extended Harmonious Accents */
+  --warm-ivory-card: #FFFFFF;
+  --warm-ivory-tint: #F3EAE7;
+  --blush-pink-light: #F6E6E5;
+  --dusty-rose-dark: #9A626C;
+  --dusty-rose-hover: #A8717B;
+  --sage-green-dark: #6D7E66;
+  --sage-green-light: #D7DFD4;
+  --dark-charcoal-muted: #6B5E5E;
+  --charcoal-border: rgba(69, 59, 59, 0.12);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Elevation & Shadows */
+  --shadow-sm: 0 2px 8px rgba(69, 59, 59, 0.05);
+  --shadow-md: 0 8px 24px rgba(69, 59, 59, 0.08);
+  --shadow-lg: 0 16px 40px rgba(69, 59, 59, 0.12);
+  --shadow-hover: 0 12px 32px rgba(185, 130, 140, 0.22);
+
+  /* Borders & Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 9999px;
+
+  /* Transitions */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--warm-ivory);
+  color: var(--dark-charcoal);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--dark-charcoal);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 { font-size: clamp(2.2rem, 4vw, 3.2rem); }
+h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); }
+h3 { font-size: clamp(1.3rem, 2vw, 1.7rem); }
+h4 { font-size: 1.2rem; }
+
+p {
+  color: var(--dark-charcoal-muted);
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Button Component System */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(185, 130, 140, 0.35);
+}
+
+.btn-primary:hover {
+  background-color: var(--dusty-rose-dark);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(185, 130, 140, 0.45);
+}
+
+.btn-secondary {
+  background-color: var(--sage-green);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(137, 153, 130, 0.35);
+}
+
+.btn-secondary:hover {
+  background-color: var(--sage-green-dark);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(137, 153, 130, 0.45);
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--dusty-rose);
+  color: var(--dusty-rose-dark);
+}
+
+.btn-outline:hover {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+}
+
+.badge-sage {
+  background-color: var(--sage-green-light);
+  color: var(--sage-green-dark);
+}
+
+.badge-blush {
+  background-color: var(--blush-pink-light);
+  color: var(--dusty-rose-dark);
+}
+
+.badge-dusty {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+}
+

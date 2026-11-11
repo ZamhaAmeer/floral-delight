@@ -1,0 +1,195 @@
+/* ==========================================================================
+   Floral Delight - Smart Wishlist Stylesheet (Private Collector's Salon)
+   Colour Theme: Soft Blush & Sage
+   ========================================================================== */
+
+/* 1. Private Collector's Salon Hero Header */
+.wishlist-salon-hero {
+  position: relative;
+  padding: 60px 0 65px 0;
+  background: radial-gradient(circle at 12% 18%, rgba(232, 197, 196, 0.45) 0%, transparent 45%),
+              radial-gradient(circle at 88% 82%, rgba(137, 153, 130, 0.3) 0%, transparent 45%),
+              var(--warm-ivory);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.salon-hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.salon-intro-text {
+  max-width: 620px;
+}
+
+.salon-kicker-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--blush-pink-light);
+  color: var(--dusty-rose-dark);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-rose);
+  margin-bottom: 16px;
+}
+
+.salon-intro-text h1 {
+  font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--dark-charcoal);
+  margin-bottom: 14px;
+}
+
+.salon-intro-text .title-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--dusty-rose);
+}
+
+.salon-intro-text p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--dark-charcoal-muted);
+  margin-bottom: 22px;
+}
+
+.salon-curator-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, var(--warm-ivory-light) 100%);
+  border: 1px solid var(--border-rose);
+  border-radius: var(--radius-xl);
+  padding: 30px 28px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.salon-curator-card h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--dark-charcoal);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.salon-curator-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--dark-charcoal-muted);
+  margin-bottom: 18px;
+}
+
+.salon-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Legacy fallback */
+.wishlist-hero {
+  position: relative;
+  padding: 60px 0 70px 0;
+  background: radial-gradient(circle at 85% 20%, rgba(232, 197, 196, 0.45) 0%, transparent 45%),
+              radial-gradient(circle at 15% 80%, rgba(137, 153, 130, 0.25) 0%, transparent 45%),
+              var(--warm-ivory);
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.wishlist-hero h1 {
+  font-size: clamp(2.5rem, 4vw, 3.6rem);
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--dark-charcoal);
+}
+
+.wishlist-hero p {
+  font-size: 1.12rem;
+  max-width: 620px;
+  margin: 0 auto;
+  color: var(--dark-charcoal-muted);
+}
+
+/* 2. Wishlist Content Section */
+.wishlist-content-section {
+  padding: 50px 0 90px 0;
+  background-color: var(--warm-ivory);
+  min-height: 480px;
+}
+
+.wishlist-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.wishlist-count-text {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--dark-charcoal);
+}
+
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* Empty Wishlist Card */
+.wishlist-empty-card {
+  text-align: center;
+  padding: 80px 30px;
+  background-color: var(--warm-ivory-light);
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--border-rose);
+  max-width: 620px;
+  margin: 0 auto;
+}
+
+.wishlist-empty-card i {
+  font-size: 3.5rem;
+  color: var(--blush-pink-deep);
+  margin-bottom: 20px;
+}
+
+.wishlist-empty-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+}
+
+.wishlist-empty-card p {
+  font-size: 1.05rem;
+  margin-bottom: 28px;
+  color: var(--dark-charcoal-muted);
+}
+
+@media (max-width: 1024px) {
+  .salon-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .wishlist-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
