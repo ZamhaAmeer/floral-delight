@@ -28,8 +28,10 @@ let builderState = {
   wrap: WRAPPING_OPTIONS[1], // default Soft Blush Silk
   ribbon: RIBBON_OPTIONS[0]  // default Dusty Rose Satin
 };
+let currentStemFilter = 'all';
 
 function initBouquetBuilder() {
+  setupStemFilterTabs();
   renderStemSelectors();
   renderPackagingOptions();
   renderRibbonOptions();
@@ -37,12 +39,28 @@ function initBouquetBuilder() {
   updateBouquet();
 }
 
+function setupStemFilterTabs() {
+  const tabs = document.querySelectorAll('#stem-filter-tabs .stem-tab-btn');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentStemFilter = tab.getAttribute('data-flowertype');
+      renderStemSelectors();
+    });
+  });
+}
+
 /* Render stem items */
 function renderStemSelectors() {
   const container = document.getElementById('stems-selector-list');
   if (!container) return;
 
-  container.innerHTML = FLORAL_CATALOG.map(flower => {
+  const list = currentStemFilter === 'all'
+    ? FLORAL_CATALOG
+    : FLORAL_CATALOG.filter(f => f.flowerType === currentStemFilter);
+
+  container.innerHTML = list.map(flower => {
     const qty = builderState.stems[flower.id] || 0;
     return `
       <div class="stem-select-item" id="stem-item-${flower.id}">

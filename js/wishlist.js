@@ -41,7 +41,7 @@ function renderWishlistPage() {
         </p>
         <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
           <a href="Products.html" class="btn btn-primary">
-            <i class="fa-solid fa-bag-shopping"></i> Browse Flower Shop
+            <i class="fa-solid fa-bag-shopping"></i> Browse Curated Collections
           </a>
           <a href="recommendations.html" class="btn btn-outline">
             <i class="fa-solid fa-wand-magic-sparkles"></i> Get Recommendations

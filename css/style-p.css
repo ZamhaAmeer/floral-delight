@@ -143,11 +143,30 @@
   padding: 24px 0;
   background-color: var(--warm-ivory-tint);
   border-bottom: 1px solid var(--border-subtle);
-  position: sticky;
-  top: 73px;
-  z-index: 900;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  z-index: 10;
+}
+
+.tag-clear-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--blush-pink-light);
+  color: var(--dusty-rose-dark);
+  border: 1px solid var(--border-rose);
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: var(--transition-fast);
+  vertical-align: middle;
+}
+
+.tag-clear-btn:hover {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
 }
 
 .shop-controls-bar {

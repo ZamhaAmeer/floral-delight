@@ -60,7 +60,7 @@ function computeAndRenderRecommendations() {
       score += 18;
     } else if (userChoices.aesthetic === 'serene' && flower.category === 'serene') {
       score += 18;
-    } else if (userChoices.aesthetic === 'luxury' && (flower.id === 'orchid' || flower.id === 'all-in-one' || flower.id === 'tulip')) {
+    } else if (userChoices.aesthetic === 'luxury' && (flower.flowerType === 'orchids' || flower.flowerType === 'mixed' || flower.flowerType === 'tulips')) {
       score += 20;
     }
 
@@ -149,28 +149,34 @@ function computeAndRenderRecommendations() {
 }
 
 function generateRationale(flower, choices) {
-  if (flower.id === 'rose') {
-    return `With its velvety crimson petals, the classic Rose communicates profound romantic adoration and warmth, perfectly honoring your ${getChoiceLabel('recipient', choices.recipient)} during this ${getChoiceLabel('occasion', choices.occasion)}.`;
+  if (flower.flowerType === 'roses' || flower.id.startsWith('rose')) {
+    return `With its velvety petals in ${flower.color}, this bouquet communicates profound adoration and warmth, perfectly honoring your ${getChoiceLabel('recipient', choices.recipient)} during this ${getChoiceLabel('occasion', choices.occasion)}.`;
   }
-  if (flower.id === 'tulip') {
-    return `Dutch Tulips symbolize enduring devotion and graceful beginnings. Their tender blush silhouette offers an elegant, understated romance without being overwhelming.`;
+  if (flower.flowerType === 'lotus' || flower.id.startsWith('lotus')) {
+    return `Sacred Lotus blossoms represent spiritual enlightenment, purity of intention, and serene tranquility—ideal for meaningful, reverent celebrations.`;
   }
-  if (flower.id === 'lily') {
+  if (flower.flowerType === 'tulips' || flower.id.startsWith('tulip')) {
+    return `Dutch Tulips symbolize enduring devotion and graceful beginnings. Their tender silhouette offers an elegant, understated romance without being overwhelming.`;
+  }
+  if (flower.flowerType === 'lilies' || flower.id.startsWith('lily')) {
     return `The serene fragrance and majestic pure petals of the Lily evoke heartfelt honor, sincere care, and peaceful devotion, providing a refined botanical presence.`;
   }
-  if (flower.id === 'orchid') {
+  if (flower.flowerType === 'orchids' || flower.id.startsWith('orchid')) {
     return `Exotic Phalaenopsis Orchids represent rare beauty and deep respect. Their sculptural stems stay radiant for weeks, reflecting thoughtful sophistication.`;
   }
-  if (flower.id === 'sunflower') {
+  if (flower.flowerType === 'sunflowers' || flower.id.startsWith('sunflower')) {
     return `Radiant golden sunflowers represent infectious joy, optimism, and loyalty—an uplifting choice guaranteed to bring beaming smiles and warm energy.`;
   }
-  if (flower.id === 'carnation') {
+  if (flower.flowerType === 'carnations' || flower.id.startsWith('carnation')) {
     return `Ruffled garden carnations are historically celebrated for expressing deep gratitude and tender affection, making them deeply meaningful for cherished loved ones.`;
   }
-  if (flower.id === 'lavender') {
+  if (flower.flowerType === 'daisies' || flower.id.startsWith('daisy')) {
+    return `Fresh meadow daisies radiate youthful innocence, cheerfulness, and bright optimism, effortlessly lifting spirits.`;
+  }
+  if (flower.flowerType === 'lavender' || flower.id.startsWith('lavender')) {
     return `Aromatic French lavender brings a tranquil, spa-like calming presence. Its soothing scent and muted silver-violet hue convey healing and serene peace.`;
   }
-  if (flower.id === 'all-in-one') {
+  if (flower.flowerType === 'mixed' || flower.id === 'all-in-one') {
     return `Combining our finest roses, lilies, and seasonal stems into a luxurious symphony, this grand arrangement offers an unforgettable celebratory experience for your milestone.`;
   }
   if (flower.id === 'dahlias') {

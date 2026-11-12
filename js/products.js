@@ -26,11 +26,38 @@ function renderProducts() {
 
   // Filter products
   let filtered = FLORAL_CATALOG.filter(flower => {
-    const matchesCategory = currentCategory === 'all' || flower.category === currentCategory;
+    let matchesCategory = true;
+    if (currentCategory === 'all') {
+      matchesCategory = true;
+    } else if (currentCategory === 'roses') {
+      matchesCategory = flower.flowerType === 'roses' || flower.id.startsWith('rose') || flower.name.toLowerCase().includes('rose');
+    } else if (currentCategory === 'lotus') {
+      matchesCategory = flower.flowerType === 'lotus' || flower.id.startsWith('lotus') || flower.name.toLowerCase().includes('lotus');
+    } else if (currentCategory === 'tulips') {
+      matchesCategory = flower.flowerType === 'tulips' || flower.id.startsWith('tulip') || flower.name.toLowerCase().includes('tulip');
+    } else if (currentCategory === 'lilies') {
+      matchesCategory = flower.flowerType === 'lilies' || flower.id.startsWith('lily') || flower.name.toLowerCase().includes('lily');
+    } else if (currentCategory === 'orchids') {
+      matchesCategory = flower.flowerType === 'orchids' || flower.id.startsWith('orchid') || flower.name.toLowerCase().includes('orchid');
+    } else if (currentCategory === 'sunflowers') {
+      matchesCategory = flower.flowerType === 'sunflowers' || flower.id.startsWith('sunflower') || flower.name.toLowerCase().includes('sunflower');
+    } else if (currentCategory === 'carnations') {
+      matchesCategory = flower.flowerType === 'carnations' || flower.id.startsWith('carnation') || flower.name.toLowerCase().includes('carnation');
+    } else if (currentCategory === 'daisies') {
+      matchesCategory = flower.flowerType === 'daisies' || flower.id.startsWith('daisy') || flower.name.toLowerCase().includes('daisy');
+    } else if (currentCategory === 'lavender') {
+      matchesCategory = flower.flowerType === 'lavender' || flower.id.startsWith('lavender') || flower.name.toLowerCase().includes('lavender');
+    } else if (currentCategory === 'mixed') {
+      matchesCategory = flower.flowerType === 'mixed' || flower.id.startsWith('mixed') || flower.id === 'all-in-one' || flower.name.toLowerCase().includes('mixed');
+    } else {
+      matchesCategory = flower.category === currentCategory || flower.flowerType === currentCategory;
+    }
+
     const matchesOccasion = currentOccasion === 'all' || flower.occasions.includes(currentOccasion);
     const matchesSearch = searchKeyword === '' || 
       flower.name.toLowerCase().includes(searchKeyword) ||
       flower.meaning.toLowerCase().includes(searchKeyword) ||
+      flower.color.toLowerCase().includes(searchKeyword) ||
       flower.tagline.toLowerCase().includes(searchKeyword);
 
     return matchesCategory && matchesOccasion && matchesSearch;
@@ -45,9 +72,14 @@ function renderProducts() {
     filtered.sort((a, b) => a.name.localeCompare(b.name));
   }
 
-  // Update count
+  // Update count & active category indicator
   if (countEl) {
-    countEl.textContent = `Showing ${filtered.length} of ${FLORAL_CATALOG.length} Curated Stems`;
+    if (currentCategory === 'all') {
+      countEl.innerHTML = `Showing <strong>${filtered.length}</strong> of ${FLORAL_CATALOG.length} Curated Bouquets`;
+    } else {
+      const catLabel = getCategoryLabel(currentCategory);
+      countEl.innerHTML = `Showing <strong>${filtered.length}</strong> ${catLabel} <button type="button" class="tag-clear-btn" onclick="resetAllFilters()" title="Return to all bouquets">&times; View All</button>`;
+    }
   }
 
   // Handle empty state
@@ -169,7 +201,24 @@ function resetAllFilters() {
   });
 
   renderProducts();
-  showToast('Filters have been reset', 'fa-arrow-rotate-left');
+  showToast('Showing all bouquet collections', 'fa-arrow-rotate-left');
+}
+
+function getCategoryLabel(cat) {
+  const labels = {
+    'all': 'All Bouquets',
+    'roses': 'Roses',
+    'lotus': 'Lotus Bouquets',
+    'tulips': 'Tulip Bouquets',
+    'lilies': 'Lily Bouquets',
+    'orchids': 'Orchid Bouquets',
+    'sunflowers': 'Sunflower Bouquets',
+    'carnations': 'Carnation Bouquets',
+    'daisies': 'Daisy Bouquets',
+    'lavender': 'Lavender Bouquets',
+    'mixed': 'Mixed Flower Bouquets'
+  };
+  return labels[cat] || cat;
 }
 
 /* Add flower to Bouquet Builder */

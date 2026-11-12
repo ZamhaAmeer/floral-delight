@@ -56,7 +56,7 @@
         <ul class="nav-list">
           <li><a href="home.html" class="nav-link">Home</a></li>
           <li><a href="About.html" class="nav-link">About Us</a></li>
-          <li><a href="Products.html" class="nav-link active">Shop</a></li>
+          <li><a href="Products.html" class="nav-link active">Curated Collections</a></li>
           <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
           <li><a href="bouquet-builder.html" class="nav-link">Build Bouquet</a></li>
           <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
@@ -85,7 +85,7 @@
     <div class="mobile-nav" aria-label="Mobile Navigation">
       <a href="home.html" class="nav-link">Home</a>
       <a href="About.html" class="nav-link">About Us</a>
-      <a href="Products.html" class="nav-link active">Shop Flowers</a>
+      <a href="Products.html" class="nav-link active">Curated Collections</a>
       <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
       <a href="bouquet-builder.html" class="nav-link">Build Your Bouquet</a>
       <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
@@ -110,19 +110,19 @@
           <div class="shop-hero-text">
             <div class="hero-pill">
               <span class="badge badge-sage">
-                <i class="fa-solid fa-leaf"></i> Fresh Seasonal Harvest • Sourced at Dawn
+                <i class="fa-solid fa-leaf"></i> Fresh Seasonal Harvest &bull; Curated Bouquets
               </span>
             </div>
             <h1>
-              <span>The Artisanal</span>
-              <span class="title-accent">Floral Collection</span>
+              <span>Our Curated</span>
+              <span class="title-accent">Collections</span>
             </h1>
             <p>
-              Hand-selected daily from trusted local botanical partners. Explore our 12 signature stems and celebratory arrangements, inspected for peak vitality and lasting elegance.
+              Hand-selected daily from trusted botanical growers. Explore our signature flower bouquets, color-curated roses, and bespoke arrangements, inspected for peak vitality and lasting elegance.
             </p>
 
             <div class="shop-hero-badges-row">
-              <span class="shop-stat-badge"><i class="fa-solid fa-seedling"></i> 12 Signature Varieties</span>
+              <span class="shop-stat-badge"><i class="fa-solid fa-seedling"></i> 40 Curated Bouquets</span>
               <span class="shop-stat-badge"><i class="fa-solid fa-certificate"></i> 100% Freshness Guarantee</span>
               <span class="shop-stat-badge"><i class="fa-solid fa-truck-fast"></i> Same-Day Colombo Delivery</span>
             </div>
@@ -160,15 +160,22 @@
           <!-- Search Box -->
           <div class="search-box-wrap">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="shop-search" class="search-input" placeholder="Search stems, meanings, or notes..." aria-label="Search flower products">
+            <input type="text" id="shop-search" class="search-input" placeholder="Search bouquets, rose colors, meanings..." aria-label="Search flower products">
           </div>
 
-          <!-- Category Filter Pills -->
+          <!-- Category Filter Pills (Browse by Flower Type) -->
           <div class="category-filter-pills">
-            <button type="button" class="cat-filter-btn active" data-category="all">All Stems</button>
-            <button type="button" class="cat-filter-btn" data-category="romance">Romantic &amp; Blush</button>
-            <button type="button" class="cat-filter-btn" data-category="vibrant">Vibrant &amp; Sunlit</button>
-            <button type="button" class="cat-filter-btn" data-category="serene">Serene &amp; Calming</button>
+            <button type="button" class="cat-filter-btn active" data-category="all">All Bouquets</button>
+            <button type="button" class="cat-filter-btn" data-category="roses"><i class="fa-solid fa-heart" style="color: var(--dusty-rose);"></i> Roses</button>
+            <button type="button" class="cat-filter-btn" data-category="lotus"><i class="fa-solid fa-spa" style="color: var(--dusty-rose);"></i> Lotus</button>
+            <button type="button" class="cat-filter-btn" data-category="tulips"><i class="fa-solid fa-seedling" style="color: var(--sage-green);"></i> Tulips</button>
+            <button type="button" class="cat-filter-btn" data-category="lilies"><i class="fa-solid fa-leaf" style="color: var(--sage-green);"></i> Lilies</button>
+            <button type="button" class="cat-filter-btn" data-category="orchids"><i class="fa-solid fa-fan" style="color: var(--dusty-rose-dark);"></i> Orchids</button>
+            <button type="button" class="cat-filter-btn" data-category="sunflowers"><i class="fa-solid fa-sun" style="color: #E29B38;"></i> Sunflowers</button>
+            <button type="button" class="cat-filter-btn" data-category="carnations"><i class="fa-solid fa-feather" style="color: var(--dusty-rose);"></i> Carnations</button>
+            <button type="button" class="cat-filter-btn" data-category="daisies"><i class="fa-solid fa-asterisk" style="color: #E29B38;"></i> Daisies</button>
+            <button type="button" class="cat-filter-btn" data-category="lavender"><i class="fa-solid fa-wind" style="color: #8A7996;"></i> Lavender</button>
+            <button type="button" class="cat-filter-btn" data-category="mixed"><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--dusty-rose);"></i> Mixed Flower Bouquets</button>
           </div>
 
           <!-- Dropdown Filters -->
@@ -197,7 +204,7 @@
 
         <!-- Results Counter & Reset -->
         <div class="results-status-bar">
-          <span id="results-count">Showing 12 of 12 Curated Stems</span>
+          <span id="results-count">Showing 40 of 40 Curated Bouquets</span>
           <button type="button" class="clear-filters-btn" onclick="resetAllFilters()">
             <i class="fa-solid fa-arrow-rotate-left"></i> Reset All Filters
           </button>
@@ -302,7 +309,7 @@
           <ul class="footer-links">
             <li><a href="home.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a></li>
             <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our Story</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Floral Collections</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curated Collections</a></li>
             <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Recommendation Guide</a></li>
             <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Custom Bouquet Studio</a></li>
             <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Flower Meanings</a></li>

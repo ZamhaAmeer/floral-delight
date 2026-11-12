@@ -24,13 +24,13 @@ function renderMeaningsGrid() {
   const filtered = FLORAL_CATALOG.filter(flower => {
     let matchesTheme = true;
     if (currentTheme === 'romance') {
-      matchesTheme = flower.category === 'romance' || flower.id === 'rose' || flower.id === 'tulip';
+      matchesTheme = flower.category === 'romance' || flower.flowerType === 'roses' || flower.flowerType === 'tulips';
     } else if (currentTheme === 'serenity') {
-      matchesTheme = flower.category === 'serene' || flower.id === 'lily' || flower.id === 'lotus' || flower.id === 'lavender';
+      matchesTheme = flower.category === 'serene' || flower.flowerType === 'lilies' || flower.flowerType === 'lotus' || flower.flowerType === 'lavender';
     } else if (currentTheme === 'joy') {
-      matchesTheme = flower.category === 'vibrant' || flower.id === 'sunflower' || flower.id === 'daisy';
+      matchesTheme = flower.category === 'vibrant' || flower.flowerType === 'sunflowers' || flower.flowerType === 'daisies';
     } else if (currentTheme === 'gratitude') {
-      matchesTheme = flower.occasions.includes('thanksgiving') || flower.id === 'carnation';
+      matchesTheme = flower.occasions.includes('thanksgiving') || flower.flowerType === 'carnations';
     }
 
     const matchesSearch = meaningSearch === '' || 
@@ -99,7 +99,7 @@ function renderMeaningsGrid() {
 
           <div class="meaning-card-actions">
             <a href="Products.html#product-${flower.id}" class="btn btn-sm btn-primary">
-              <i class="fa-solid fa-bag-shopping"></i> View in Shop (Rs. ${flower.price.toLocaleString()})
+              <i class="fa-solid fa-bag-shopping"></i> View Bouquet (Rs. ${flower.price.toLocaleString()})
             </a>
             <button type="button" class="btn btn-sm btn-secondary" onclick="addFlowerToBuilder('${flower.id}')">
               <i class="fa-solid fa-wand-magic-sparkles"></i> Build

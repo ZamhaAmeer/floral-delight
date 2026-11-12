@@ -54,7 +54,7 @@
         <ul class="nav-list">
           <li><a href="home.html" class="nav-link">Home</a></li>
           <li><a href="About.html" class="nav-link">About Us</a></li>
-          <li><a href="Products.html" class="nav-link">Shop</a></li>
+          <li><a href="Products.html" class="nav-link">Curated Collections</a></li>
           <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
           <li><a href="bouquet-builder.html" class="nav-link active">Build Bouquet</a></li>
           <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
@@ -69,7 +69,7 @@
           <span class="wishlist-count-badge">0</span>
         </a>
         <a href="Products.html" class="btn btn-sm btn-primary">
-          <i class="fa-solid fa-bag-shopping"></i> Browse Shop
+          <i class="fa-solid fa-bag-shopping"></i> Curated Collections
         </a>
         <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
@@ -81,7 +81,7 @@
     <div class="mobile-nav" aria-label="Mobile Navigation">
       <a href="home.html" class="nav-link">Home</a>
       <a href="About.html" class="nav-link">About Us</a>
-      <a href="Products.html" class="nav-link">Shop Flowers</a>
+      <a href="Products.html" class="nav-link">Curated Collections</a>
       <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
       <a href="bouquet-builder.html" class="nav-link active">Build Your Bouquet</a>
       <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
@@ -90,7 +90,7 @@
       <a href="Contact.html" class="nav-link">Contact &amp; Inquiries</a>
       <div style="padding-top: 10px;">
         <a href="Products.html" class="btn btn-primary" style="width: 100%;">
-          <i class="fa-solid fa-bag-shopping"></i> View All Flowers
+          <i class="fa-solid fa-bag-shopping"></i> Curated Collections
         </a>
       </div>
     </div>
@@ -139,11 +139,26 @@
             <div class="builder-card-box">
               <div class="builder-step-header">
                 <h3><i class="fa-solid fa-seedling" style="color: var(--sage-green-dark);"></i> 1. Select Stems &amp; Quantities</h3>
-                <span class="step-pill">12 Varieties Available</span>
+                <span class="step-pill" id="stem-avail-count">40 Varieties Available</span>
               </div>
-              <p style="font-size: 0.92rem; color: var(--dark-charcoal-muted); margin-bottom: 16px;">
+              <p style="font-size: 0.92rem; color: var(--dark-charcoal-muted); margin-bottom: 14px;">
                 Add stems to your bouquet. Each flower is priced according to our actual fresh boutique harvest.
               </p>
+
+              <!-- Stem Category Filter Tabs -->
+              <div class="stem-category-tabs" id="stem-filter-tabs">
+                <button type="button" class="stem-tab-btn active" data-flowertype="all">All Stems</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="roses">Roses</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="lotus">Lotus</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="tulips">Tulips</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="lilies">Lilies</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="orchids">Orchids</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="sunflowers">Sunflowers</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="carnations">Carnations</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="daisies">Daisies</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="lavender">Lavender</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="mixed">Mixed</button>
+              </div>
 
               <div class="stems-selection-list" id="stems-selector-list">
                 <!-- Dynamically populated by js/builder.js -->
@@ -269,7 +284,7 @@
           <ul class="footer-links">
             <li><a href="home.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a></li>
             <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our Story</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Floral Collections</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curated Collections</a></li>
             <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Recommendations</a></li>
             <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Custom Bouquet Studio</a></li>
             <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Flower Meanings</a></li>

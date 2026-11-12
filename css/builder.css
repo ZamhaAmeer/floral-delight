@@ -130,6 +130,41 @@
   border-radius: var(--radius-pill);
 }
 
+.stem-category-tabs {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.stem-tab-btn {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  background-color: var(--warm-ivory);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  color: var(--dark-charcoal);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: var(--transition-fast);
+}
+
+.stem-tab-btn:hover {
+  border-color: var(--dusty-rose);
+  background-color: var(--blush-pink-light);
+}
+
+.stem-tab-btn.active {
+  background-color: var(--dusty-rose-dark);
+  color: #FFFFFF;
+  border-color: var(--dusty-rose-dark);
+}
+
 .stems-selection-list {
   display: flex;
   flex-direction: column;
