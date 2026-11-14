@@ -162,7 +162,7 @@ function generateRationale(flower, choices) {
     return `The serene fragrance and majestic pure petals of the Lily evoke heartfelt honor, sincere care, and peaceful devotion, providing a refined botanical presence.`;
   }
   if (flower.flowerType === 'orchids' || flower.id.startsWith('orchid')) {
-    return `Exotic Phalaenopsis Orchids represent rare beauty and deep respect. Their sculptural stems stay radiant for weeks, reflecting thoughtful sophistication.`;
+    return `Exotic Phalaenopsis Orchids represent rare beauty and deep respect. Their sculptural blooms stay radiant for weeks, reflecting thoughtful sophistication.`;
   }
   if (flower.flowerType === 'sunflowers' || flower.id.startsWith('sunflower')) {
     return `Radiant golden sunflowers represent infectious joy, optimism, and loyalty—an uplifting choice guaranteed to bring beaming smiles and warm energy.`;
@@ -179,8 +179,11 @@ function generateRationale(flower, choices) {
   if (flower.flowerType === 'mixed' || flower.id === 'all-in-one') {
     return `Combining our finest roses, lilies, and seasonal stems into a luxurious symphony, this grand arrangement offers an unforgettable celebratory experience for your milestone.`;
   }
-  if (flower.id === 'dahlias') {
-    return `Intricate geometric symmetry and rich warm petals symbolize inner dignity and lasting commitment, elevating any celebratory atmosphere.`;
+  if (flower.flowerType === 'anthurium' || flower.id.startsWith('anthurium')) {
+    return `Exotic heart-shaped Anthuriums symbolize warm hospitality, abundance, and lasting friendship, bringing a modern tropical presence to your ${getChoiceLabel('occasion', choices.occasion)}.`;
+  }
+  if (flower.flowerType === 'dahlias' || flower.id.startsWith('dahlia')) {
+    return `Intricate geometric Dahlias symbolize inner dignity, lasting elegance, and graceful commitment, elevating any celebratory atmosphere.`;
   }
   return `${flower.name} balances natural beauty with heartfelt emotion (${flower.meaning}), fitting your ${choices.aesthetic} aesthetic preference seamlessly.`;
 }

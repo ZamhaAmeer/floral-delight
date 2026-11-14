@@ -67,7 +67,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: clip;
+  overflow-x: auto;
 }
 
 body {
@@ -77,10 +77,10 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: auto;
 }
 
 main {
@@ -825,13 +825,59 @@ p {
    Responsive Breakpoints for Header & Footer
    ========================================================================== */
 
-@media (max-width: 1100px) {
+@media (max-width: 1350px) {
   .nav-list {
     gap: 14px;
   }
 
   .nav-link {
     font-size: 0.84rem;
+  }
+
+  .header-actions .btn-sm {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 1220px) {
+  .container {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .nav-list {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 4px 0;
+  }
+
+  .brand-name {
+    font-size: 1.3rem;
+  }
+
+  .header-actions .btn-sm {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 1140px) {
+  /* On compact laptop screens (~1092px-1140px), avoid horizontal overflow by hiding the duplicate CTA button
+     since "Curated Collections" is already directly in the visible navigation list right beside it */
+  .header-actions .btn-sm {
+    display: none;
+  }
+
+  .nav-list {
+    gap: 12px;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
   }
 }
 
@@ -842,6 +888,10 @@ p {
 
   .mobile-toggle {
     display: block;
+  }
+
+  .header-actions .btn-sm {
+    display: none;
   }
 
   .footer-top {

@@ -24,13 +24,13 @@ function renderMeaningsGrid() {
   const filtered = FLORAL_CATALOG.filter(flower => {
     let matchesTheme = true;
     if (currentTheme === 'romance') {
-      matchesTheme = flower.category === 'romance' || flower.flowerType === 'roses' || flower.flowerType === 'tulips';
+      matchesTheme = flower.category === 'romance' || flower.flowerType === 'roses' || flower.flowerType === 'tulips' || flower.flowerType === 'dahlias';
     } else if (currentTheme === 'serenity') {
       matchesTheme = flower.category === 'serene' || flower.flowerType === 'lilies' || flower.flowerType === 'lotus' || flower.flowerType === 'lavender';
     } else if (currentTheme === 'joy') {
-      matchesTheme = flower.category === 'vibrant' || flower.flowerType === 'sunflowers' || flower.flowerType === 'daisies';
+      matchesTheme = flower.category === 'vibrant' || flower.flowerType === 'sunflowers' || flower.flowerType === 'daisies' || flower.flowerType === 'anthurium';
     } else if (currentTheme === 'gratitude') {
-      matchesTheme = flower.occasions.includes('thanksgiving') || flower.flowerType === 'carnations';
+      matchesTheme = flower.occasions.includes('thanksgiving') || flower.flowerType === 'carnations' || flower.flowerType === 'anthurium';
     }
 
     const matchesSearch = meaningSearch === '' || 

@@ -17,12 +17,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   
   <!-- Shared Core & Builder Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="css/common.css">
-  <link rel="stylesheet" type="text/css" href="css/builder.css">
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=2.6">
+  <link rel="stylesheet" type="text/css" href="css/builder.css?v=2.6">
   
   <!-- Core Data & Page Scripts -->
-  <script src="js/core.js" defer></script>
-  <script src="js/builder.js" defer></script>
+  <script src="js/core.js?v=2.6" defer></script>
+  <script src="js/builder.js?v=2.6" defer></script>
 </head>
 <body>
 
@@ -96,13 +96,13 @@
             </div>
             <h1>Bespoke Bouquet <span class="title-accent">Studio</span></h1>
             <p>
-              Step into our floral workbench. Mix and match fresh botanical stems, choose artisan wrapping papers, and select hand-tied ribbons with real-time stem pricing and instant virtual previews.
+              Step into our floral workbench. Mix and match fresh flowers, choose artisan wrapping papers, and select hand-tied ribbons with real-time pricing and instant virtual previews.
             </p>
           </div>
           <div class="workbench-stats-box">
             <div class="workbench-stat-item">
-              <span class="stat-item-label">Bouquet Stems</span>
-              <span class="stat-item-value" id="workbench-stem-counter">0 Stems</span>
+              <span class="stat-item-label">Bouquet Flowers</span>
+              <span class="stat-item-value" id="workbench-stem-counter">0 Flowers</span>
             </div>
             <div style="width: 1px; height: 35px; background: var(--border-subtle);"></div>
             <div class="workbench-stat-item">
@@ -122,19 +122,19 @@
           <!-- Left Column: Customizer Controls -->
           <div class="customizer-column">
             
-            <!-- Step 1: Stems & Quantities -->
+            <!-- Step 1: Flowers & Quantities -->
             <div class="builder-card-box">
               <div class="builder-step-header">
-                <h3><i class="fa-solid fa-seedling" style="color: var(--sage-green-dark);"></i> 1. Select Stems &amp; Quantities</h3>
-                <span class="step-pill" id="stem-avail-count">40 Varieties Available</span>
+                <h3><i class="fa-solid fa-seedling" style="color: var(--sage-green-dark);"></i> 1. Select Flowers &amp; Quantities</h3>
+                <span class="step-pill" id="stem-avail-count">44 Varieties Available</span>
               </div>
               <p style="font-size: 0.92rem; color: var(--dark-charcoal-muted); margin-bottom: 14px;">
-                Add stems to your bouquet. Each flower is priced according to our actual fresh boutique harvest.
+                Add fresh flowers to your bouquet. Each flower is priced according to our actual fresh boutique harvest.
               </p>
 
               <!-- Stem Category Filter Tabs -->
               <div class="stem-category-tabs" id="stem-filter-tabs">
-                <button type="button" class="stem-tab-btn active" data-flowertype="all">All Stems</button>
+                <button type="button" class="stem-tab-btn active" data-flowertype="all">All Flowers</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="roses">Roses</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="lotus">Lotus</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="tulips">Tulips</button>
@@ -144,6 +144,8 @@
                 <button type="button" class="stem-tab-btn" data-flowertype="carnations">Carnations</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="daisies">Daisies</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="lavender">Lavender</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="anthurium">Anthurium</button>
+                <button type="button" class="stem-tab-btn" data-flowertype="dahlias">Dahlias</button>
                 <button type="button" class="stem-tab-btn" data-flowertype="mixed">Mixed</button>
               </div>
 
@@ -202,7 +204,7 @@
               </div>
 
               <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px; font-size: 0.85rem; color: var(--dark-charcoal-muted);">
-                <span id="stage-stem-count">0 Stems Selected</span>
+                <span id="stage-stem-count">0 Flowers Selected</span>
                 <span><i class="fa-solid fa-check" style="color: var(--sage-green-dark);"></i> Live Dynamic Updates</span>
               </div>
             </div>

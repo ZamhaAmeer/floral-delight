@@ -68,7 +68,7 @@ function renderStemSelectors() {
           <img src="${flower.image}" alt="${flower.name}" class="stem-thumb-img">
           <div>
             <h4>${flower.name}</h4>
-            <span class="stem-item-price">Rs. ${flower.price.toLocaleString()} / stem</span>
+            <span class="stem-item-price">Rs. ${flower.price.toLocaleString()}</span>
           </div>
         </div>
 
@@ -215,7 +215,7 @@ function updateBouquet() {
 
   // Update total stem count badge
   if (stemCounterBadge) {
-    stemCounterBadge.textContent = `${totalStemsCount} Stems Selected`;
+    stemCounterBadge.textContent = `${totalStemsCount} Flower${totalStemsCount === 1 ? '' : 's'} Selected`;
   }
 
   // Update Total Price display
@@ -226,7 +226,7 @@ function updateBouquet() {
   // Update Workbench Hero Stats Box if present
   const wbStemCounter = document.getElementById('workbench-stem-counter');
   if (wbStemCounter) {
-    wbStemCounter.textContent = `${totalStemsCount} Stem${totalStemsCount === 1 ? '' : 's'}`;
+    wbStemCounter.textContent = `${totalStemsCount} Flower${totalStemsCount === 1 ? '' : 's'}`;
   }
   const wbPriceCounter = document.getElementById('workbench-price-counter');
   if (wbPriceCounter) {
@@ -240,7 +240,7 @@ function updateBouquet() {
     if (activeStems.length === 0) {
       breakdownList.innerHTML = `
         <div class="breakdown-line empty-placeholder">
-          <span>No floral stems selected yet. Click (+) above to compose your bouquet.</span>
+          <span>No fresh flowers selected yet. Click (+) above to compose your bouquet.</span>
         </div>
         <div class="breakdown-line">
           <span class="line-title">🎀 Packaging: ${builderState.wrap.name}</span>
@@ -283,14 +283,14 @@ function updateBouquet() {
         <div class="empty-stage-state">
           <i class="fa-solid fa-seedling"></i>
           <h4 style="font-size: 1.1rem; margin-bottom: 4px;">Atelier Canvas Ready</h4>
-          <p style="font-size: 0.85rem;">Select stems on the left to see your virtual bouquet bloom.</p>
+          <p style="font-size: 0.85rem;">Select flowers on the left to see your virtual bouquet bloom.</p>
         </div>
       `;
     } else {
       // Create visual cluster
       const bubbles = activeStems.map(stem => `
         <div class="virtual-stem-bubble" title="${stem.name} (×${stem.qty})">
-          <img src="${stem.image}" alt="${stem.name}">
+          <img src="${stem.image}" alt="${stem.name}" onerror="this.onerror=null;this.src='Images/flowerr.jpg';">
           <span class="stem-badge-count">${stem.qty}</span>
         </div>
       `).join('');
@@ -347,7 +347,7 @@ function resetBouquetBuilder() {
 function saveCustomBouquetToWishlist() {
   const activeEntries = Object.entries(builderState.stems).filter(([_, q]) => q > 0);
   if (activeEntries.length === 0) {
-    showToast('Please select at least one flower stem before saving!', 'fa-circle-exclamation');
+    showToast('Please select at least one flower before saving!', 'fa-circle-exclamation');
     return;
   }
 

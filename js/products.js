@@ -47,6 +47,10 @@ function renderProducts() {
       matchesCategory = flower.flowerType === 'daisies' || flower.id.startsWith('daisy') || flower.name.toLowerCase().includes('daisy');
     } else if (currentCategory === 'lavender') {
       matchesCategory = flower.flowerType === 'lavender' || flower.id.startsWith('lavender') || flower.name.toLowerCase().includes('lavender');
+    } else if (currentCategory === 'anthurium') {
+      matchesCategory = flower.flowerType === 'anthurium' || flower.id.startsWith('anthurium') || flower.name.toLowerCase().includes('anthurium');
+    } else if (currentCategory === 'dahlias' || currentCategory === 'dahlia') {
+      matchesCategory = flower.flowerType === 'dahlias' || flower.id.startsWith('dahlia') || flower.name.toLowerCase().includes('dahlia');
     } else if (currentCategory === 'mixed') {
       matchesCategory = flower.flowerType === 'mixed' || flower.id.startsWith('mixed') || flower.id === 'all-in-one' || flower.name.toLowerCase().includes('mixed');
     } else {
@@ -216,6 +220,9 @@ function getCategoryLabel(cat) {
     'carnations': 'Carnation Bouquets',
     'daisies': 'Daisy Bouquets',
     'lavender': 'Lavender Bouquets',
+    'anthurium': 'Anthurium Bouquets',
+    'dahlias': 'Dahlia Bouquets',
+    'dahlia': 'Dahlia Bouquets',
     'mixed': 'Mixed Flower Bouquets'
   };
   return labels[cat] || cat;

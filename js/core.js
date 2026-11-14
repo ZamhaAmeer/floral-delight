@@ -205,7 +205,7 @@ const FLORAL_CATALOG = [
     season: 'Boutique Aquatic Harvest',
     stemLength: '35 cm',
     fragrance: 'Deep Exotic Floral',
-    description: 'Rare blue and purple waterlotus stems reflecting mystical depth and timeless botanical wonder.'
+    description: 'Rare blue and purple waterlotus blooms reflecting mystical depth and timeless botanical wonder.'
   },
 
   // -------------------------------------------------------------
@@ -334,7 +334,7 @@ const FLORAL_CATALOG = [
   {
     id: 'orchid-white',
     name: 'White Phalaenopsis Orchid Bouquet',
-    tagline: 'Exotic Phalaenopsis Stems',
+    tagline: 'Exotic Phalaenopsis Blooms',
     flowerType: 'orchids',
     category: 'serene',
     price: 5200,
@@ -345,12 +345,12 @@ const FLORAL_CATALOG = [
     season: 'All Year Harvest',
     stemLength: '55 cm',
     fragrance: 'Subtle & Clean',
-    description: 'Sculptural Phalaenopsis stems boasting remarkable longevity and contemporary architectural poise.'
+    description: 'Sculptural Phalaenopsis orchids boasting remarkable longevity and contemporary architectural poise.'
   },
   {
     id: 'orchid-magenta',
     name: 'Imperial Magenta Orchid Bouquet',
-    tagline: 'Royal Cascading Stems',
+    tagline: 'Royal Cascading Blooms',
     flowerType: 'orchids',
     category: 'vibrant',
     price: 5400,
@@ -490,7 +490,7 @@ const FLORAL_CATALOG = [
   {
     id: 'daisy-meadow',
     name: 'White Meadow Daisy Bouquet',
-    tagline: 'Meadow Charm Stems',
+    tagline: 'Meadow Charm Blooms',
     flowerType: 'daisies',
     category: 'vibrant',
     price: 4000,
@@ -542,7 +542,7 @@ const FLORAL_CATALOG = [
   {
     id: 'lavender-provence',
     name: 'French Provence Lavender Bouquet',
-    tagline: 'Aromatic French Stems',
+    tagline: 'Aromatic French Blooms',
     flowerType: 'lavender',
     category: 'serene',
     price: 4300,
@@ -653,17 +653,17 @@ const FLORAL_CATALOG = [
     season: 'Seasonal Harvest',
     stemLength: '50 cm',
     fragrance: 'Wild Meadow Flora',
-    description: 'Artisanal hand-gathered wildflowers, lavender stems, daisies, and delicate seedheads.'
+    description: 'Artisanal hand-gathered wildflowers, lavender blossoms, daisies, and delicate seedheads.'
   },
 
   // -------------------------------------------------------------
-  // 11. ADDITIONAL SIGNATURE BOTANICALS
+  // 11. ANTHURIUM (flowerType: 'anthurium')
   // -------------------------------------------------------------
   {
-    id: 'anthurium',
+    id: 'anthurium-coral',
     name: 'Tropical Heart Anthurium Bouquet',
-    tagline: 'Tropical Heart Silhouette',
-    flowerType: 'other',
+    tagline: 'Exotic Heart Silhouette',
+    flowerType: 'anthurium',
     category: 'vibrant',
     price: 4000,
     image: 'Images/Anthurium.jpg',
@@ -676,10 +676,46 @@ const FLORAL_CATALOG = [
     description: 'Glossy heart-shaped exotic spathes that exude modern tropical warmth and unwavering longevity.'
   },
   {
-    id: 'dahlias',
-    name: 'Geometric Dahlia Bouquet',
+    id: 'anthurium-ruby',
+    name: 'Ruby Crimson Anthurium Arrangement',
+    tagline: 'Deep Passionate Wax Spathes',
+    flowerType: 'anthurium',
+    category: 'romance',
+    price: 4200,
+    image: 'Images/anthurium-ruby.jpg',
+    occasions: ['anniversary', 'wedding', 'birthday'],
+    color: 'Lustrous Deep Ruby Red',
+    meaning: 'Abiding hospitality, heartfelt celebration, and fiery affection.',
+    season: 'Tropical Year-Round',
+    stemLength: '50 cm',
+    fragrance: 'Crisp Botanical',
+    description: 'Striking rich crimson anthurium spathes with contrasting yellow spadix, hand-wrapped with satin ribbon.'
+  },
+  {
+    id: 'anthurium-white',
+    name: 'Pure White Exotic Anthurium',
+    tagline: 'Serene Minimalist Tropics',
+    flowerType: 'anthurium',
+    category: 'serene',
+    price: 4100,
+    image: 'Images/anthurium-white.jpg',
+    occasions: ['wedding', 'anniversary', 'getwellsoon'],
+    color: 'Pristine Porcelain White',
+    meaning: 'Purity, quiet elegance, sincere respect, and peaceful hospitality.',
+    season: 'Tropical Year-Round',
+    stemLength: '45 cm',
+    fragrance: 'Subtle Fresh Green',
+    description: 'Architectural porcelain-white anthuriums paired with monstera and lush tropical greens.'
+  },
+
+  // -------------------------------------------------------------
+  // 12. DAHLIAS (flowerType: 'dahlias')
+  // -------------------------------------------------------------
+  {
+    id: 'dahlia-geometric',
+    name: 'Geometric Country Dahlia Bouquet',
     tagline: 'Intricate Geometric Petals',
-    flowerType: 'other',
+    flowerType: 'dahlias',
     category: 'vibrant',
     price: 4500,
     image: 'Images/Dahlias.jpeg',
@@ -690,6 +726,38 @@ const FLORAL_CATALOG = [
     stemLength: '50 cm',
     fragrance: 'Soft Herbaceous',
     description: 'Hypnotic geometric symmetry of layered petals that capture admiration and refined artistic flair.'
+  },
+  {
+    id: 'dahlia-blush',
+    name: 'Blush Sunset Dinnerplate Dahlia',
+    tagline: 'Voluminous Tiered Petals',
+    flowerType: 'dahlias',
+    category: 'romance',
+    price: 4600,
+    image: 'Images/bouquet-dahlias.jpg',
+    occasions: ['wedding', 'anniversary', 'birthday'],
+    color: 'Dusty Rose & Peach Blush',
+    meaning: 'Grace under pressure, deep lasting kindness, and opulent romantic celebration.',
+    season: 'Late Summer to Autumn',
+    stemLength: '50 cm',
+    fragrance: 'Gentle Garden Scent',
+    description: 'Enormous dinnerplate dahlia blooms with soft ombre blush and champagne petals, hand-tied with organza.'
+  },
+  {
+    id: 'dahlia-burgundy',
+    name: 'Vintage Burgundy Garden Dahlia',
+    tagline: 'Velvety Wine & Plum Tones',
+    flowerType: 'dahlias',
+    category: 'vibrant',
+    price: 4700,
+    image: 'Images/dahlia-burgundy.jpg',
+    occasions: ['anniversary', 'thanksgiving', 'birthday'],
+    color: 'Rich Wine Burgundy',
+    meaning: 'Dignity, enduring devotion, elegance, and standing out with rare distinction.',
+    season: 'Late Summer to Autumn',
+    stemLength: '52 cm',
+    fragrance: 'Subtle Earthy Flora',
+    description: 'Deep midnight-burgundy layered dahlia blooms paired with silver-dollar eucalyptus and artisan paper.'
   }
 ];
 
@@ -710,7 +778,10 @@ function getFlowerById(id) {
     'carnation': 'carnation-blush',
     'daisy': 'daisy-meadow',
     'lavender': 'lavender-provence',
-    'all-in-one': 'mixed-grand'
+    'all-in-one': 'mixed-grand',
+    'anthurium': 'anthurium-coral',
+    'dahlias': 'dahlia-geometric',
+    'dahlia': 'dahlia-geometric'
   };
   if (aliasMap[id]) {
     return FLORAL_CATALOG.find(f => f.id === aliasMap[id]) || null;

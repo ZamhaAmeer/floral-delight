@@ -1,30 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Floral Delight | Luxury Artisanal Boutique Florist</title>
-  
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="Images/logo.png">
-  
+
   <!-- Google Fonts Preconnect & Stylesheet -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
 
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-  
+
   <!-- Shared Core Stylesheet & Main Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="css/common.css">
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.0">
+  <link rel="stylesheet" type="text/css" href="css/style.css?v=3.0">
+
+  <!-- Three.js 3D WebGL Engine & 3D Bouquet Controller -->
+  <script src="js/three.min.js"></script>
+  <script src="js/three-bouquet.js?v=3.0" defer></script>
+
   <!-- Interactive JavaScript -->
-  <script src="js/core.js" defer></script>
-  <script src="js/home.js" defer></script>
+  <script src="js/core.js?v=3.0" defer></script>
+  <script src="js/home.js?v=3.0" defer></script>
 </head>
+
 <body>
+
+  <!-- Full-Screen Living Petals Animation Field (Directly Across Home Screen) -->
+  <div class="screen-petals-field" id="screen-petals-field" aria-hidden="true"></div>
 
   <!-- 1. Creative Navigation Bar -->
   <header class="site-header">
@@ -90,9 +101,12 @@
   <main>
     <!-- 2. Premium Hero Section (Creative Asymmetrical Layout) -->
     <section class="hero-section">
+      <!-- Ambient Living Petals Layer (Evergreen Gentle Motion in Hero Background) -->
+      <div class="ambient-petals-layer" id="ambient-living-petals" aria-hidden="true"></div>
+
       <div class="container">
         <div class="hero-grid">
-          
+
           <!-- Left Editorial Content Column -->
           <div class="hero-content">
             <h1 class="hero-title">
@@ -101,7 +115,8 @@
             </h1>
 
             <p class="hero-description">
-              Make your days special with our fresh &amp; unique flower bouquets. Thoughtfully composed with morning-harvested blooms to bring poetry, warmth, and enduring beauty into your cherished moments.
+              Make your days special with our fresh &amp; unique flower bouquets. Thoughtfully composed with
+              morning-harvested blooms to bring poetry, warmth, and enduring beauty into your cherished moments.
             </p>
 
             <div class="hero-cta-group">
@@ -111,6 +126,13 @@
               <a href="#experience" class="btn btn-outline">
                 <i class="fa-solid fa-wand-magic-sparkles"></i> Explore Experiences
               </a>
+            </div>
+
+            <!-- Replay 3D Floral Falling Entrance Action -->
+            <div>
+              <button type="button" class="replay-entrance-btn" id="replay-3d-entrance-btn" title="Replay 3D Bouquet Falling Entrance">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Replay 3D Falling Experience
+              </button>
             </div>
 
             <!-- Value Highlights Ribbon -->
@@ -130,22 +152,34 @@
             </div>
           </div>
 
-          <!-- Right Asymmetrical Visual Montage -->
+          <!-- Right Asymmetrical Visual Montage (Interactive 3D Three.js Atelier Stage) -->
           <div class="hero-visual">
-            
-            <!-- Circular Botanical Seal -->
-            <div class="hero-stamp" aria-hidden="true">
-              <i class="fa-solid fa-seedling"></i>
-              <span>100% Fresh Stems</span>
+
+            <!-- Atmospheric Botanical Aura Glow -->
+            <div class="hero-ambient-aura" aria-hidden="true"></div>
+
+            <!-- Botanical Freshness Wax Seal -->
+            <div class="hero-seal-stamp" aria-hidden="true">
+              <div class="seal-inner">
+                <i class="fa-solid fa-seedling"></i>
+                <span>100% Fresh</span>
+                <small>Flowers</small>
+              </div>
             </div>
 
-            <!-- Main Arched Frame Showcase -->
-            <div class="hero-arch-frame">
-              <img src="Images/flowerr.jpg" alt="Exquisite Floral Delight Arrangement" class="hero-main-img">
+            <!-- Genuine Three.js 3D Flower Bouquet Viewport -->
+            <div class="hero-three-wrapper" id="hero-three-wrapper">
+              <div id="three-bouquet-container" class="three-bouquet-container" aria-label="Interactive 3D Flower Bouquet"></div>
+              
+              <!-- Interactive 3D Orbit / Drag Instruction Pill -->
+              <div class="three-interaction-pill">
+                <i class="fa-solid fa-arrows-rotate"></i>
+                <span>Drag to explore 3D bouquet in 360°</span>
+              </div>
             </div>
 
             <!-- Floating Micro Card - Top Rating -->
-            <div class="hero-floating-card hero-card-right">
+            <div class="hero-review-pill">
               <span class="rating-stars">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
@@ -154,15 +188,6 @@
                 <i class="fa-solid fa-star"></i>
               </span>
               <span>4.9 / 5 Artisanal Craft</span>
-            </div>
-
-            <!-- Floating Micro Card - Signature Stems -->
-            <div class="hero-floating-card hero-card-left">
-              <img src="Images/rose.jpg" alt="Signature Velvet Roses" class="thumb-img">
-              <div class="card-info">
-                <h4>Signature Roses</h4>
-                <p>Hand-tied daily • Rs. 4,300</p>
-              </div>
             </div>
 
           </div>
@@ -174,18 +199,19 @@
     <!-- 3. Featured Flower Collections (Asymmetric & Artistic Layout) -->
     <section class="collections-section" id="collections">
       <div class="container">
-        
+
         <div class="section-header">
           <span class="kicker">[ Curated Botanicals ]</span>
-          <h2>Signature Stems &amp; Floral Collections</h2>
+          <h2>Signature Fresh Flower Collections</h2>
           <p>
-            Hand-selected daily from our trusted botanical partners. Each stem is inspected for vitality, delicate aroma, and artistic harmony.
+            Hand-selected daily from our trusted botanical partners. Each flower is inspected for vitality, delicate
+            aroma, and artistic harmony.
           </p>
         </div>
 
         <!-- Filter Category Tabs -->
         <div class="collection-tabs">
-          <button type="button" class="filter-btn active" data-filter="all">All Stems</button>
+          <button type="button" class="filter-btn active" data-filter="all">All Flowers</button>
           <button type="button" class="filter-btn" data-filter="romance">Romantic &amp; Blush</button>
           <button type="button" class="filter-btn" data-filter="vibrant">Vibrant &amp; Sunlit</button>
           <button type="button" class="filter-btn" data-filter="serene">Serene &amp; Calming</button>
@@ -193,41 +219,20 @@
 
         <!-- Asymmetrical Mosaic Grid -->
         <div class="collection-grid">
-          
-          <!-- Card 1: Featured Hero Card (Span 7) -->
-          <article class="collection-card card-span-7" data-category="romance">
-            <div class="card-media">
-              <img src="Images/Tulip.jpg" alt="Tulip Flower Bouquet">
-              <span class="card-badge">Boutique Favorite</span>
-              <span class="card-price-tag">Rs. 5,500</span>
-            </div>
-            <div class="card-body">
-              <span class="card-meta">Seasonal Dutch Bulbs</span>
-              <h3 class="card-title">Tulip Flower Ensemble</h3>
-              <p class="card-desc">
-                Crisp, elegant spring tulips presented in tender blush and ivory wrapping. A timeless declaration of genuine affection and renewal.
-              </p>
-              <div class="card-footer">
-                <span class="badge badge-blush">Fresh Cut Daily</span>
-                <a href="Products.html" class="card-action-link">
-                  Order Bouquet <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </article>
 
-          <!-- Card 2: Tall Elegant Portrait Card (Span 5) -->
-          <article class="collection-card card-span-5" data-category="serene">
+          <!-- Card 1: Tall Elegant Portrait Card (Span 6) -->
+          <article class="collection-card card-span-6" data-category="serene">
             <div class="card-media">
-              <img src="Images/Orchid.jpg" alt="Graceful Phalaenopsis Orchid">
+              <img src="Images/orchid flower.jpg" alt="Graceful Orchid Bouquet">
               <span class="card-badge">Exotic &amp; Rare</span>
               <span class="card-price-tag">Rs. 5,200</span>
             </div>
             <div class="card-body">
-              <span class="card-meta">Architectural Stems</span>
-              <h3 class="card-title">Orchid Flower Stem</h3>
+              <span class="card-meta">Architectural Orchids</span>
+              <h3 class="card-title">Orchid Bouquet</h3>
               <p class="card-desc">
-                Sculptural elegance with long-lasting pristine blooms. Creates a serene sanctuary in any refined interior space.
+                Sculptural elegance with long-lasting pristine blooms. Creates a serene sanctuary in any refined
+                interior space.
               </p>
               <div class="card-footer">
                 <span class="badge badge-sage">High Longevity</span>
@@ -238,10 +243,10 @@
             </div>
           </article>
 
-          <!-- Card 3: Velvet Rose (Span 4) -->
-          <article class="collection-card card-span-4" data-category="romance">
+          <!-- Card 2: Velvet Rose (Span 6) -->
+          <article class="collection-card card-span-6" data-category="romance">
             <div class="card-media">
-              <img src="Images/rose.jpg" alt="Lush Velvet Rose Flower">
+              <img src="Images/Rose flower.jpg" alt="Lush Velvet Rose Flower">
               <span class="card-badge">Timeless Classic</span>
               <span class="card-price-tag">Rs. 4,300</span>
             </div>
@@ -249,7 +254,8 @@
               <span class="card-meta">Grand Garden Roses</span>
               <h3 class="card-title">Rose Flower</h3>
               <p class="card-desc">
-                Velvety fragrant petals hand-tied with custom silk ribbon for memorable anniversaries and intimate moments.
+                Velvety fragrant petals hand-tied with custom silk ribbon for memorable anniversaries and intimate
+                moments.
               </p>
               <div class="card-footer">
                 <span class="badge badge-blush">Most Loved</span>
@@ -260,7 +266,7 @@
             </div>
           </article>
 
-          <!-- Card 4: Golden Sunflower (Span 4) -->
+          <!-- Card 3: Golden Sunflower (Span 4) -->
           <article class="collection-card card-span-4" data-category="vibrant">
             <div class="card-media">
               <img src="Images/Sunflower.jpg" alt="Golden Sunflower Arrangement">
@@ -282,10 +288,10 @@
             </div>
           </article>
 
-          <!-- Card 5: French Lavender (Span 4) -->
+          <!-- Card 4: French Lavender (Span 4) -->
           <article class="collection-card card-span-4" data-category="serene">
             <div class="card-media">
-              <img src="Images/Lavender.jpg" alt="French Lavender Bunch">
+              <img src="Images/lavender flower.jpeg" alt="French Lavender Bunch">
               <span class="card-badge">Aromatic Bloom</span>
               <span class="card-price-tag">Rs. 4,300</span>
             </div>
@@ -293,7 +299,8 @@
               <span class="card-meta">Botanical Wellness</span>
               <h3 class="card-title">Lavender Flower</h3>
               <p class="card-desc">
-                Naturally therapeutic floral bunch that infuses rooms with peaceful lavender aroma and organic French charm.
+                Naturally therapeutic floral bunch that infuses rooms with peaceful lavender aroma and organic French
+                charm.
               </p>
               <div class="card-footer">
                 <span class="badge badge-sage">Dried or Fresh</span>
@@ -304,32 +311,10 @@
             </div>
           </article>
 
-          <!-- Card 6: All-In-One Grand Celebration (Span 8) -->
-          <article class="collection-card card-span-8" data-category="vibrant romance">
-            <div class="card-media">
-              <img src="Images/all in one.jpg" alt="All in One Celebration Bouquet">
-              <span class="card-badge">Master Florist Blend</span>
-              <span class="card-price-tag">Rs. 6,000</span>
-            </div>
-            <div class="card-body">
-              <span class="card-meta">Atelier Signature</span>
-              <h3 class="card-title">All-in-One Grand Celebration</h3>
-              <p class="card-desc">
-                A rich floral symposium bringing together roses, lilies, carnations, and rare foliage in one magnificent hand-tied composition.
-              </p>
-              <div class="card-footer">
-                <span class="badge badge-blush">Luxury Edition</span>
-                <a href="Products.html" class="card-action-link">
-                  Order Bouquet <i class="fa-solid fa-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Card 7: Country Dahlias (Span 4) -->
+          <!-- Card 5: Country Dahlias (Span 4) -->
           <article class="collection-card card-span-4" data-category="vibrant">
             <div class="card-media">
-              <img src="Images/Dahlias.jpeg" alt="Country Dahlias">
+              <img src="Images/dahli.jpg" alt="Country Dahlias">
               <span class="card-badge">Geometric Artistry</span>
               <span class="card-price-tag">Rs. 4,500</span>
             </div>
@@ -340,7 +325,30 @@
                 Show-stopping layered petals of deep crimson and blush tones, evoking rustic garden charm.
               </p>
               <div class="card-footer">
-                <span class="badge badge-sage">Seasonal Stem</span>
+                <span class="badge badge-sage">Fresh Harvest</span>
+                <a href="Products.html" class="card-action-link">
+                  Order Bouquet <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 6: All-In-One Grand Celebration (Span 12) -->
+          <article class="collection-card card-span-12" data-category="vibrant romance">
+            <div class="card-media">
+              <img src="Images/all in one.jpg" alt="All in One Celebration Bouquet">
+              <span class="card-badge">Master Florist Blend</span>
+              <span class="card-price-tag">Rs. 6,000</span>
+            </div>
+            <div class="card-body">
+              <span class="card-meta">Atelier Signature</span>
+              <h3 class="card-title">All-in-One Grand Celebration</h3>
+              <p class="card-desc">
+                A rich floral symposium bringing together roses, lilies, carnations, and rare foliage in one magnificent
+                hand-tied composition.
+              </p>
+              <div class="card-footer">
+                <span class="badge badge-blush">Luxury Edition</span>
                 <a href="Products.html" class="card-action-link">
                   Order Bouquet <i class="fa-solid fa-arrow-right"></i>
                 </a>
@@ -352,7 +360,7 @@
 
         <div class="collections-footer">
           <a href="Products.html" class="btn btn-secondary">
-            View Complete Curated Catalog (40+ Bouquets) <i class="fa-solid fa-arrow-right"></i>
+            View Complete Curated Catalog (44+ Bouquets) <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
 
@@ -362,17 +370,18 @@
     <!-- 4. Explore Our Experience Section (Recommendations & Custom Atelier) -->
     <section class="experience-section" id="experience">
       <div class="container">
-        
+
         <div class="section-header">
           <span class="kicker">[ Explore Our Experiences ]</span>
           <h2>Personalized Floral Artistry</h2>
           <p>
-            Experience flower gifting redefined. Find meaningful stems tailored to your emotion or design a bespoke custom arrangement alongside our floral artisans.
+            Experience flower gifting redefined. Find meaningful flowers tailored to your emotion or design a bespoke
+            custom arrangement alongside our floral artisans.
           </p>
         </div>
 
         <div class="experience-grid">
-          
+
           <!-- Experience Card 1: Flower Recommendation Guide -->
           <div class="exp-card">
             <div class="exp-card-header">
@@ -382,7 +391,8 @@
               <span class="badge badge-blush" style="margin-bottom: 8px;">Interactive Guide</span>
               <h3>Find Your Perfect Bloom</h3>
               <p>
-                Every flower speaks an ancient poetic language. Select your occasion and preferred energy to uncover your harmonious bloom match.
+                Every flower speaks an ancient poetic language. Select your occasion and preferred energy to uncover
+                your harmonious bloom match.
               </p>
             </div>
 
@@ -392,7 +402,8 @@
               <button type="button" class="choice-chip occasion-chip active" data-occasion="romance">💍 Romance</button>
               <button type="button" class="choice-chip occasion-chip" data-occasion="birthday">🎂 Birthday</button>
               <button type="button" class="choice-chip occasion-chip" data-occasion="thanks">🙏 Gratitude</button>
-              <button type="button" class="choice-chip occasion-chip" data-occasion="comfort">🌿 Comfort &amp; Care</button>
+              <button type="button" class="choice-chip occasion-chip" data-occasion="comfort">🌿 Comfort &amp;
+                Care</button>
             </div>
 
             <!-- Quiz Step 2: Desired Vibe -->
@@ -435,7 +446,8 @@
               <span class="badge badge-sage" style="margin-bottom: 8px;">Atelier Studio</span>
               <h3>Custom Bouquet Atelier</h3>
               <p>
-                Your vision, our creation — perfectly personalized for your important moments. Hand-pick your focal stems and artisan wrapping.
+                Your vision, our creation — perfectly personalized for your important moments. Hand-pick your focal
+                flowers and artisan wrapping.
               </p>
             </div>
 
@@ -444,10 +456,14 @@
               <div>
                 <div class="quiz-step-title">A. Choose Your Focal Bloom</div>
                 <div class="pill-selector">
-                  <button type="button" class="choice-chip base-chip active" data-name="Blush Roses" data-price="4300">Blush Roses</button>
-                  <button type="button" class="choice-chip base-chip" data-name="Dutch Tulips" data-price="5500">Dutch Tulips</button>
-                  <button type="button" class="choice-chip base-chip" data-name="White Orchids" data-price="5200">White Orchids</button>
-                  <button type="button" class="choice-chip base-chip" data-name="Country Dahlias" data-price="4500">Country Dahlias</button>
+                  <button type="button" class="choice-chip base-chip active" data-name="Blush Roses"
+                    data-price="4300">Blush Roses</button>
+                  <button type="button" class="choice-chip base-chip" data-name="Dutch Tulips" data-price="5500">Dutch
+                    Tulips</button>
+                  <button type="button" class="choice-chip base-chip" data-name="White Orchids" data-price="5200">White
+                    Orchids</button>
+                  <button type="button" class="choice-chip base-chip" data-name="Country Dahlias"
+                    data-price="4500">Country Dahlias</button>
                 </div>
               </div>
 
@@ -455,9 +471,12 @@
               <div>
                 <div class="quiz-step-title">B. Add Botanical Foliage</div>
                 <div class="pill-selector">
-                  <button type="button" class="choice-chip accent-chip active" data-name="Sage Foliage" data-price="400">Sage Foliage</button>
-                  <button type="button" class="choice-chip accent-chip" data-name="Lavender Sprigs" data-price="500">Lavender Sprigs</button>
-                  <button type="button" class="choice-chip accent-chip" data-name="Baby's Breath" data-price="400">Baby's Breath</button>
+                  <button type="button" class="choice-chip accent-chip active" data-name="Sage Foliage"
+                    data-price="400">Sage Foliage</button>
+                  <button type="button" class="choice-chip accent-chip" data-name="Lavender Sprigs"
+                    data-price="500">Lavender Sprigs</button>
+                  <button type="button" class="choice-chip accent-chip" data-name="Baby's Breath"
+                    data-price="400">Baby's Breath</button>
                 </div>
               </div>
 
@@ -465,9 +484,12 @@
               <div>
                 <div class="quiz-step-title">C. Select Artisan Packaging</div>
                 <div class="pill-selector">
-                  <button type="button" class="choice-chip wrap-chip active" data-name="Dusty Rose Silk" data-price="0">Dusty Rose Silk</button>
-                  <button type="button" class="choice-chip wrap-chip" data-name="Sage Kraft Paper" data-price="0">Sage Kraft Paper</button>
-                  <button type="button" class="choice-chip wrap-chip" data-name="Warm Ivory Linen" data-price="200">Warm Ivory Linen</button>
+                  <button type="button" class="choice-chip wrap-chip active" data-name="Dusty Rose Silk"
+                    data-price="0">Dusty Rose Silk</button>
+                  <button type="button" class="choice-chip wrap-chip" data-name="Sage Kraft Paper" data-price="0">Sage
+                    Kraft Paper</button>
+                  <button type="button" class="choice-chip wrap-chip" data-name="Warm Ivory Linen" data-price="200">Warm
+                    Ivory Linen</button>
                 </div>
               </div>
             </div>
@@ -484,7 +506,8 @@
                 <span class="recipe-tag">🎀 Dusty Rose Silk</span>
               </div>
               <div class="quote-personal-note">
-                <i class="fa-solid fa-pen-fancy"></i> "Includes our signature complimentary hand-written calligraphy note card."
+                <i class="fa-solid fa-pen-fancy"></i> "Includes our signature complimentary hand-written calligraphy
+                note card."
               </div>
               <div style="display: flex; flex-direction: column; gap: 8px;">
                 <a href="Contact.html" id="custom-cta-btn" class="btn btn-secondary" style="width: 100%;">
@@ -507,13 +530,13 @@
     <section class="story-section" id="story">
       <div class="container">
         <div class="story-grid">
-          
+
           <!-- Left Asymmetric Photo Montage -->
           <div class="story-collage">
             <div class="story-main-img-wrap">
               <img src="Images/new.jpg" alt="Artisan florists composing fresh blooms">
             </div>
-            
+
             <div class="story-accent-img-wrap">
               <img src="Images/carnation.jpg" alt="Delicate fresh carnation petals">
             </div>
@@ -533,12 +556,15 @@
 
             <div class="story-quote-box">
               <p>
-                "At our Blossom Flower Shop, we believe that every flower has the power to brighten hearts, create memories, and tell a story."
+                "At our Blossom Flower Shop, we believe that every flower has the power to brighten hearts, create
+                memories, and tell a story."
               </p>
             </div>
 
             <p style="margin-bottom: 26px;">
-              Since our journey began in 2018, we’ve been passionate about transforming nature’s finest blooms into stunning, handcrafted arrangements for every occasion. From elegant wedding bouquets to thoughtful everyday gifts, each piece is designed to spark genuine connection.
+              Since our journey began in 2018, we’ve been passionate about transforming nature’s finest blooms into
+              stunning, handcrafted arrangements for every occasion. From elegant wedding bouquets to thoughtful
+              everyday gifts, each piece is designed to spark genuine connection.
             </p>
 
             <div class="story-pillars">
@@ -548,7 +574,8 @@
                 </div>
                 <div class="pillar-text">
                   <h4>Harvested with Intent</h4>
-                  <p>We partner with ethical growers to harvest flowers at first light, preserving maximum freshness and botanical vibrancy.</p>
+                  <p>We partner with ethical growers to harvest flowers at first light, preserving maximum freshness and
+                    botanical vibrancy.</p>
                 </div>
               </div>
 
@@ -558,7 +585,8 @@
                 </div>
                 <div class="pillar-text">
                   <h4>Artisanal Craftsmanship</h4>
-                  <p>No cookie-cutter templates. Every arrangement is hand-balanced with delicate color gradations and organic movement.</p>
+                  <p>No cookie-cutter templates. Every arrangement is hand-balanced with delicate color gradations and
+                    organic movement.</p>
                 </div>
               </div>
             </div>
@@ -597,7 +625,8 @@
           </span>
           <h2>Ready to Share Petals of Joy?</h2>
           <p>
-            Whether honoring a grand milestone, comforting a loved one, or simply indulging in living botanical art for your sanctuary, our florists are ready to craft your arrangement.
+            Whether honoring a grand milestone, comforting a loved one, or simply indulging in living botanical art for
+            your sanctuary, our florists are ready to craft your arrangement.
           </p>
 
           <div class="cta-btn-group">
@@ -623,7 +652,7 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
-        
+
         <!-- Column 1: Brand & Atelier Bio -->
         <div class="footer-brand">
           <a href="home.html" class="brand">
@@ -634,7 +663,8 @@
             </div>
           </a>
           <p>
-            Creating unforgettable moments with every petal we arrange. Handcrafting bespoke floral arrangements with ethically sourced blooms since 2018.
+            Creating unforgettable moments with every petal we arrange. Handcrafting bespoke floral arrangements with
+            ethically sourced blooms since 2018.
           </p>
           <div class="footer-socials">
             <a href="#" class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
@@ -649,14 +679,22 @@
           <h4>Boutique Links</h4>
           <ul class="footer-links">
             <li><a href="home.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a></li>
-            <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our Story</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curated Collections</a></li>
-            <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Recommendations</a></li>
-            <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Custom Bouquet Studio</a></li>
-            <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Flower Meanings</a></li>
-            <li><a href="reviews.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Customer Reviews</a></li>
-            <li><a href="wishlist.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Saved Wishlist</a></li>
-            <li><a href="Contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Inquiries</a></li>
+            <li><a href="About.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> About Our
+                Story</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curated
+                Collections</a></li>
+            <li><a href="recommendations.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i>
+                Recommendations</a></li>
+            <li><a href="bouquet-builder.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i>
+                Custom Bouquet Studio</a></li>
+            <li><a href="flower-meanings.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i>
+                Flower Meanings</a></li>
+            <li><a href="reviews.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Customer
+                Reviews</a></li>
+            <li><a href="wishlist.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Saved
+                Wishlist</a></li>
+            <li><a href="Contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact
+                &amp; Inquiries</a></li>
           </ul>
         </div>
 
@@ -664,11 +702,16 @@
         <div class="footer-col">
           <h4>Curated Occasions</h4>
           <ul class="footer-links">
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Wedding &amp; Romance</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Birthdays &amp; Parties</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Anniversaries</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Get Well Soon &amp; Care</a></li>
-            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Thanksgiving &amp; Gratitude</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Wedding
+                &amp; Romance</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Birthdays
+                &amp; Parties</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i>
+                Anniversaries</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Get Well
+                Soon &amp; Care</a></li>
+            <li><a href="Products.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i>
+                Thanksgiving &amp; Gratitude</a></li>
           </ul>
         </div>
 
@@ -710,4 +753,5 @@
   </footer>
 
 </body>
+
 </html>

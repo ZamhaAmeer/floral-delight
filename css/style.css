@@ -65,7 +65,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: clip;
+  overflow-x: auto;
 }
 
 body {
@@ -75,7 +75,7 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
+  overflow-x: auto;
 }
 
 img {
@@ -591,130 +591,250 @@ p {
   color: var(--sage-green-dark);
 }
 
-/* Right Asymmetric Floral Visual Montage */
+/* Right Asymmetric Floral Visual Montage (Unique Multi-Layered Editorial Canvas) */
 .hero-visual {
   position: relative;
-  min-height: 520px;
+  min-height: 530px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
-.hero-arch-frame {
+/* Atmospheric Botanical Aura Glow */
+.hero-ambient-aura {
+  position: absolute;
+  width: 440px;
+  height: 440px;
+  top: 6%;
+  right: 6%;
+  background: radial-gradient(circle at 55% 45%, rgba(232, 197, 196, 0.48) 0%, rgba(137, 153, 130, 0.28) 45%, transparent 72%);
+  border-radius: 50%;
+  filter: blur(44px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Genuine Three.js 3D WebGL Flower Bouquet Stage */
+.hero-three-wrapper {
   position: relative;
-  width: 88%;
-  height: 500px;
+  width: 100%;
+  max-width: 520px;
+  height: 580px;
   margin-left: auto;
-  border-radius: 260px 260px var(--radius-lg) var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 8px solid var(--warm-ivory-light);
-  transform: rotate(1deg);
-  transition: transform 0.4s ease;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.hero-arch-frame:hover {
-  transform: rotate(0deg) scale(1.02);
-}
-
-.hero-main-img {
+.three-bouquet-container {
+  position: relative;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
 }
 
-/* Overlapping Floating Cards */
-.hero-floating-card {
+.three-bouquet-container canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  outline: none;
+  touch-action: none;
+}
+
+/* Subtle Interactive 3D Orbit / Drag Pill */
+.three-interaction-pill {
   position: absolute;
-  background-color: var(--warm-ivory-light);
-  padding: 12px 18px;
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-md);
-  border: 1px solid var(--border-subtle);
-  z-index: 3;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--dusty-rose-dark);
+  border: 1px solid rgba(185, 130, 140, 0.28);
+  box-shadow: 0 4px 16px rgba(69, 59, 59, 0.1);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  pointer-events: none;
+  z-index: 5;
+  white-space: nowrap;
+  animation: pillFadeInOut 4s ease-in-out infinite alternate;
+}
+
+.three-interaction-pill i {
+  color: var(--sage-green-dark);
+}
+
+@keyframes pillFadeInOut {
+  0% {
+    opacity: 0.85;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-3px);
+  }
+}
+
+/* Overlapping Offset Secondary Atelier Card */
+.hero-atelier-card {
+  position: absolute;
+  bottom: 24px;
+  left: -22px;
+  max-width: 290px;
+  background-color: #FFFFFF;
+  padding: 12px 16px;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px rgba(69, 59, 59, 0.14), 0 2px 10px rgba(185, 130, 140, 0.12);
+  border: 1px solid rgba(232, 197, 196, 0.45);
+  z-index: 4;
   display: flex;
   align-items: center;
   gap: 14px;
-  animation: floatSoft 4s ease-in-out infinite alternate;
+  transform: rotate(-3.5deg);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
 }
 
-.hero-card-left {
-  bottom: 24px;
-  left: -20px;
-  max-width: 250px;
+.hero-atelier-card:hover {
+  transform: rotate(0deg) translateY(-5px);
+  box-shadow: 0 22px 50px rgba(69, 59, 59, 0.2), 0 4px 14px rgba(185, 130, 140, 0.18);
 }
 
-.hero-card-left .thumb-img {
-  width: 54px;
-  height: 54px;
-  border-radius: var(--radius-sm);
+.atelier-thumb-img {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
   object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid rgba(185, 130, 140, 0.2);
 }
 
-.hero-card-left .card-info h4 {
-  font-size: 0.96rem;
+.atelier-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.atelier-kicker {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--dusty-rose);
   margin-bottom: 2px;
 }
 
-.hero-card-left .card-info p {
-  font-size: 0.78rem;
-  color: var(--dusty-rose-dark);
+.atelier-card-info h4 {
+  font-size: 0.98rem;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: var(--dark-charcoal);
+  line-height: 1.15;
+}
+
+.atelier-card-info p {
+  font-size: 0.8rem;
+  color: var(--dark-charcoal-muted);
   font-weight: 600;
+  margin: 0;
 }
 
-.hero-card-right {
-  top: 36px;
-  right: -14px;
-  background-color: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  padding: 10px 16px;
+/* Top Floating Rating Pill */
+.hero-review-pill {
+  position: absolute;
+  top: 28px;
+  right: -12px;
+  background-color: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 10px 18px;
   border-radius: var(--radius-pill);
-  animation-delay: -2s;
+  box-shadow: 0 10px 30px rgba(69, 59, 59, 0.1);
+  border: 1px solid rgba(232, 197, 196, 0.45);
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: floatSoft 4s ease-in-out infinite alternate;
 }
 
-.hero-card-right .rating-stars {
+.hero-review-pill .rating-stars {
   color: #E29B38;
   font-size: 0.85rem;
 }
 
-.hero-card-right span {
-  font-size: 0.82rem;
+.hero-review-pill span {
+  font-size: 0.84rem;
   font-weight: 600;
   color: var(--dark-charcoal);
 }
 
-/* Rotating Botanical Stamp */
-.hero-stamp {
+/* Botanical Freshness Wax Seal */
+.hero-seal-stamp {
   position: absolute;
-  top: -15px;
-  left: 20px;
-  width: 90px;
-  height: 90px;
+  top: -18px;
+  left: 18px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
-  background: var(--dusty-rose);
+  background: linear-gradient(135deg, var(--dusty-rose), #9D646E);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   text-align: center;
   box-shadow: var(--shadow-rose);
+  border: 2px dashed rgba(255, 255, 255, 0.45);
   z-index: 4;
+  animation: floatSoftReverse 5s ease-in-out infinite alternate;
 }
 
-.hero-stamp i {
-  font-size: 1.4rem;
+.seal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.15;
+}
+
+.seal-inner i {
+  font-size: 1.1rem;
   margin-bottom: 2px;
 }
 
-.hero-stamp span {
-  font-size: 0.65rem;
+.seal-inner span {
+  font-size: 0.66rem;
   font-weight: 700;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
   text-transform: uppercase;
+}
+
+.seal-inner small {
+  font-size: 0.58rem;
+  opacity: 0.88;
+  letter-spacing: 0.4px;
 }
 
 @keyframes floatSoft {
   0% { transform: translateY(0); }
   100% { transform: translateY(-8px); }
+}
+
+@keyframes floatSoftReverse {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(8px); }
 }
 
 /* ==========================================================================
@@ -807,6 +927,22 @@ p {
 
 .card-span-8 {
   grid-column: span 8;
+}
+
+.card-span-12 {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  align-items: center;
+}
+
+.card-span-12 .card-media {
+  height: 100%;
+  min-height: 320px;
+}
+
+.card-span-6 .card-media {
+  height: 310px;
 }
 
 /* Card Visual Container */
@@ -1575,14 +1711,20 @@ p {
   }
 
   .hero-visual {
-    min-height: 440px;
-    max-width: 500px;
+    min-height: 500px;
+    max-width: 520px;
+    margin: 30px auto 0 auto;
+    justify-content: center;
+  }
+
+  .hero-three-wrapper {
+    height: 520px;
+    max-width: 100%;
     margin: 0 auto;
   }
 
-  .hero-arch-frame {
-    height: 440px;
-    margin: 0 auto;
+  .hero-review-pill {
+    right: 0;
   }
 
   .collection-grid {
@@ -1591,6 +1733,12 @@ p {
 
   .card-span-7, .card-span-5, .card-span-8, .card-span-4, .card-span-6 {
     grid-column: span 3;
+  }
+
+  .card-span-12 {
+    grid-column: span 6;
+    display: flex;
+    flex-direction: column;
   }
 
   .experience-grid {
@@ -1649,8 +1797,10 @@ p {
     grid-template-columns: 1fr;
   }
 
-  .card-span-7, .card-span-5, .card-span-8, .card-span-4, .card-span-6 {
+  .card-span-7, .card-span-5, .card-span-8, .card-span-4, .card-span-6, .card-span-12 {
     grid-column: span 1;
+    display: flex;
+    flex-direction: column;
   }
 
   .card-media, .card-span-7 .card-media, .card-span-5 .card-media {
@@ -1709,12 +1859,138 @@ p {
     gap: 12px;
   }
 
-  .hero-arch-frame {
-    height: 360px;
+  .hero-visual {
+    min-height: 430px;
     width: 100%;
+    margin: 20px auto 0 auto;
+  }
+
+  .hero-three-wrapper {
+    height: 440px;
+    max-width: 100%;
+  }
+
+  .three-interaction-pill {
+    font-size: 0.68rem;
+    padding: 5px 12px;
+    bottom: 4px;
+  }
+
+  .atelier-thumb-img {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+  }
+
+  .atelier-card-info h4 {
+    font-size: 0.88rem;
+  }
+
+  .hero-review-pill {
+    top: 14px;
+    right: 6px;
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+
+  .hero-seal-stamp {
+    width: 68px;
+    height: 68px;
+    top: -12px;
+    left: 6px;
+  }
+
+  .hero-frame-tag {
+    bottom: 12px;
+    right: 12px;
+    padding: 6px 12px;
+    font-size: 0.74rem;
   }
 
   .exp-card {
     padding: 26px 20px;
+  }
+}
+
+/* ==========================================================================
+   Full-Screen Botanical Petals Animation Field (Directly Across Home Screen)
+   ========================================================================== */
+.screen-petals-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 9999;
+}
+
+/* Individual Flying Petal dynamically created during descent */
+.flying-petal-item {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 6px 14px rgba(185, 130, 140, 0.3));
+}
+
+.flying-petal-item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Ambient Background Petals (Evergreen Living Layer on Hero) */
+.ambient-petals-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.ambient-petal {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.65;
+  will-change: transform;
+  filter: drop-shadow(0 2px 6px rgba(185, 130, 140, 0.15));
+}
+
+.replay-entrance-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--warm-ivory-light);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--dusty-rose-dark);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  margin-top: 14px;
+}
+
+.replay-entrance-btn:hover {
+  background: var(--blush-pink-light);
+  border-color: var(--dusty-rose);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(185, 130, 140, 0.2);
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) rotateX(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.7;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(80px, 115vh, 0) rotate(360deg) rotateX(180deg);
+    opacity: 0;
   }
 }

@@ -83,9 +83,10 @@
 
 .builder-grid {
   display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 40px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 32px;
   align-items: start;
+  width: 100%;
 }
 
 /* Left Column - Customizer Controls */
@@ -93,14 +94,18 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  min-width: 0;
+  width: 100%;
 }
 
 .builder-card-box {
   background-color: var(--warm-ivory-light);
   border-radius: var(--radius-xl);
-  padding: 32px 30px;
+  padding: 28px 24px;
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-sm);
+  min-width: 0;
+  width: 100%;
 }
 
 .builder-step-header {
@@ -133,11 +138,10 @@
 .stem-category-tabs {
   display: flex;
   gap: 8px;
-  overflow-x: auto;
-  padding-bottom: 8px;
+  flex-wrap: wrap;
+  padding-bottom: 4px;
   margin-bottom: 16px;
-  scrollbar-width: thin;
-  -webkit-overflow-scrolling: touch;
+  width: 100%;
 }
 
 .stem-tab-btn {
@@ -307,16 +311,20 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0;
+  width: 100%;
 }
 
 .virtual-preview-card {
   background-color: var(--warm-ivory-light);
   border-radius: var(--radius-xl);
-  padding: 26px;
+  padding: 24px 20px;
   box-shadow: var(--shadow-md);
   border: 1px solid var(--border-subtle);
   overflow: hidden;
   position: relative;
+  min-width: 0;
+  width: 100%;
 }
 
 .preview-top-bar {
@@ -422,50 +430,60 @@
 
 .virtual-stems-cluster {
   position: absolute;
-  top: 15px;
-  width: 90%;
-  height: 65%;
+  top: 18px;
+  width: 92%;
+  min-height: 140px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
-  gap: -15px;
-  z-index: 1;
+  gap: 12px;
+  flex-wrap: wrap;
+  z-index: 3;
+  pointer-events: auto;
 }
 
 .virtual-stem-bubble {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 82px;
+  height: 82px;
   border-radius: 50%;
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(69, 59, 59, 0.2);
-  border: 2px solid #FFFFFF;
-  margin: 0 -8px;
-  transition: transform 0.3s ease;
-  animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 8px 22px rgba(69, 59, 59, 0.28);
+  border: 3.5px solid #FFFFFF;
+  background-color: var(--warm-ivory);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  flex-shrink: 0;
+}
+
+.virtual-stem-bubble:hover {
+  transform: scale(1.15) translateY(-6px);
+  z-index: 5;
 }
 
 .virtual-stem-bubble img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .stem-badge-count {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: var(--dusty-rose);
+  bottom: 2px;
+  right: 2px;
+  background-color: var(--dusty-rose-dark);
   color: #FFFFFF;
-  font-size: 0.65rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  width: 18px;
-  height: 18px;
+  width: 22px;
+  height: 22px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #FFFFFF;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
 }
 
 @keyframes popIn {
@@ -476,9 +494,11 @@
 .itemized-breakdown-card {
   background-color: var(--warm-ivory-light);
   border-radius: var(--radius-xl);
-  padding: 26px;
+  padding: 24px 20px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-subtle);
+  min-width: 0;
+  width: 100%;
 }
 
 .breakdown-header {
@@ -548,24 +568,62 @@
   gap: 10px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+  .builder-grid {
+    gap: 24px;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+
+  .builder-card-box,
+  .virtual-preview-card,
+  .itemized-breakdown-card {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 992px) {
   .builder-grid {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
+
   .preview-column {
     position: static;
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
   }
 }
 
 @media (max-width: 768px) {
+  .builder-workspace-section {
+    padding: 30px 0 60px 0;
+  }
+
   .workbench-hero-flex {
     flex-direction: column;
     align-items: flex-start;
   }
+
   .addon-options-grid {
     grid-template-columns: 1fr;
   }
+
   .builder-card-box {
-    padding: 22px 18px;
+    padding: 20px 16px;
+  }
+
+  .virtual-preview-card,
+  .itemized-breakdown-card {
+    padding: 20px 16px;
+  }
+
+  .stem-item-info h4 {
+    font-size: 0.95rem;
+  }
+
+  .stem-thumb-img {
+    width: 44px;
+    height: 44px;
   }
 }
