@@ -892,6 +892,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initBackToTop();
   updateWishlistNavBadge();
+  initGlobalFallingPetals();
 
   // Cross-tab storage synchronization
   window.addEventListener('storage', (e) => {
@@ -950,5 +951,117 @@ function initBackToTop() {
       behavior: 'smooth'
     });
   });
+}
+
+/* ==========================================================================
+   5. Global Full-Screen Falling Petals Architecture (Across All Screens)
+   ========================================================================== */
+function initGlobalFallingPetals() {
+  // Locate or dynamically construct the full-screen petal viewport field
+  let petalsField = document.getElementById('screen-petals-field');
+  if (!petalsField) {
+    petalsField = document.createElement('div');
+    petalsField.id = 'screen-petals-field';
+    petalsField.className = 'screen-petals-field';
+    petalsField.setAttribute('aria-hidden', 'true');
+    document.body.prepend(petalsField);
+  }
+
+  // Prevent duplicate petal population if already initialized
+  if (petalsField.children.length > 0) return;
+
+  const PETAL_TYPES = [
+    {
+      color: '#C92A3E',
+      gradient: ['#FF6B7D', '#C92A3E', '#801020'],
+      type: 'petal-anthurium'
+    },
+    {
+      color: '#E8C5C4',
+      gradient: ['#FFF2F1', '#E8C5C4', '#B9828C'],
+      type: 'petal-rose'
+    },
+    {
+      color: '#B9828C',
+      gradient: ['#F7E9E8', '#DCA9A8', '#9E646F'],
+      type: 'petal-velvet'
+    },
+    {
+      color: '#F4D2CE',
+      gradient: ['#FFFFFF', '#F4D2CE', '#D29D9B'],
+      type: 'petal-blush'
+    },
+    {
+      color: '#899982',
+      gradient: ['#DCE3DA', '#899982', '#6C7D65'],
+      type: 'leaf-sage'
+    }
+  ];
+
+  function createPetalSVG(petalConfig, uniqueId) {
+    const isLeaf = petalConfig.type === 'leaf-sage';
+    const gradId = `core-petal-grad-${uniqueId}`;
+    const [c1, c2, c3] = petalConfig.gradient;
+
+    if (isLeaf) {
+      return `
+        <svg viewBox="0 0 40 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="${c1}" />
+              <stop offset="60%" stop-color="${c2}" />
+              <stop offset="100%" stop-color="${c3}" />
+            </linearGradient>
+          </defs>
+          <path d="M 20,2 C 34,12 38,38 20,58 C 2,38 6,12 20,2 Z" fill="url(#${gradId})" />
+          <path d="M 20,6 Q 20,32 20,54" stroke="rgba(255,255,255,0.4)" stroke-width="1" />
+        </svg>
+      `;
+    }
+
+    return `
+      <svg viewBox="0 0 50 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="${gradId}" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="${c1}" stop-opacity="0.95" />
+            <stop offset="65%" stop-color="${c2}" stop-opacity="0.92" />
+            <stop offset="100%" stop-color="${c3}" stop-opacity="0.90" />
+          </radialGradient>
+        </defs>
+        <path d="M 25,0 C 42,4 50,22 47,38 C 43,52 30,58 25,60 C 20,58 7,52 3,38 C 0,22 8,4 25,0 Z" fill="url(#${gradId})" />
+        <path d="M 25,8 Q 24,30 25,52" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" />
+      </svg>
+    `;
+  }
+
+  const isMobile = window.innerWidth < 768;
+  const petalCount = isMobile ? 14 : 22;
+
+  for (let i = 0; i < petalCount; i++) {
+    const petalEl = document.createElement('div');
+    petalEl.className = 'screen-petal-item';
+    const config = PETAL_TYPES[i % PETAL_TYPES.length];
+    const uniqueId = `global-${i}`;
+    petalEl.innerHTML = createPetalSVG(config, uniqueId);
+
+    const size = isMobile ? (16 + Math.random() * 16) : (20 + Math.random() * 22);
+    petalEl.style.width = `${size}px`;
+    petalEl.style.height = `${size * 1.25}px`;
+
+    const startLeft = Math.random() * 100;
+    const duration = 10 + Math.random() * 9; // 10s - 19s
+    const delay = -Math.random() * duration; // Negative delay ensures petals are already mid-flight on load
+    const sway = (Math.random() - 0.5) * 80;
+    const opacity = 0.75 + Math.random() * 0.22;
+
+    petalEl.style.left = `${startLeft}%`;
+    petalEl.style.setProperty('--sway-x', `${sway}px`);
+    petalEl.style.setProperty('--drift-x', `${(Math.random() - 0.5) * 30}px`);
+    petalEl.style.setProperty('--petal-opacity', `${opacity}`);
+    petalEl.style.animationDuration = `${duration}s`;
+    petalEl.style.animationDelay = `${delay}s`;
+
+    petalsField.appendChild(petalEl);
+  }
 }
 

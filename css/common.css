@@ -67,7 +67,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -80,7 +80,8 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 main {
@@ -914,5 +915,58 @@ p {
     flex-direction: column;
     text-align: center;
     gap: 12px;
+  }
+}
+
+/* ==========================================================================
+   Global Full-Screen Continuous Floral Petal Falling Experience
+   ========================================================================== */
+.screen-petals-field {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+.screen-petal-item {
+  position: absolute;
+  top: -50px;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 4px 10px rgba(185, 130, 140, 0.25));
+  animation-name: continuousScreenPetalFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.screen-petal-item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@keyframes continuousScreenPetalFall {
+  0% {
+    transform: translate3d(var(--drift-x, 0), -50px, 0) rotate(0deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  50% {
+    transform: translate3d(calc(var(--drift-x, 0) + var(--sway-x, 40px)), 52vh, 25px)
+               rotate(180deg) rotateX(140deg) rotateY(160deg);
+  }
+  92% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift-x, 0) - var(--sway-x, 40px)), 106vh, 0)
+               rotate(360deg) rotateX(280deg) rotateY(320deg);
+    opacity: 0;
   }
 }

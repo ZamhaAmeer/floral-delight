@@ -20,16 +20,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
   <!-- Shared Core Stylesheet & Main Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.0">
-  <link rel="stylesheet" type="text/css" href="css/style.css?v=3.0">
-
-  <!-- Three.js 3D WebGL Engine & 3D Bouquet Controller -->
-  <script src="js/three.min.js"></script>
-  <script src="js/three-bouquet.js?v=3.0" defer></script>
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.5">
+  <link rel="stylesheet" type="text/css" href="css/style.css?v=3.5">
 
   <!-- Interactive JavaScript -->
-  <script src="js/core.js?v=3.0" defer></script>
-  <script src="js/home.js?v=3.0" defer></script>
+  <script src="js/core.js?v=3.5" defer></script>
+  <script src="js/home.js?v=3.5" defer></script>
 </head>
 
 <body>
@@ -70,9 +66,6 @@
           <i class="fa-solid fa-heart"></i>
           <span class="wishlist-count-badge">0</span>
         </a>
-        <a href="Products.html" class="btn btn-sm btn-primary">
-          <i class="fa-solid fa-bag-shopping"></i> Curated Collections
-        </a>
         <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
         </button>
@@ -101,6 +94,21 @@
   <main>
     <!-- 2. Premium Hero Section (Creative Asymmetrical Layout) -->
     <section class="hero-section">
+      <!-- HD Rose-Falling Background Video -->
+      <div class="hero-video-bg-container" aria-hidden="true">
+        <video id="hero-bg-video"
+               class="hero-bg-video"
+               autoplay
+               muted
+               loop
+               playsinline
+               preload="auto">
+          <source src="videos/rose-falling-bg.mp4" type="video/mp4">
+        </video>
+        <!-- Soft Blush & Ivory Scrim Overlay for Crystal-Clear Text Contrast -->
+        <div class="hero-video-overlay" aria-hidden="true"></div>
+      </div>
+
       <!-- Ambient Living Petals Layer (Evergreen Gentle Motion in Hero Background) -->
       <div class="ambient-petals-layer" id="ambient-living-petals" aria-hidden="true"></div>
 
@@ -128,10 +136,10 @@
               </a>
             </div>
 
-            <!-- Replay 3D Floral Falling Entrance Action -->
+            <!-- Replay Floral Falling Experience Action -->
             <div>
-              <button type="button" class="replay-entrance-btn" id="replay-3d-entrance-btn" title="Replay 3D Bouquet Falling Entrance">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Replay 3D Falling Experience
+              <button type="button" class="replay-entrance-btn" id="replay-entrance-btn" title="Replay Floral Falling Experience">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Replay Floral Falling Experience
               </button>
             </div>
 
@@ -152,7 +160,7 @@
             </div>
           </div>
 
-          <!-- Right Asymmetrical Visual Montage (Interactive 3D Three.js Atelier Stage) -->
+          <!-- Right Asymmetrical Visual Montage (Authentic Photographic 3D Bouquet Experience) -->
           <div class="hero-visual">
 
             <!-- Atmospheric Botanical Aura Glow -->
@@ -164,17 +172,6 @@
                 <i class="fa-solid fa-seedling"></i>
                 <span>100% Fresh</span>
                 <small>Flowers</small>
-              </div>
-            </div>
-
-            <!-- Genuine Three.js 3D Flower Bouquet Viewport -->
-            <div class="hero-three-wrapper" id="hero-three-wrapper">
-              <div id="three-bouquet-container" class="three-bouquet-container" aria-label="Interactive 3D Flower Bouquet"></div>
-              
-              <!-- Interactive 3D Orbit / Drag Instruction Pill -->
-              <div class="three-interaction-pill">
-                <i class="fa-solid fa-arrows-rotate"></i>
-                <span>Drag to explore 3D bouquet in 360°</span>
               </div>
             </div>
 

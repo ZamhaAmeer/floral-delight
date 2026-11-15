@@ -4,10 +4,6 @@
  * price sorting, quick-view modal, and builder integration.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  initShopPage();
-});
-
 let currentCategory = 'all';
 let currentOccasion = 'all';
 let currentSort = 'default';
@@ -17,6 +13,13 @@ function initShopPage() {
   renderProducts();
   setupFilterListeners();
   setupModalHandlers();
+  initBotanicalFlipBook();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initShopPage);
+} else {
+  initShopPage();
 }
 
 function renderProducts() {
@@ -327,5 +330,212 @@ function closeProductModal(event) {
       overlay.remove();
     }, 250);
   }
+}
+
+/* ==========================================================================
+   Botanical Flip-Book Atelier (Interactive 3D Page Turn Controller)
+   ========================================================================== */
+function initBotanicalFlipBook() {
+  const bookWrapper = document.getElementById('botanical-lookbook');
+  if (!bookWrapper) return;
+
+  const spreads = Array.from(bookWrapper.querySelectorAll('.book-spread'));
+  const dots = Array.from(bookWrapper.querySelectorAll('.book-dot'));
+  const prevBtn = document.getElementById('book-prev-btn');
+  const nextBtn = document.getElementById('book-next-btn');
+  const pageLabel = document.getElementById('book-page-label');
+  const flippingLeaf = document.getElementById('book-flipping-leaf');
+  const tempoFill = document.getElementById('book-tempo-fill');
+
+  if (!spreads.length) return;
+
+  const leafFront = flippingLeaf ? flippingLeaf.querySelector('.leaf-front') : null;
+  const leafBack = flippingLeaf ? flippingLeaf.querySelector('.leaf-back') : null;
+
+  let currentIndex = 0;
+  let isFlipping = false;
+  let autoFlipTimer = null;
+  let hoverResumeTimer = null;
+  const totalPages = spreads.length;
+
+  function triggerTempoBar() {
+    if (!tempoFill) return;
+    tempoFill.style.transition = 'none';
+    tempoFill.style.width = '0%';
+    void tempoFill.offsetWidth; // force browser layout recalculation
+    tempoFill.style.transition = 'width 2.8s linear';
+    tempoFill.style.width = '100%';
+  }
+
+  function goToPage(targetIndex, direction = 'next') {
+    if (isFlipping) return;
+    if (targetIndex === currentIndex) return;
+    isFlipping = true;
+
+    const currentSpread = spreads[currentIndex];
+    const targetSpread = spreads[targetIndex];
+
+    if (!currentSpread || !targetSpread) {
+      isFlipping = false;
+      return;
+    }
+
+    const currentRight = currentSpread.querySelector('.book-page-right');
+    const currentLeft = currentSpread.querySelector('.book-page-left');
+    const targetRight = targetSpread.querySelector('.book-page-right');
+    const targetLeft = targetSpread.querySelector('.book-page-left');
+
+    if (flippingLeaf && leafFront && leafBack) {
+      if (direction === 'next') {
+        // Flipping forward: Right leaf curls & swings across spine to Left
+        flippingLeaf.style.left = '50%';
+        flippingLeaf.style.transformOrigin = 'left center';
+        leafFront.innerHTML = currentRight ? currentRight.innerHTML : '';
+        leafBack.innerHTML = targetLeft ? targetLeft.innerHTML : '';
+
+        // Reveal target spread underneath so target right details are exposed as leaf lifts
+        targetSpread.style.zIndex = '1';
+        targetSpread.style.visibility = 'visible';
+        targetSpread.style.opacity = '1';
+        currentSpread.style.zIndex = '2';
+
+        flippingLeaf.className = 'book-flipping-leaf is-flipping flip-forward';
+      } else {
+        // Flipping backward: Left leaf curls & swings across spine to Right
+        flippingLeaf.style.left = '0%';
+        flippingLeaf.style.transformOrigin = 'right center';
+        leafFront.innerHTML = currentLeft ? currentLeft.innerHTML : '';
+        leafBack.innerHTML = targetRight ? targetRight.innerHTML : '';
+
+        targetSpread.style.zIndex = '1';
+        targetSpread.style.visibility = 'visible';
+        targetSpread.style.opacity = '1';
+        currentSpread.style.zIndex = '2';
+
+        flippingLeaf.className = 'book-flipping-leaf is-flipping flip-backward';
+      }
+    }
+
+    // Complete transition after 3D animation ends (680ms)
+    setTimeout(() => {
+      spreads.forEach((s, idx) => {
+        s.classList.toggle('active', idx === targetIndex);
+        s.style.zIndex = '';
+        s.style.visibility = '';
+        s.style.opacity = '';
+      });
+
+      if (flippingLeaf) {
+        flippingLeaf.className = 'book-flipping-leaf';
+        flippingLeaf.style.left = '';
+        flippingLeaf.style.transformOrigin = '';
+        if (leafFront) leafFront.innerHTML = '';
+        if (leafBack) leafBack.innerHTML = '';
+      }
+
+      currentIndex = targetIndex;
+      isFlipping = false;
+
+      // Update dots
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === targetIndex);
+      });
+
+      // Update page counter label
+      if (pageLabel) {
+        pageLabel.textContent = `Page ${targetIndex + 1} of ${totalPages}`;
+      }
+
+      triggerTempoBar();
+    }, 680);
+  }
+
+  function nextPage() {
+    const nextIdx = (currentIndex + 1) % totalPages;
+    goToPage(nextIdx, 'next');
+  }
+
+  function prevPage() {
+    const prevIdx = (currentIndex - 1 + totalPages) % totalPages;
+    goToPage(prevIdx, 'prev');
+  }
+
+  // Next and Prev button listeners
+  if (nextBtn) {
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nextPage();
+      resetAutoFlip();
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      prevPage();
+      resetAutoFlip();
+    });
+  }
+
+  // Dot navigation listeners
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetIdx = parseInt(dot.getAttribute('data-index'), 10);
+      if (!isNaN(targetIdx) && targetIdx !== currentIndex) {
+        const dir = targetIdx > currentIndex ? 'next' : 'prev';
+        goToPage(targetIdx, dir);
+        resetAutoFlip();
+      }
+    });
+  });
+
+  // Lively auto-slideshow loop (turns page every 2.8 seconds)
+  function startAutoFlip() {
+    stopAutoFlip();
+    triggerTempoBar();
+    autoFlipTimer = setInterval(() => {
+      if (!document.hidden) {
+        nextPage();
+      }
+    }, 2800);
+  }
+
+  function stopAutoFlip() {
+    if (autoFlipTimer) {
+      clearInterval(autoFlipTimer);
+      autoFlipTimer = null;
+    }
+    if (tempoFill) {
+      tempoFill.style.transition = 'none';
+      tempoFill.style.width = '0%';
+    }
+  }
+
+  function resetAutoFlip() {
+    stopAutoFlip();
+    startAutoFlip();
+  }
+
+  // Mouse interaction: pause briefly so user can click, but resume after 4.5s so it never freezes
+  bookWrapper.addEventListener('mouseenter', () => {
+    stopAutoFlip();
+    clearTimeout(hoverResumeTimer);
+    hoverResumeTimer = setTimeout(() => {
+      startAutoFlip();
+    }, 4500);
+  });
+
+  bookWrapper.addEventListener('mouseleave', () => {
+    clearTimeout(hoverResumeTimer);
+    startAutoFlip();
+  });
+
+  // Initial tempo bar trigger & prompt first flip after 1.0s
+  triggerTempoBar();
+  setTimeout(() => {
+    nextPage();
+    startAutoFlip();
+  }, 1000);
 }
 

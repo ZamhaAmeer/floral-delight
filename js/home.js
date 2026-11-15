@@ -6,6 +6,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initFloralOpeningExperience();
+  initHeroVideoBackground();
   initStickyHeader();
   initMobileNav();
   initCollectionFilter();
@@ -312,35 +313,37 @@ function initBackToTop() {
 }
 
 /* ==========================================================================
-   7. Standalone 3D Falling Floral Bouquet & Flying Petals Experience
+   7. Full-Screen Continuous Floral Petal Falling Experience
    ========================================================================== */
 function initFloralOpeningExperience() {
-  const bouquetContainer = document.getElementById('hero-3d-bouquet-container');
-  const bouquetAssembly = document.getElementById('bouquet-3d-assembly');
   const petalsField = document.getElementById('screen-petals-field');
-  const ambientLayer = document.getElementById('ambient-living-petals');
   const replayBtn = document.getElementById('replay-entrance-btn');
-  const heroVisual = document.querySelector('.hero-visual');
+  if (!petalsField) return;
 
-  // Petal SVG shapes & botanical palettes (Blush, Dusty Rose, Sage leaf)
+  // Petal botanical color gradients (Ruby Anthurium, Velvet Rose, Soft Blush, Sage Leaf)
   const PETAL_TYPES = [
     {
-      color: '#E8C5C4', // Soft Blush
+      color: '#C92A3E',
+      gradient: ['#FF6B7D', '#C92A3E', '#801020'],
+      type: 'petal-anthurium'
+    },
+    {
+      color: '#E8C5C4',
       gradient: ['#FFF2F1', '#E8C5C4', '#B9828C'],
       type: 'petal-rose'
     },
     {
-      color: '#B9828C', // Dusty Rose
+      color: '#B9828C',
       gradient: ['#F7E9E8', '#DCA9A8', '#9E646F'],
       type: 'petal-velvet'
     },
     {
-      color: '#F4D2CE', // Tender Peach Blush
+      color: '#F4D2CE',
       gradient: ['#FFFFFF', '#F4D2CE', '#D29D9B'],
       type: 'petal-blush'
     },
     {
-      color: '#899982', // Sage Green Leaf Accent
+      color: '#899982',
       gradient: ['#DCE3DA', '#899982', '#6C7D65'],
       type: 'leaf-sage'
     }
@@ -382,156 +385,138 @@ function initFloralOpeningExperience() {
     `;
   }
 
-  // Always initialize background ambient petals (living botanical movement)
-  initAmbientPetals();
+  // Generate continuous falling petals across the full screen (0vw to 100vw)
+  function initFullScreenPetals() {
+    petalsField.innerHTML = '';
+    const isMobile = window.innerWidth < 768;
+    const petalCount = isMobile ? 14 : 24;
 
-  if (!bouquetContainer) return;
-
-  // Setup interactive 3D perspective mouse parallax on the standalone bouquet
-  init3DParallax();
-
-  function playFallingBouquetAndPetals() {
-    // Reset state for clean animation trigger
-    bouquetContainer.classList.remove('bouquet-landed');
-    if (petalsField) petalsField.innerHTML = '';
-
-    // Step 1: Bouquet descends gently from top of screen directly onto home screen hero
-    setTimeout(() => {
-      bouquetContainer.classList.add('bouquet-landed');
-    }, 120);
-
-    // Step 2: As the bouquet falls, flower petals separate and fly around screen
-    setTimeout(() => {
-      spawnFlyingPetals(38);
-    }, 450);
-  }
-
-  function spawnFlyingPetals(count) {
-    if (!petalsField) return;
-
-    // Calculate approximate origin from the descending bouquet
-    const rect = bouquetContainer.getBoundingClientRect();
-    const originX = rect.left > 0 ? (rect.left + rect.width / 2) : (window.innerWidth * 0.72);
-    const originY = Math.max(60, rect.top + rect.height * 0.35);
-
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < petalCount; i++) {
       const petalEl = document.createElement('div');
-      petalEl.className = 'flying-petal-item';
+      petalEl.className = 'screen-petal-item';
       const config = PETAL_TYPES[i % PETAL_TYPES.length];
-      const uniqueId = `fly-${i}-${Date.now()}`;
+      const uniqueId = `fs-petal-${i}`;
       petalEl.innerHTML = createPetalSVG(config, uniqueId);
 
-      const size = 20 + Math.random() * 26; // 20px - 46px
+      const size = isMobile ? (16 + Math.random() * 16) : (20 + Math.random() * 22);
       petalEl.style.width = `${size}px`;
       petalEl.style.height = `${size * 1.25}px`;
 
-      // Start origin at bouquet center
-      const startX = originX + (Math.random() - 0.5) * 120;
-      const startY = originY + (Math.random() - 0.5) * 100;
+      const startLeft = Math.random() * 100;
+      const duration = 10 + Math.random() * 9; // 10s - 19s
+      const delay = -Math.random() * duration; // Negative delay so screen is already full of petals on load
+      const sway = (Math.random() - 0.5) * 80;
+      const opacity = 0.75 + Math.random() * 0.22;
 
-      // Realistic botanical flight dynamics
-      const angle = (Math.PI * 2 * (i / count)) + (Math.random() - 0.5) * 0.6;
-      const distance = 160 + Math.random() * (Math.max(window.innerWidth, window.innerHeight) * 0.62);
-      const targetX = startX + Math.cos(angle) * distance;
-      // Gentle downward gravity drift
-      const targetY = startY + Math.sin(angle) * (distance * 0.65) + (160 + Math.random() * 260);
-
-      const rotX = (Math.random() - 0.5) * 720;
-      const rotY = (Math.random() - 0.5) * 720;
-      const rotZ = (Math.random() - 0.5) * 720;
-      const duration = 2.4 + Math.random() * 1.8; // 2.4s - 4.2s
-      const delay = Math.random() * 0.5;
-
-      petalEl.style.left = `${startX}px`;
-      petalEl.style.top = `${startY}px`;
-      petalEl.style.opacity = '0';
-      petalEl.style.transform = `translate3d(0, 0, 0) scale(0.35) rotate(0deg)`;
+      petalEl.style.left = `${startLeft}%`;
+      petalEl.style.setProperty('--sway-x', `${sway}px`);
+      petalEl.style.setProperty('--drift-x', `${(Math.random() - 0.5) * 30}px`);
+      petalEl.style.setProperty('--petal-opacity', `${opacity}`);
+      petalEl.style.animationDuration = `${duration}s`;
+      petalEl.style.animationDelay = `${delay}s`;
 
       petalsField.appendChild(petalEl);
+    }
+  }
 
-      // Trigger physics motion
+  // Trigger playful flourish wave when user clicks Replay button
+  function triggerPetalFlourish() {
+    const flourishCount = window.innerWidth < 768 ? 12 : 20;
+    for (let i = 0; i < flourishCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'flourish-petal-item';
+      const config = PETAL_TYPES[i % PETAL_TYPES.length];
+      p.innerHTML = createPetalSVG(config, `flourish-${Date.now()}-${i}`);
+
+      const size = 18 + Math.random() * 24;
+      p.style.width = `${size}px`;
+      p.style.height = `${size * 1.25}px`;
+
+      const startX = Math.random() * window.innerWidth;
+      const startY = -40;
+      const duration = 4.5 + Math.random() * 3.5;
+      const targetX = startX + (Math.random() - 0.5) * 220;
+      const targetY = window.innerHeight + 60;
+      const rot = (Math.random() - 0.5) * 720;
+
+      p.style.left = `${startX}px`;
+      p.style.top = `${startY}px`;
+      p.style.opacity = '0';
+      p.style.transform = 'translate3d(0, 0, 0) scale(0.4)';
+      petalsField.appendChild(p);
+
       setTimeout(() => {
-        petalEl.style.transition = `
-          transform ${duration}s cubic-bezier(0.12, 0.82, 0.35, 1) ${delay}s,
-          opacity ${duration}s ease ${delay}s
-        `;
-        petalEl.style.opacity = `${0.75 + Math.random() * 0.25}`;
-        petalEl.style.transform = `
-          translate3d(${targetX - startX}px, ${targetY - startY}px, 0)
-          rotateX(${rotX}deg) rotateY(${rotY}deg) rotateZ(${rotZ}deg)
-          scale(${0.85 + Math.random() * 0.35})
-        `;
+        p.style.transition = `transform ${duration}s cubic-bezier(0.18, 0.82, 0.35, 1), opacity 0.6s ease`;
+        p.style.opacity = '0.9';
+        p.style.transform = `translate3d(${targetX - startX}px, ${targetY - startY}px, 0) rotate(${rot}deg) scale(1)`;
 
-        // Smoothly fade out at end of flight
         setTimeout(() => {
-          petalEl.style.transition = 'opacity 1.2s ease';
-          petalEl.style.opacity = '0';
+          p.style.transition = 'opacity 1.2s ease';
+          p.style.opacity = '0';
           setTimeout(() => {
-            if (petalEl.parentNode) petalEl.parentNode.removeChild(petalEl);
+            if (p.parentNode) p.parentNode.removeChild(p);
           }, 1200);
-        }, (duration + delay) * 1000 - 800);
+        }, (duration - 1.2) * 1000);
       }, 20);
     }
   }
 
-  // Interactive 3D Perspective Tilt on Mouse Movement
-  function init3DParallax() {
-    if (!heroVisual || !bouquetAssembly) return;
+  initFullScreenPetals();
 
-    heroVisual.addEventListener('mousemove', (e) => {
-      const rect = heroVisual.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      bouquetAssembly.style.transform = `rotateY(${x * 22}deg) rotateX(${-y * 22}deg) translateZ(12px)`;
-    });
-
-    heroVisual.addEventListener('mouseleave', () => {
-      bouquetAssembly.style.transform = '';
+  if (replayBtn) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      triggerPetalFlourish();
     });
   }
+}
 
-  // Ambient living background petals (Evergreen Subtle Motion on Hero)
-  function initAmbientPetals() {
-    if (!ambientLayer) return;
-    ambientLayer.innerHTML = '';
-    const petalCount = window.innerWidth < 768 ? 6 : 10;
+/* ==========================================================================
+   8. HD Rose-Falling Background Video Controller (Seamless Loop Mode)
+   ========================================================================== */
+function initHeroVideoBackground() {
+  const video = document.getElementById('hero-bg-video');
+  const replayBtn = document.getElementById('replay-entrance-btn');
+  if (!video) return;
 
-    for (let i = 0; i < petalCount; i++) {
-      const p = document.createElement('div');
-      p.className = 'ambient-petal';
-      const config = PETAL_TYPES[i % PETAL_TYPES.length];
-      const uniqueId = `amb-${i}`;
-      p.innerHTML = createPetalSVG(config, uniqueId);
+  // Enforce muted and playsinline to satisfy mobile and modern browser autoplay policies
+  video.muted = true;
+  video.playsInline = true;
+  video.loop = true; // Loop mode enabled
 
-      const size = 16 + Math.random() * 18;
-      p.style.width = `${size}px`;
-      p.style.height = `${size * 1.2}px`;
-
-      const startLeft = Math.random() * 100;
-      const startTop = -10 - Math.random() * 30;
-      const duration = 12 + Math.random() * 10;
-      const delay = Math.random() * 12;
-
-      p.style.left = `${startLeft}%`;
-      p.style.top = `${startTop}%`;
-      p.style.animation = `ambientFloat ${duration}s linear infinite ${delay}s`;
-
-      ambientLayer.appendChild(p);
+  // Autoplay automatically when visitors open the website
+  const startAutoplay = () => {
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Fallback: If autoplay was prevented by strict browser gesture rules, play on first user interaction
+        const triggerPlay = () => {
+          video.play().catch(() => {});
+          window.removeEventListener('click', triggerPlay);
+          window.removeEventListener('touchstart', triggerPlay);
+          window.removeEventListener('scroll', triggerPlay);
+        };
+        window.addEventListener('click', triggerPlay, { once: true, passive: true });
+        window.addEventListener('touchstart', triggerPlay, { once: true, passive: true });
+        window.addEventListener('scroll', triggerPlay, { once: true, passive: true });
+      });
     }
-  }
+  };
 
-  // Replay entrance button listener
+  startAutoplay();
+
+  // Synchronize Replay Floral Falling Experience button
   if (replayBtn) {
     replayBtn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      bouquetContainer.classList.remove('bouquet-landed');
-      setTimeout(() => {
-        playFallingBouquetAndPetals();
-      }, 200);
+      try {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } catch (err) {
+        // Catch any seek or play exceptions
+      }
     });
   }
-
-  // Run the entrance animation on homepage load
-  playFallingBouquetAndPetals();
 }
+
 

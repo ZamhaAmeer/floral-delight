@@ -65,7 +65,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
-  overflow-x: auto;
+  overflow-x: hidden;
 }
 
 body {
@@ -75,7 +75,8 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: auto;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 img {
@@ -323,23 +324,27 @@ p {
   color: #FFFFFF;
 }
 
-/* Main Site Header */
+/* Main Site Header - Floating Glassmorphic Over Hero Video */
 .site-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  width: 100%;
   z-index: 1000;
-  background-color: rgba(249, 241, 239, 0.98);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border-subtle);
-  box-shadow: 0 4px 20px rgba(69, 59, 59, 0.08);
-  transition: var(--transition);
+  background: linear-gradient(180deg, rgba(253, 249, 246, 0.72) 0%, rgba(253, 249, 246, 0.25) 65%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: none;
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, padding 0.3s ease;
 }
 
 .site-header.scrolled {
-  background-color: rgba(249, 241, 239, 0.98);
-  box-shadow: 0 4px 24px rgba(69, 59, 59, 0.12);
-  border-bottom-color: rgba(185, 130, 140, 0.2);
+  background: rgba(249, 241, 239, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-subtle);
+  box-shadow: 0 4px 24px rgba(69, 59, 59, 0.10);
 }
 
 .header-container {
@@ -402,7 +407,7 @@ p {
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: clamp(14px, 1.8vw, 24px);
 }
 
 .nav-link {
@@ -493,12 +498,68 @@ p {
 
 .hero-section {
   position: relative;
-  padding-top: 50px;
-  padding-bottom: 80px;
-  background: radial-gradient(circle at 85% 15%, rgba(232, 197, 196, 0.45) 0%, transparent 40%),
-              radial-gradient(circle at 10% 85%, rgba(137, 153, 130, 0.25) 0%, transparent 40%),
-              var(--warm-ivory);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 120px;
+  padding-bottom: 70px;
+  background-color: var(--warm-ivory);
   overflow: hidden;
+}
+
+/* HD Rose-Falling Background Video Container */
+.hero-video-bg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background-color: var(--warm-ivory);
+}
+
+/* Crisp HD Video Rendering Across Desktop & Mobile */
+.hero-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  transform: translate3d(-50%, -50%, 0);
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  display: block;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Subtle Blush-Cream Gradient Scrim for Editorial Readability & Brand Warmth */
+.hero-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(253, 249, 246, 0.82) 0%,
+    rgba(253, 249, 246, 0.68) 38%,
+    rgba(253, 249, 246, 0.28) 72%,
+    rgba(253, 249, 246, 0.12) 100%
+  ),
+  radial-gradient(circle at 85% 20%, rgba(232, 197, 196, 0.22) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-section > .container {
+  position: relative;
+  z-index: 3;
 }
 
 .hero-grid {
@@ -594,161 +655,16 @@ p {
 /* Right Asymmetric Floral Visual Montage (Unique Multi-Layered Editorial Canvas) */
 .hero-visual {
   position: relative;
-  min-height: 530px;
+  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
-
-/* Atmospheric Botanical Aura Glow */
-.hero-ambient-aura {
-  position: absolute;
-  width: 440px;
-  height: 440px;
-  top: 6%;
-  right: 6%;
-  background: radial-gradient(circle at 55% 45%, rgba(232, 197, 196, 0.48) 0%, rgba(137, 153, 130, 0.28) 45%, transparent 72%);
-  border-radius: 50%;
-  filter: blur(44px);
-  z-index: 1;
   pointer-events: none;
 }
 
-/* Genuine Three.js 3D WebGL Flower Bouquet Stage */
-.hero-three-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  height: 580px;
-  margin-left: auto;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.three-bouquet-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  touch-action: none;
-}
-
-.three-bouquet-container canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-  outline: none;
-  touch-action: none;
-}
-
-/* Subtle Interactive 3D Orbit / Drag Pill */
-.three-interaction-pill {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 6px 16px;
-  border-radius: var(--radius-pill);
-  font-family: var(--font-sans);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--dusty-rose-dark);
-  border: 1px solid rgba(185, 130, 140, 0.28);
-  box-shadow: 0 4px 16px rgba(69, 59, 59, 0.1);
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  pointer-events: none;
-  z-index: 5;
-  white-space: nowrap;
-  animation: pillFadeInOut 4s ease-in-out infinite alternate;
-}
-
-.three-interaction-pill i {
-  color: var(--sage-green-dark);
-}
-
-@keyframes pillFadeInOut {
-  0% {
-    opacity: 0.85;
-    transform: translateX(-50%) translateY(0);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(-3px);
-  }
-}
-
-/* Overlapping Offset Secondary Atelier Card */
-.hero-atelier-card {
-  position: absolute;
-  bottom: 24px;
-  left: -22px;
-  max-width: 290px;
-  background-color: #FFFFFF;
-  padding: 12px 16px;
-  border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(69, 59, 59, 0.14), 0 2px 10px rgba(185, 130, 140, 0.12);
-  border: 1px solid rgba(232, 197, 196, 0.45);
-  z-index: 4;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  transform: rotate(-3.5deg);
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease;
-}
-
-.hero-atelier-card:hover {
-  transform: rotate(0deg) translateY(-5px);
-  box-shadow: 0 22px 50px rgba(69, 59, 59, 0.2), 0 4px 14px rgba(185, 130, 140, 0.18);
-}
-
-.atelier-thumb-img {
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 1px solid rgba(185, 130, 140, 0.2);
-}
-
-.atelier-card-info {
-  display: flex;
-  flex-direction: column;
-}
-
-.atelier-kicker {
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  color: var(--dusty-rose);
-  margin-bottom: 2px;
-}
-
-.atelier-card-info h4 {
-  font-size: 0.98rem;
-  font-family: var(--font-serif);
-  font-weight: 700;
-  margin-bottom: 3px;
-  color: var(--dark-charcoal);
-  line-height: 1.15;
-}
-
-.atelier-card-info p {
-  font-size: 0.8rem;
-  color: var(--dark-charcoal-muted);
-  font-weight: 600;
-  margin: 0;
+.hero-seal-stamp,
+.hero-review-pill {
+  pointer-events: auto;
 }
 
 /* Top Floating Rating Pill */
@@ -1717,14 +1633,17 @@ p {
     justify-content: center;
   }
 
-  .hero-three-wrapper {
-    height: 520px;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
   .hero-review-pill {
     right: 0;
+  }
+
+  .hero-video-overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(253, 249, 246, 0.85) 0%,
+      rgba(253, 249, 246, 0.68) 45%,
+      rgba(253, 249, 246, 0.40) 100%
+    );
   }
 
   .collection-grid {
@@ -1860,20 +1779,9 @@ p {
   }
 
   .hero-visual {
-    min-height: 430px;
+    min-height: 220px;
     width: 100%;
     margin: 20px auto 0 auto;
-  }
-
-  .hero-three-wrapper {
-    height: 440px;
-    max-width: 100%;
-  }
-
-  .three-interaction-pill {
-    font-size: 0.68rem;
-    padding: 5px 12px;
-    bottom: 4px;
   }
 
   .atelier-thumb-img {
@@ -1913,18 +1821,61 @@ p {
 }
 
 /* ==========================================================================
-   Full-Screen Botanical Petals Animation Field (Directly Across Home Screen)
+   Full-Screen Continuous Floral Petal Falling Experience
    ========================================================================== */
 .screen-petals-field {
   position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
   pointer-events: none;
   overflow: hidden;
-  z-index: 9999;
+  z-index: 999;
 }
 
-/* Individual Flying Petal dynamically created during descent */
-.flying-petal-item {
+/* Individual Full-Screen Falling Petal */
+.screen-petal-item {
+  position: absolute;
+  top: -50px;
+  pointer-events: none;
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 4px 10px rgba(185, 130, 140, 0.25));
+  animation-name: continuousScreenPetalFall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.screen-petal-item svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+@keyframes continuousScreenPetalFall {
+  0% {
+    transform: translate3d(var(--drift-x, 0), -50px, 0) rotate(0deg) rotateX(0deg) rotateY(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  50% {
+    transform: translate3d(calc(var(--drift-x, 0) + var(--sway-x, 40px)), 52vh, 25px)
+               rotate(180deg) rotateX(140deg) rotateY(160deg);
+  }
+  92% {
+    opacity: var(--petal-opacity, 0.85);
+  }
+  100% {
+    transform: translate3d(calc(var(--drift-x, 0) - var(--sway-x, 40px)), 106vh, 0)
+               rotate(360deg) rotateX(280deg) rotateY(320deg);
+    opacity: 0;
+  }
+}
+
+/* Special Flourish Flutter on Replay Click */
+.flourish-petal-item {
   position: absolute;
   pointer-events: none;
   will-change: transform, opacity;
@@ -1932,7 +1883,7 @@ p {
   filter: drop-shadow(0 6px 14px rgba(185, 130, 140, 0.3));
 }
 
-.flying-petal-item svg {
+.flourish-petal-item svg {
   width: 100%;
   height: 100%;
   display: block;

@@ -17,14 +17,17 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
   
   <!-- Shared Core Stylesheet & Products Stylesheet -->
-  <link rel="stylesheet" type="text/css" href="css/common.css?v=2.3">
-  <link rel="stylesheet" type="text/css" href="css/style-p.css?v=2.4">
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.8">
+  <link rel="stylesheet" type="text/css" href="css/style-p.css?v=3.8">
   
   <!-- Core Data & Page Scripts -->
-  <script src="js/core.js?v=2.3" defer></script>
-  <script src="js/products.js?v=2.3" defer></script>
+  <script src="js/core.js?v=3.8" defer></script>
+  <script src="js/products.js?v=3.8" defer></script>
 </head>
 <body>
+
+  <!-- Full-Screen Living Petals Animation Field -->
+  <div class="screen-petals-field" id="screen-petals-field" aria-hidden="true"></div>
 
   <!-- Unified Navigation Header -->
   <header class="site-header">
@@ -58,9 +61,6 @@
         <a href="wishlist.html" class="wishlist-nav-btn" aria-label="View Saved Wishlist">
           <i class="fa-solid fa-heart"></i>
           <span class="wishlist-count-badge">0</span>
-        </a>
-        <a href="bouquet-builder.html" class="btn btn-sm btn-primary">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Build Bouquet
         </a>
         <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
           <i class="fa-solid fa-bars"></i>
@@ -115,23 +115,152 @@
             </div>
           </div>
 
-          <!-- Right Lookbook Spotlight Card -->
-          <div class="shop-spotlight-card">
-            <div class="spotlight-media">
-              <img src="Images/Tulip.jpg" alt="Dutch Tulip Flower Ensemble">
-            </div>
-            <div class="spotlight-body">
-              <div class="spotlight-label">Bouquet of the Day</div>
-              <h3 class="spotlight-title">Dutch Tulip Ensemble</h3>
-              <div class="spotlight-price">Rs. 5,500</div>
-              <div style="display: flex; gap: 8px;">
-                <button type="button" class="btn btn-sm btn-primary" onclick="addFlowerToBuilder('tulip')">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Customize
-                </button>
-                <button type="button" class="btn btn-sm btn-outline" onclick="openProductModal('tulip')">
-                  <i class="fa-solid fa-eye"></i> View
-                </button>
+          <!-- Right Lookbook Animated 3D Botanical Flip-Book -->
+          <div class="botanical-book-wrapper" id="botanical-lookbook" aria-label="Floral Delight Lookbook">
+            <!-- Ribbon Bookmark hanging on top spine -->
+            <div class="book-ribbon-bookmark" aria-hidden="true"></div>
+
+            <!-- The Book Body -->
+            <div class="botanical-book">
+              <!-- Book Center Spine Fold Crease -->
+              <div class="book-center-spine" aria-hidden="true"></div>
+
+              <!-- Book Spreads Container -->
+              <div class="book-spreads-container">
+
+                <!-- Spread 1 (Active) -->
+                <div class="book-spread active" data-index="0">
+                  <div class="book-page book-page-left">
+                    <div class="book-media-frame">
+                      <img src="Images/Tulip.jpg" alt="Dutch Tulip Ensemble" loading="eager">
+                      <span class="book-stamp-badge"><i class="fa-solid fa-crown"></i> Bouquet of the Day</span>
+                    </div>
+                  </div>
+                  <div class="book-page book-page-right">
+                    <div class="book-page-body">
+                      <div class="book-kicker">LOOKBOOK &bull; VOL. I</div>
+                      <h3 class="book-flower-title">Dutch Tulip Ensemble</h3>
+                      <div class="book-flower-price">Rs. 5,500</div>
+                      <p class="book-flower-desc">Hand-tied royal purple &amp; porcelain white tulips in artisan silk wrap.</p>
+                      <div class="book-action-buttons">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addFlowerToBuilder('tulip')">
+                          <i class="fa-solid fa-wand-magic-sparkles"></i> Customize
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline" onclick="openProductModal('tulip-pink')">
+                          <i class="fa-solid fa-eye"></i> View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spread 2 -->
+                <div class="book-spread" data-index="1">
+                  <div class="book-page book-page-left">
+                    <div class="book-media-frame">
+                      <img src="Images/rose-red.jpg" alt="Classic Red Rose Bouquet" loading="lazy">
+                      <span class="book-stamp-badge"><i class="fa-solid fa-heart"></i> Curator's Choice</span>
+                    </div>
+                  </div>
+                  <div class="book-page book-page-right">
+                    <div class="book-page-body">
+                      <div class="book-kicker">LOOKBOOK &bull; VOL. II</div>
+                      <h3 class="book-flower-title">Classic Red Rose</h3>
+                      <div class="book-flower-price">Rs. 4,300</div>
+                      <p class="book-flower-desc">Morning-harvested scarlet roses layered with sweet floral fragrance.</p>
+                      <div class="book-action-buttons">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addFlowerToBuilder('rose-red')">
+                          <i class="fa-solid fa-wand-magic-sparkles"></i> Customize
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline" onclick="openProductModal('rose-red')">
+                          <i class="fa-solid fa-eye"></i> View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spread 3 -->
+                <div class="book-spread" data-index="2">
+                  <div class="book-page book-page-left">
+                    <div class="book-media-frame">
+                      <img src="Images/anthurium-ruby.jpg" alt="Ruby Crimson Anthurium" loading="lazy">
+                      <span class="book-stamp-badge"><i class="fa-solid fa-gem"></i> Artisanal Harvest</span>
+                    </div>
+                  </div>
+                  <div class="book-page book-page-right">
+                    <div class="book-page-body">
+                      <div class="book-kicker">LOOKBOOK &bull; VOL. III</div>
+                      <h3 class="book-flower-title">Ruby Anthurium</h3>
+                      <div class="book-flower-price">Rs. 4,600</div>
+                      <p class="book-flower-desc">Glossy wax spathes paired with misted baby's breath &amp; emerald foliage.</p>
+                      <div class="book-action-buttons">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addFlowerToBuilder('anthurium-ruby')">
+                          <i class="fa-solid fa-wand-magic-sparkles"></i> Customize
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline" onclick="openProductModal('anthurium-ruby')">
+                          <i class="fa-solid fa-eye"></i> View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Spread 4 -->
+                <div class="book-spread" data-index="3">
+                  <div class="book-page book-page-left">
+                    <div class="book-media-frame">
+                      <img src="Images/sunflower-golden.jpg" alt="Golden Sunshine Sunflower" loading="lazy">
+                      <span class="book-stamp-badge"><i class="fa-solid fa-sun"></i> Golden Sunshine</span>
+                    </div>
+                  </div>
+                  <div class="book-page book-page-right">
+                    <div class="book-page-body">
+                      <div class="book-kicker">LOOKBOOK &bull; VOL. IV</div>
+                      <h3 class="book-flower-title">Golden Sunflower</h3>
+                      <div class="book-flower-price">Rs. 4,200</div>
+                      <p class="book-flower-desc">Radiant golden blooms brimming with meadow optimism &amp; vitality.</p>
+                      <div class="book-action-buttons">
+                        <button type="button" class="btn btn-sm btn-primary" onclick="addFlowerToBuilder('sunflower-golden')">
+                          <i class="fa-solid fa-wand-magic-sparkles"></i> Customize
+                        </button>
+                        <button type="button" class="btn btn-sm btn-outline" onclick="openProductModal('sunflower-golden')">
+                          <i class="fa-solid fa-eye"></i> View
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Animated 3D Turning Leaf (Turns dynamically in 3D during page change) -->
+              <div class="book-flipping-leaf" id="book-flipping-leaf" aria-hidden="true">
+                <div class="leaf-face leaf-front"></div>
+                <div class="leaf-face leaf-back"></div>
+              </div>
+
+              <!-- Slideshow Tempo Progress Bar -->
+              <div class="book-tempo-bar" aria-hidden="true">
+                <div class="book-tempo-fill" id="book-tempo-fill"></div>
+              </div>
+            </div>
+
+            <!-- Book Footer Page-Turning Navigation Controls -->
+            <div class="book-controls-bar">
+              <button type="button" class="book-nav-arrow" id="book-prev-btn" aria-label="Previous Lookbook Page" title="Previous Page">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <div class="book-dots-nav">
+                <button type="button" class="book-dot active" data-index="0" aria-label="Page 1"></button>
+                <button type="button" class="book-dot" data-index="1" aria-label="Page 2"></button>
+                <button type="button" class="book-dot" data-index="2" aria-label="Page 3"></button>
+                <button type="button" class="book-dot" data-index="3" aria-label="Page 4"></button>
+              </div>
+              <span class="book-page-label" id="book-page-label">Page 1 of 4</span>
+              <button type="button" class="book-nav-arrow" id="book-next-btn" aria-label="Next Lookbook Page" title="Next Page">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
             </div>
           </div>
 
