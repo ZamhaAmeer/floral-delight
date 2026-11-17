@@ -9,6 +9,12 @@ let currentOccasion = 'all';
 let currentSort = 'default';
 let searchKeyword = '';
 
+function setupModalHandlers() {
+  document.addEventListener('keydown', (e) => {
+    if (e && e.key === 'Escape') closeProductModal();
+  });
+}
+
 function initShopPage() {
   renderProducts();
   setupFilterListeners();
@@ -394,10 +400,14 @@ function initBotanicalFlipBook() {
         leafBack.innerHTML = targetLeft ? targetLeft.innerHTML : '';
 
         // Reveal target spread underneath so target right details are exposed as leaf lifts
-        targetSpread.style.zIndex = '1';
-        targetSpread.style.visibility = 'visible';
-        targetSpread.style.opacity = '1';
-        currentSpread.style.zIndex = '2';
+        if (targetSpread.style) {
+          targetSpread.style.zIndex = '1';
+          targetSpread.style.visibility = 'visible';
+          targetSpread.style.opacity = '1';
+        }
+        if (currentSpread.style) {
+          currentSpread.style.zIndex = '2';
+        }
 
         flippingLeaf.className = 'book-flipping-leaf is-flipping flip-forward';
       } else {
@@ -407,10 +417,14 @@ function initBotanicalFlipBook() {
         leafFront.innerHTML = currentLeft ? currentLeft.innerHTML : '';
         leafBack.innerHTML = targetRight ? targetRight.innerHTML : '';
 
-        targetSpread.style.zIndex = '1';
-        targetSpread.style.visibility = 'visible';
-        targetSpread.style.opacity = '1';
-        currentSpread.style.zIndex = '2';
+        if (targetSpread.style) {
+          targetSpread.style.zIndex = '1';
+          targetSpread.style.visibility = 'visible';
+          targetSpread.style.opacity = '1';
+        }
+        if (currentSpread.style) {
+          currentSpread.style.zIndex = '2';
+        }
 
         flippingLeaf.className = 'book-flipping-leaf is-flipping flip-backward';
       }
@@ -420,9 +434,11 @@ function initBotanicalFlipBook() {
     setTimeout(() => {
       spreads.forEach((s, idx) => {
         s.classList.toggle('active', idx === targetIndex);
-        s.style.zIndex = '';
-        s.style.visibility = '';
-        s.style.opacity = '';
+        if (s.style) {
+          s.style.zIndex = '';
+          s.style.visibility = '';
+          s.style.opacity = '';
+        }
       });
 
       if (flippingLeaf) {

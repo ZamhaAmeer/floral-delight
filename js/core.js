@@ -761,6 +761,10 @@ const FLORAL_CATALOG = [
   }
 ];
 
+if (typeof window !== 'undefined') {
+  window.FLORAL_CATALOG = FLORAL_CATALOG;
+}
+
 /* Helper to get flower by ID with legacy alias support */
 function getFlowerById(id) {
   if (!id) return null;

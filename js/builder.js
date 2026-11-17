@@ -287,27 +287,76 @@ function updateBouquet() {
         </div>
       `;
     } else {
-      // Create visual cluster
-      const bubbles = activeStems.map(stem => `
-        <div class="virtual-stem-bubble" title="${stem.name} (×${stem.qty})">
-          <img src="${stem.image}" alt="${stem.name}" onerror="this.onerror=null;this.src='Images/flowerr.jpg';">
-          <span class="stem-badge-count">${stem.qty}</span>
-        </div>
-      `).join('');
+      const primary = activeStems[0];
+      const companions = activeStems.slice(1);
+      const isSingle = activeStems.length === 1;
+
+      // Layered companion blooms (if customer combines multiple varieties)
+      let companionsHtml = '';
+      if (!isSingle) {
+        companionsHtml = `
+          <div class="companion-blooms-cluster">
+            ${companions.map((comp, idx) => {
+              const side = idx % 2 === 0 ? 'left' : 'right';
+              const rank = Math.floor(idx / 2);
+              return `
+                <div class="companion-bloom-leaf leaf-${side}-${rank}" title="${comp.name} (×${comp.qty})">
+                  <img src="${comp.image}" alt="${comp.name}" onerror="this.onerror=null;this.src='Images/flowerr.jpg';">
+                  <span class="companion-qty-badge">${comp.qty}</span>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        `;
+      }
 
       previewStage.innerHTML = `
         <div class="stage-bouquet-wrap">
-          <!-- Stems Cluster Layer -->
-          <div class="virtual-stems-cluster">
-            ${bubbles}
+          <!-- Ambient Atelier Aura & Pedestal Shadow -->
+          <div class="bouquet-studio-shadow"></div>
+
+          <!-- Dynamic Bouquet Spec Badge Pill -->
+          <div class="bouquet-live-badge">
+            <i class="fa-solid fa-crown"></i>
+            <span>${primary.name} ${!isSingle ? `+ ${companions.length} companion bloom${companions.length > 1 ? 's' : ''}` : ''}</span>
           </div>
 
-          <!-- Wrapping Paper Sleeve -->
-          <div class="virtual-wrap-sleeve" style="background-color: ${builderState.wrap.color}; border-color: ${builderState.wrap.border};"></div>
+          <!-- The Complete Handcrafted Bouquet Assembly -->
+          <div class="virtual-bouquet-assembly">
+            
+            <!-- Bouquet Blooms Crown (Full, Lush Bouquet Photo - NO CIRCLE!) -->
+            <div class="bouquet-blooms-crown">
+              ${companionsHtml}
+              <div class="main-bouquet-photo-frame">
+                <img src="${primary.image}" alt="${primary.name}" class="main-bouquet-photo" onerror="this.onerror=null;this.src='Images/flowerr.jpg';">
+                <span class="bouquet-stem-tag"><i class="fa-solid fa-seedling"></i> ${primary.qty} Stem${primary.qty > 1 ? 's' : ''}</span>
+              </div>
+            </div>
 
-          <!-- Ribbon Bow Overlay -->
-          <div class="virtual-ribbon-tie" style="background-color: ${builderState.ribbon.color};">
-            <div class="virtual-ribbon-bow"></div>
+            <!-- Authentic Origami Packaging Wrap Paper -->
+            <div class="artisan-wrap-paper" style="--wrap-color: ${builderState.wrap.color}; --wrap-border: ${builderState.wrap.border};">
+              <div class="wrap-fold-wing wrap-fold-left"></div>
+              <div class="wrap-fold-wing wrap-fold-right"></div>
+              <div class="wrap-folded-body">
+                <div class="wrap-texture-crease"></div>
+                <span class="wrap-atelier-stamp">FLORAL DELIGHT &bull; ATELIER</span>
+              </div>
+            </div>
+
+            <!-- Hand-Tied Luxury Satin Ribbon Knot & Tails -->
+            <div class="artisan-ribbon-rig" style="--ribbon-color: ${builderState.ribbon.color};">
+              <div class="ribbon-waist-band"></div>
+              <div class="ribbon-bow-knot">
+                <div class="ribbon-loop loop-left"></div>
+                <div class="ribbon-loop loop-right"></div>
+                <div class="ribbon-center-clasp"></div>
+              </div>
+              <div class="ribbon-silk-tails">
+                <div class="ribbon-tail-streamer tail-left"></div>
+                <div class="ribbon-tail-streamer tail-right"></div>
+              </div>
+            </div>
+
           </div>
         </div>
       `;

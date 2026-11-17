@@ -96,6 +96,8 @@
   gap: 32px;
   min-width: 0;
   width: 100%;
+  position: relative;
+  z-index: 25;
 }
 
 .builder-card-box {
@@ -357,14 +359,20 @@
   color: var(--dusty-rose-dark);
 }
 
+.preview-column {
+  position: relative;
+  z-index: 25;
+}
+
 .preview-stage {
   position: relative;
   width: 100%;
-  height: 320px;
-  border-radius: var(--radius-lg);
+  height: 380px;
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  background: radial-gradient(circle at center, rgba(232, 197, 196, 0.2) 0%, rgba(249, 241, 239, 0.9) 100%);
-  border: 1px dashed var(--border-rose);
+  background: radial-gradient(circle at 50% 35%, #FFFDFB 0%, #FAF0EC 65%, #F4E4DF 100%);
+  border: 1px solid rgba(232, 197, 196, 0.7);
+  box-shadow: inset 0 2px 14px rgba(69, 59, 59, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -373,16 +381,19 @@
 
 .empty-stage-state {
   text-align: center;
-  padding: 20px;
+  padding: 24px;
   color: var(--dark-charcoal-muted);
 }
 
 .empty-stage-state i {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   color: var(--dusty-rose);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
+/* ==========================================================================
+   Realistic Artisan Handcrafted Bouquet Preview Rig (No Circles, Real Bouquet)
+   ========================================================================== */
 .stage-bouquet-wrap {
   position: relative;
   width: 100%;
@@ -390,105 +401,365 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
 }
 
-.virtual-wrap-sleeve {
+/* Studio Ground Pedestal Shadow */
+.bouquet-studio-shadow {
   position: absolute;
-  bottom: 0;
-  width: 75%;
-  height: 60%;
-  border-radius: 40px 40px 18px 18px;
-  transform: perspective(300px) rotateX(15deg);
-  box-shadow: 0 14px 28px rgba(69, 59, 59, 0.15);
-  border: 2px solid rgba(255, 255, 255, 0.6);
-  transition: background-color 0.4s ease, border-color 0.4s ease;
+  bottom: 16px;
+  width: 190px;
+  height: 22px;
+  background: radial-gradient(ellipse at center, rgba(69, 59, 59, 0.22) 0%, rgba(69, 59, 59, 0) 72%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Dynamic Top Spec Badge */
+.bouquet-live-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--dusty-rose-dark);
+  box-shadow: 0 4px 14px rgba(69, 59, 59, 0.1);
+  border: 1px solid rgba(232, 197, 196, 0.65);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  z-index: 10;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bouquet-live-badge i {
+  color: #E29B38;
+}
+
+/* The Complete Handcrafted Bouquet Assembly */
+.virtual-bouquet-assembly {
+  position: relative;
+  width: 250px;
+  height: 330px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  animation: liveBouquetFloat 4.2s ease-in-out infinite alternate;
+  will-change: transform;
   z-index: 2;
 }
 
-.virtual-ribbon-tie {
-  position: absolute;
-  bottom: 35px;
-  width: 50%;
-  height: 16px;
-  border-radius: var(--radius-pill);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  z-index: 4;
-  transition: background-color 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@keyframes liveBouquetFloat {
+  0% {
+    transform: translateY(0px) rotate(-0.5deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(0.5deg);
+  }
 }
 
-.virtual-ribbon-bow {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: inherit;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-
-.virtual-stems-cluster {
-  position: absolute;
-  top: 18px;
-  width: 92%;
-  min-height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  z-index: 3;
-  pointer-events: auto;
-}
-
-.virtual-stem-bubble {
+/* Bouquet Blooms Crown */
+.bouquet-blooms-crown {
   position: relative;
-  width: 82px;
-  height: 82px;
-  border-radius: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -55px;
+  z-index: 2;
+}
+
+/* Main Centerpiece Bouquet Photo Frame */
+.main-bouquet-photo-frame {
+  position: relative;
+  width: 195px;
+  height: 185px;
+  border-radius: 28px 28px 12px 12px;
   overflow: hidden;
-  box-shadow: 0 8px 22px rgba(69, 59, 59, 0.28);
-  border: 3.5px solid #FFFFFF;
+  box-shadow: 0 16px 36px rgba(69, 59, 59, 0.24);
+  border: 3px solid rgba(255, 255, 255, 0.9);
   background-color: var(--warm-ivory);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  flex-shrink: 0;
+  z-index: 3;
+  transition: transform 0.35s ease;
 }
 
-.virtual-stem-bubble:hover {
-  transform: scale(1.15) translateY(-6px);
-  z-index: 5;
+.main-bouquet-photo-frame:hover {
+  transform: scale(1.03);
 }
 
-.virtual-stem-bubble img {
+.main-bouquet-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.stem-badge-count {
+.bouquet-stem-tag {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
-  background-color: var(--dusty-rose-dark);
-  color: #FFFFFF;
-  font-size: 0.72rem;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--dusty-rose-dark);
+  font-size: 0.68rem;
   font-weight: 700;
-  width: 22px;
-  height: 22px;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(69, 59, 59, 0.16);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bouquet-stem-tag i {
+  color: var(--sage-green-dark);
+}
+
+/* Multi-Flower Companion Blooms Cluster */
+.companion-blooms-cluster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.companion-bloom-leaf {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2.5px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 22px rgba(69, 59, 59, 0.18);
+  top: 15px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.companion-bloom-leaf img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.companion-bloom-leaf.leaf-left-0 {
+  left: -15px;
+  transform: rotate(-14deg);
+}
+
+.companion-bloom-leaf.leaf-right-0 {
+  right: -15px;
+  transform: rotate(14deg);
+}
+
+.companion-bloom-leaf.leaf-left-1 {
+  left: 8px;
+  top: -12px;
+  transform: rotate(-6deg);
+}
+
+.companion-bloom-leaf.leaf-right-1 {
+  right: 8px;
+  top: -12px;
+  transform: rotate(6deg);
+}
+
+.companion-qty-badge {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: var(--dusty-rose-dark);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  border: 1.5px solid #FFFFFF;
 }
 
-@keyframes popIn {
-  0% { transform: scale(0.4); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+/* Authentic Origami Packaging Wrap Paper */
+.artisan-wrap-paper {
+  position: relative;
+  width: 215px;
+  height: 165px;
+  z-index: 4;
+  display: flex;
+  justify-content: center;
+}
+
+.wrap-fold-wing {
+  position: absolute;
+  top: 0;
+  width: 115px;
+  height: 150px;
+  background: var(--wrap-color);
+  border: 1.5px solid var(--wrap-border);
+  box-shadow: 0 8px 24px rgba(69, 59, 59, 0.14);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.wrap-fold-left {
+  left: 2px;
+  border-radius: 22px 6px 12px 28px;
+  transform-origin: bottom left;
+  transform: rotate(-7deg);
+  background: linear-gradient(135deg, var(--wrap-color) 0%, rgba(255,255,255,0.2) 50%, var(--wrap-color) 100%);
+}
+
+.wrap-fold-right {
+  right: 2px;
+  border-radius: 6px 22px 28px 12px;
+  transform-origin: bottom right;
+  transform: rotate(7deg);
+  background: linear-gradient(225deg, var(--wrap-color) 0%, rgba(69,59,59,0.08) 60%, var(--wrap-color) 100%);
+}
+
+.wrap-folded-body {
+  position: relative;
+  width: 175px;
+  height: 160px;
+  background: var(--wrap-color);
+  border: 1.5px solid var(--wrap-border);
+  border-radius: 8px 8px 30px 30px;
+  box-shadow: 0 12px 28px rgba(69, 59, 59, 0.16);
+  background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, var(--wrap-color) 30%, rgba(69,59,59,0.08) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 12px;
+  z-index: 2;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+}
+
+.wrap-texture-crease {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(69,59,59,0.18) 0%, rgba(255,255,255,0.3) 50%, rgba(69,59,59,0.18) 100%);
+}
+
+.wrap-atelier-stamp {
+  font-family: var(--font-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: rgba(69, 59, 59, 0.45);
+  z-index: 3;
+}
+
+/* Hand-Tied Luxury Satin Ribbon Knot & Tails */
+.artisan-ribbon-rig {
+  position: absolute;
+  bottom: 64px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 6;
+}
+
+.ribbon-waist-band {
+  width: 155px;
+  height: 12px;
+  background: var(--ribbon-color);
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(69, 59, 59, 0.22);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  transition: background-color 0.35s ease;
+}
+
+.ribbon-bow-knot {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbon-loop {
+  position: absolute;
+  width: 26px;
+  height: 16px;
+  background: var(--ribbon-color);
+  box-shadow: 0 3px 8px rgba(69, 59, 59, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition: background-color 0.35s ease;
+}
+
+.ribbon-loop.loop-left {
+  left: -20px;
+  border-radius: 14px 4px 4px 14px;
+  transform: rotate(-24deg);
+}
+
+.ribbon-loop.loop-right {
+  right: -20px;
+  border-radius: 4px 14px 14px 4px;
+  transform: rotate(24deg);
+}
+
+.ribbon-center-clasp {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ribbon-color);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  transition: background-color 0.35s ease;
+}
+
+.ribbon-silk-tails {
+  position: relative;
+  width: 50px;
+  height: 38px;
+  margin-top: -6px;
+}
+
+.ribbon-tail-streamer {
+  position: absolute;
+  top: 0;
+  width: 10px;
+  height: 38px;
+  background: var(--ribbon-color);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 80%, 0 100%);
+  box-shadow: 0 3px 6px rgba(69, 59, 59, 0.18);
+  transition: background-color 0.35s ease;
+}
+
+.ribbon-tail-streamer.tail-left {
+  left: 14px;
+  transform-origin: top center;
+  transform: rotate(-16deg);
+}
+
+.ribbon-tail-streamer.tail-right {
+  right: 14px;
+  transform-origin: top center;
+  transform: rotate(18deg);
 }
 
 .itemized-breakdown-card {
