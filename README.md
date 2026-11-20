@@ -1,57 +1,69 @@
 # 🌸 Floral Delight
+### Petals of joy in every bouquet.
 
-### An Elegant Online Flower Shop with Advanced Features
+Floral Delight is a responsive online flower shop website designed to make flower shopping simple and enjoyable. Customers can explore different flower collections, discover flower meanings, get personalized recommendations, create custom bouquets, and save their favourite products.
 
-Floral Delight is an elegant and modern online flower shop designed to provide customers with a unique and personalized flower-shopping experience. The platform will combine beautiful floral collections with advanced interactive features, AI-powered recommendations, and customized bouquet creation to make finding and selecting flowers easier and more enjoyable.
+## ✨ Features
 
-## ✨ Key Features
+-  **Responsive Homepage** – An attractive homepage with a user-friendly design.
+-  **Flower Collections** – Explore flowers and bouquets categorized by flower type.
+-  **Product Search & Filters** – Easily search, filter, and sort flower products.
+-  **Personalized Recommendations** – Discover flowers based on personal preferences.
+-  **Custom Bouquet Builder** – Create personalized bouquets by selecting flowers.
+-  **Virtual Bouquet Preview** – Preview custom bouquet selections.
+-  **Flower Meaning Explorer** – Discover the meanings and symbolism of different flowers.
+-  **Smart Wishlist** – Save and manage favourite flower products.
+-  **Customer Reviews** – Share customer feedback and photos.
+-  **Contact Page** – Get in touch with the flower shop.
 
-- **AI-Powered Flower Recommendations** – Recommends suitable flowers based on customer preferences, occasions, and interests.
-- **Custom Bouquet Builder** – Allows customers to create their own bouquets by selecting flowers, quantities, wrapping styles, and ribbons.
-- **Virtual Flower Preview** – Provides a visual preview of customized flower arrangements before making a selection.
-- **Flower Meaning Explorer** – Helps customers discover the meanings, symbolism, and significance of different flowers.
-- **Smart Wishlist** – Allows customers to save and manage their favourite flowers and bouquet arrangements.
-- **Customer Reviews with Photos** – Enables customers to share ratings, feedback, and photos of their purchased floral arrangements.
-
-## 🛠️ Technology Stack
+## 🛠️ Technologies Used
 
 ### Frontend
 - HTML5
 - CSS3
 - JavaScript
+- Font Awesome
+- LocalStorage
 
 ### Backend
-- Node.js
-- Express.js
-
-### Database
+- Python
+- Django
+- Django REST Framework
 - PostgreSQL
-- Sequelize ORM
+- Django ORM
+- JWT Authentication
+- Django CORS Headers
 
-### AI Integration
-- Google Gemini API
+## 📁 Project Structure
 
-### Authentication & Security
-- JSON Web Token (JWT)
-- Bcrypt
+```text
+Floral-Delight/
+│
+├── frontend/
+│   ├── home.html
+│   ├── About.html
+│   ├── Products.html
+│   ├── Contact.html
+│   ├── Images/
+│   ├── CSS/
+│   └── JavaScript/
+│
+├── backend/
+│   ├── config/
+│   ├── manage.py
+│   ├── requirements.txt
+│   └── .env.example
+│
+├── .gitignore
+└── README.md
+```
 
-### Version Control
-- Git
-- GitHub
+*Note: The folder structure above is illustrative. Update it to match the actual structure of your repository.*
 
-## 🎯 Project Objectives
+## 🔮 Future Improvements
 
-- Build an elegant, modern, and fully responsive online flower shop.
-- Develop advanced features to provide a personalized shopping experience.
-- Implement AI-powered flower recommendations based on customer preferences and occasions.
-- Create an interactive bouquet customization and virtual preview experience.
-- Provide a platform for discovering flower meanings and sharing customer experiences.
-- Develop a secure and reliable backend with efficient database management.
-
----
-
-<p align="center">
-  <strong>Floral Delight</strong>
-  <br/>
-  Where Every Flower Tells a Story. 🌷
-</p>
+- Online payment integration.
+- Email notifications for orders.
+- Order tracking functionality.
+- Enhanced personalized flower recommendations.
+- Improved customer experience and functionality.
