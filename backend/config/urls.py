@@ -17,4 +17,6 @@ urlpatterns = [
     path('api/wishlist/', include('wishlist.urls')),
     # Custom Bouquet Builder Endpoints
     path('api/bouquets/', include('bouquets.urls')),
+    # Order Management Endpoints
+    path('api/orders/', include('orders.urls')),
 ]
