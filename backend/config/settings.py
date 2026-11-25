@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'wishlist',
     'bouquets',
     'orders',
+    'reviews',
 ]
 
 # Custom User Model
@@ -176,5 +177,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Media files (User-uploaded images)
+# https://docs.djangoproject.com/en/6.1/topics/files/
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

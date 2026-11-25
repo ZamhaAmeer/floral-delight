@@ -3,6 +3,8 @@ URL configuration for Floral Delight config project.
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 from .views import api_health_check
 
 urlpatterns = [
@@ -19,4 +21,10 @@ urlpatterns = [
     path('api/bouquets/', include('bouquets.urls')),
     # Order Management Endpoints
     path('api/orders/', include('orders.urls')),
+    # Customer Reviews & Ratings Endpoints
+    path('api/reviews/', include('reviews.urls')),
 ]
+
+# Serve uploaded media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
