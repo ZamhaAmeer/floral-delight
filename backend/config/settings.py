@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'bouquets',
     'orders',
     'reviews',
+    'recommendations',
 ]
 
 # Custom User Model

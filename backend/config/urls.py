@@ -23,6 +23,8 @@ urlpatterns = [
     path('api/orders/', include('orders.urls')),
     # Customer Reviews & Ratings Endpoints
     path('api/reviews/', include('reviews.urls')),
+    # Personalized Flower Recommendations Endpoints
+    path('api/recommendations/', include('recommendations.urls')),
 ]
 
 # Serve uploaded media files during development
