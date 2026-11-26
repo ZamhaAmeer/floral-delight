@@ -1,0 +1,395 @@
+/* ==========================================================================
+   Floral Delight - Authentication & Customer Account Stylesheet
+   Colour Theme: Soft Blush, Warm Ivory, Dusty Rose, Sage Green
+   ========================================================================== */
+
+/* 1. Header Navigation Auth Buttons & Dropdown */
+.auth-nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background-color: var(--dusty-rose-soft);
+  color: var(--dusty-rose);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: var(--transition);
+  border: 1px solid var(--border-rose);
+}
+
+.auth-nav-btn:hover {
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* User Menu Dropdown */
+.user-menu-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.user-menu-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--radius-pill);
+  background-color: #FFFFFF;
+  color: var(--dark-charcoal);
+  border: 1px solid var(--border-rose);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-menu-btn:hover {
+  background-color: var(--blush-pink-light);
+  border-color: var(--dusty-rose);
+  color: var(--dusty-rose-dark);
+}
+
+.user-menu-btn i.fa-angle-down {
+  font-size: 0.75rem;
+  transition: transform 0.2s ease;
+}
+
+.user-menu-dropdown.open .user-menu-btn i.fa-angle-down {
+  transform: rotate(180deg);
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 220px;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-rose);
+  padding: 8px 0;
+  z-index: 1000;
+  display: none;
+  animation: fadeInMenu 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.user-menu-dropdown.open .user-dropdown-menu {
+  display: block;
+}
+
+.user-dropdown-header {
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 4px;
+}
+
+.user-dropdown-header strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--dark-charcoal);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-dropdown-header small {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--dark-charcoal-light);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-dropdown-menu a,
+.user-dropdown-menu button.logout-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  color: var(--dark-charcoal);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-sans);
+}
+
+.user-dropdown-menu a:hover,
+.user-dropdown-menu button.logout-link:hover {
+  background-color: var(--blush-pink-light);
+  color: var(--dusty-rose-dark);
+}
+
+.user-dropdown-menu a i,
+.user-dropdown-menu button.logout-link i {
+  color: var(--dusty-rose);
+  width: 16px;
+  text-align: center;
+}
+
+.user-dropdown-menu hr {
+  border: none;
+  border-top: 1px solid var(--border-subtle);
+  margin: 6px 0;
+}
+
+/* 2. Authentication Container & Cards */
+.auth-page-wrapper {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+}
+
+.auth-card-container {
+  width: 100%;
+  max-width: 520px;
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-rose);
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+}
+
+.auth-header-salon {
+  background: linear-gradient(135deg, var(--blush-pink-light) 0%, var(--warm-ivory) 100%);
+  padding: 36px 32px 24px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.auth-header-salon h1 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--dark-charcoal);
+  margin-bottom: 6px;
+}
+
+.auth-header-salon p {
+  font-size: 0.95rem;
+  color: var(--dark-charcoal-muted);
+}
+
+/* Tab Switcher */
+.auth-tabs-nav {
+  display: flex;
+  background-color: var(--warm-ivory-tint);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.auth-tab-btn {
+  flex: 1;
+  padding: 14px 18px;
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--dark-charcoal-light);
+  cursor: pointer;
+  transition: var(--transition);
+  border-bottom: 3px solid transparent;
+}
+
+.auth-tab-btn.active {
+  color: var(--dusty-rose-dark);
+  background-color: #FFFFFF;
+  border-bottom-color: var(--dusty-rose);
+}
+
+.auth-tab-content {
+  padding: 32px;
+  display: none;
+}
+
+.auth-tab-content.active {
+  display: block;
+}
+
+/* Form Controls */
+.auth-form-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.auth-form-group label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--dark-charcoal);
+  margin-bottom: 7px;
+}
+
+.auth-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--dusty-rose);
+  font-size: 0.95rem;
+  pointer-events: none;
+}
+
+.auth-input {
+  width: 100%;
+  padding: 12px 16px 12px 42px;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--dark-charcoal);
+  background-color: var(--warm-ivory-tint);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: var(--transition);
+}
+
+.auth-input:focus {
+  background-color: #FFFFFF;
+  border-color: var(--dusty-rose);
+  box-shadow: 0 0 0 3px var(--dusty-rose-soft);
+}
+
+.auth-password-toggle {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: var(--dark-charcoal-light);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.auth-field-error {
+  font-size: 0.8rem;
+  color: #B22222;
+  margin-top: 5px;
+  display: none;
+}
+
+.auth-banner-error {
+  padding: 12px 16px;
+  background-color: #FFF0F0;
+  border: 1px solid #FFD0D0;
+  color: #B22222;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+  display: none;
+}
+
+.auth-submit-btn {
+  width: 100%;
+  padding: 14px 20px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: var(--dusty-rose);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: var(--shadow-rose);
+  margin-top: 8px;
+}
+
+.auth-submit-btn:hover {
+  background-color: var(--dusty-rose-hover);
+  transform: translateY(-2px);
+}
+
+.auth-submit-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* 3. Account Dashboard Styles */
+.account-dashboard-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 32px;
+  margin: 40px 0;
+}
+
+@media (max-width: 860px) {
+  .account-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.account-sidebar-card {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-rose);
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.account-avatar-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blush-pink) 0%, var(--dusty-rose) 100%);
+  color: #FFFFFF;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-family: var(--font-serif);
+  margin-bottom: 16px;
+  box-shadow: var(--shadow-rose);
+}
+
+.account-main-content {
+  background-color: #FFFFFF;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-rose);
+  padding: 36px 32px;
+  box-shadow: var(--shadow-sm);
+}
+
+.account-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  color: var(--dark-charcoal);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+}

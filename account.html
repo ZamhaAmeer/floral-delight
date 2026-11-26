@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Account &amp; Profile | Floral Delight Boutique</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Images/logo.png">
+
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.5">
+  <link rel="stylesheet" type="text/css" href="css/style-p.css?v=3.5">
+  <link rel="stylesheet" type="text/css" href="css/auth.css?v=1.0">
+  
+  <!-- Core Client Scripts -->
+  <script src="js/api.js?v=1.0"></script>
+  <script src="js/core.js?v=3.5" defer></script>
+  <script src="js/auth.js?v=1.0" defer></script>
+</head>
+<body>
+
+  <!-- Full-Screen Living Petals Animation Field -->
+  <div class="screen-petals-field" id="screen-petals-field" aria-hidden="true"></div>
+
+  <!-- Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="home.html" class="brand" aria-label="Floral Delight Home">
+        <img src="Images/logo.png" alt="Floral Delight Boutique Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Floral Delight</span>
+          <span class="brand-tagline">Boutique Florist</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="home.html" class="nav-link">Home</a></li>
+          <li><a href="About.html" class="nav-link">About Us</a></li>
+          <li><a href="Products.html" class="nav-link">Curated Collections</a></li>
+          <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+          <li><a href="bouquet-builder.html" class="nav-link">Build Bouquet</a></li>
+          <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="Contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="wishlist-nav-btn" aria-label="View Saved Wishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span class="wishlist-count-badge">0</span>
+        </a>
+        <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About Us</a>
+      <a href="Products.html" class="nav-link">Curated Collections</a>
+      <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
+      <a href="bouquet-builder.html" class="nav-link">Build Your Bouquet</a>
+      <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
+      <a href="reviews.html" class="nav-link">Customer Reviews</a>
+      <a href="wishlist.html" class="nav-link">Saved Wishlist</a>
+      <a href="account.html" class="nav-link active">My Account</a>
+      <a href="Contact.html" class="nav-link">Contact &amp; Inquiries</a>
+    </div>
+  </header>
+
+  <main class="container" id="profile-dashboard" style="min-height: calc(100vh - 160px); padding-top: 40px; padding-bottom: 60px;">
+    
+    <!-- Hero Banner -->
+    <div style="margin-bottom: 30px;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--dusty-rose); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">
+        <i class="fa-solid fa-user-check"></i> Customer Dashboard
+      </div>
+      <h1 style="font-family: var(--font-serif); font-size: 2.4rem; color: var(--dark-charcoal); margin-bottom: 8px;">
+        Welcome to Your <span style="font-style: italic; color: var(--dusty-rose);">Botanical Salon</span>
+      </h1>
+      <p style="color: var(--dark-charcoal-muted); font-size: 1rem;">
+        Manage your personal profile, review order history, and access saved wishlist bouquets.
+      </p>
+    </div>
+
+    <div class="account-dashboard-grid">
+      
+      <!-- Left Sidebar: Customer Identity Card -->
+      <aside class="account-sidebar-card">
+        <div class="account-avatar-circle" id="profile-avatar-letter">C</div>
+        <h3 id="profile-name-display" style="font-family: var(--font-serif); font-size: 1.4rem; color: var(--dark-charcoal); margin-bottom: 4px;">Loading...</h3>
+        <p id="profile-email-display" style="font-size: 0.88rem; color: var(--dark-charcoal-light); margin-bottom: 12px; word-break: break-all;">loading...</p>
+        
+        <div style="display: inline-block; padding: 4px 12px; background-color: var(--sage-green-soft); color: var(--sage-green-dark); border-radius: var(--radius-pill); font-size: 0.78rem; font-weight: 600; margin-bottom: 24px;">
+          <i class="fa-solid fa-gem"></i> Verified Boutique Patron
+        </div>
+
+        <nav style="display: flex; flex-direction: column; gap: 8px; text-align: left;">
+          <a href="wishlist.html" class="btn btn-outline" style="width: 100%; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+            <i class="fa-solid fa-heart" style="color: var(--dusty-rose);"></i> My Saved Wishlist
+          </a>
+          <a href="bouquet-builder.html" class="btn btn-outline" style="width: 100%; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+            <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--sage-green);"></i> Bouquet Builder
+          </a>
+          <a href="Products.html" class="btn btn-outline" style="width: 100%; justify-content: flex-start; gap: 10px; font-size: 0.9rem;">
+            <i class="fa-solid fa-bag-shopping"></i> Browse Catalog
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Right Main: Edit Profile & Password Cards -->
+      <section class="account-main-content">
+        
+        <!-- Personal Information Section -->
+        <h2 class="account-section-title">
+          <i class="fa-regular fa-id-badge" style="color: var(--dusty-rose); font-size: 1.5rem; margin-right: 8px;"></i>
+          Personal Profile Details
+        </h2>
+        
+        <form id="profile-edit-form" style="margin-bottom: 40px;" novalidate>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="auth-form-group">
+              <label for="prof-name">Full Name</label>
+              <div class="auth-input-wrapper">
+                <i class="fa-solid fa-user auth-input-icon"></i>
+                <input type="text" id="prof-name" class="auth-input" required>
+              </div>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="prof-phone">Phone Number</label>
+              <div class="auth-input-wrapper">
+                <i class="fa-solid fa-phone auth-input-icon"></i>
+                <input type="tel" id="prof-phone" class="auth-input" placeholder="+94 77 123 4567">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" style="width: auto; padding: 12px 28px;">
+            <span>Save Profile Changes</span>
+          </button>
+        </form>
+
+        <!-- Security & Password Section -->
+        <h2 class="account-section-title">
+          <i class="fa-solid fa-lock" style="color: var(--dusty-rose); font-size: 1.4rem; margin-right: 8px;"></i>
+          Security &amp; Password
+        </h2>
+
+        <form id="change-password-form" novalidate>
+          <div class="auth-form-group">
+            <label for="old-password">Current Password</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-key auth-input-icon"></i>
+              <input type="password" id="old-password" class="auth-input" placeholder="Enter current password" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="auth-form-group">
+              <label for="new-password">New Password</label>
+              <div class="auth-input-wrapper">
+                <i class="fa-solid fa-lock auth-input-icon"></i>
+                <input type="password" id="new-password" class="auth-input" placeholder="Min. 8 characters" required autocomplete="new-password">
+              </div>
+            </div>
+
+            <div class="auth-form-group">
+              <label for="confirm-new-password">Confirm New Password</label>
+              <div class="auth-input-wrapper">
+                <i class="fa-solid fa-shield-halved auth-input-icon"></i>
+                <input type="password" id="confirm-new-password" class="auth-input" placeholder="Re-enter new password" required autocomplete="new-password">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn" style="width: auto; padding: 12px 28px; background-color: var(--dark-charcoal);">
+            <span>Update Password</span>
+          </button>
+        </form>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer style="background-color: #FFFFFF; border-top: 1px solid var(--border-subtle); padding: 24px 0; text-align: center; font-size: 0.88rem; color: var(--dark-charcoal-light);">
+    <div class="container">
+      <p>&copy; 2026 Floral Delight Boutique Florist. Handcrafted with love &amp; fresh morning blooms.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

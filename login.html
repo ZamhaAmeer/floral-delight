@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Sign In &amp; Registration | Floral Delight Boutique</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="Images/logo.png">
+
+  <!-- Google Fonts Preconnect & Stylesheet -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <!-- Shared Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="css/common.css?v=3.5">
+  <link rel="stylesheet" type="text/css" href="css/style-p.css?v=3.5">
+  <link rel="stylesheet" type="text/css" href="css/auth.css?v=1.0">
+  
+  <!-- Core Client Scripts -->
+  <script src="js/api.js?v=1.0"></script>
+  <script src="js/core.js?v=3.5" defer></script>
+  <script src="js/auth.js?v=1.0" defer></script>
+</head>
+<body>
+
+  <!-- Full-Screen Living Petals Animation Field -->
+  <div class="screen-petals-field" id="screen-petals-field" aria-hidden="true"></div>
+
+  <!-- Unified Navigation Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="home.html" class="brand" aria-label="Floral Delight Home">
+        <img src="Images/logo.png" alt="Floral Delight Boutique Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <span class="brand-name">Floral Delight</span>
+          <span class="brand-tagline">Boutique Florist</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li><a href="home.html" class="nav-link">Home</a></li>
+          <li><a href="About.html" class="nav-link">About Us</a></li>
+          <li><a href="Products.html" class="nav-link">Curated Collections</a></li>
+          <li><a href="recommendations.html" class="nav-link">Recommendations</a></li>
+          <li><a href="bouquet-builder.html" class="nav-link">Build Bouquet</a></li>
+          <li><a href="flower-meanings.html" class="nav-link">Flower Guide</a></li>
+          <li><a href="reviews.html" class="nav-link">Reviews</a></li>
+          <li><a href="Contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <a href="wishlist.html" class="wishlist-nav-btn" aria-label="View Saved Wishlist">
+          <i class="fa-solid fa-heart"></i>
+          <span class="wishlist-count-badge">0</span>
+        </a>
+        <button type="button" class="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" aria-label="Mobile Navigation">
+      <a href="home.html" class="nav-link">Home</a>
+      <a href="About.html" class="nav-link">About Us</a>
+      <a href="Products.html" class="nav-link">Curated Collections</a>
+      <a href="recommendations.html" class="nav-link">Flower Recommendations</a>
+      <a href="bouquet-builder.html" class="nav-link">Build Your Bouquet</a>
+      <a href="flower-meanings.html" class="nav-link">Flower Meaning Guide</a>
+      <a href="reviews.html" class="nav-link">Customer Reviews</a>
+      <a href="wishlist.html" class="nav-link">Saved Wishlist</a>
+      <a href="login.html" class="nav-link active">Sign In / Register</a>
+      <a href="Contact.html" class="nav-link">Contact &amp; Inquiries</a>
+    </div>
+  </header>
+
+  <main class="auth-page-wrapper">
+    <div class="auth-card-container">
+      
+      <!-- Salon Header -->
+      <div class="auth-header-salon">
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: var(--dusty-rose); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px;">
+          <i class="fa-solid fa-feather"></i> Private Botanical Salon
+        </div>
+        <h1>Floral Delight <span style="font-style: italic; color: var(--dusty-rose);">Account</span></h1>
+        <p>Access your saved curations, personalized recommendations, and bespoke orders.</p>
+      </div>
+
+      <!-- Tab Navigation Switcher -->
+      <div class="auth-tabs-nav" role="tablist">
+        <button type="button" class="auth-tab-btn active" data-tab="tab-login" role="tab" aria-selected="true">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> Sign In
+        </button>
+        <button type="button" class="auth-tab-btn" data-tab="tab-register" role="tab" aria-selected="false">
+          <i class="fa-solid fa-user-plus"></i> Create Account
+        </button>
+      </div>
+
+      <!-- 1. SIGN IN TAB -->
+      <div class="auth-tab-content active" id="tab-login" role="tabpanel">
+        <form id="login-form" novalidate>
+          <div class="auth-banner-error" role="alert"></div>
+
+          <div class="auth-form-group">
+            <label for="login-email">Email Address</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-envelope auth-input-icon"></i>
+              <input type="email" id="login-email" class="auth-input" placeholder="e.g. sophia@example.com" required autocomplete="email">
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <div class="auth-form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 7px;">
+              <label for="login-password" style="margin-bottom: 0;">Password</label>
+            </div>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-lock auth-input-icon"></i>
+              <input type="password" id="login-password" class="auth-input" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="auth-password-toggle" aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn">
+            <span>Sign In to Your Account</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- 2. CREATE ACCOUNT TAB -->
+      <div class="auth-tab-content" id="tab-register" role="tabpanel">
+        <form id="register-form" novalidate>
+          <div class="auth-banner-error" role="alert"></div>
+
+          <div class="auth-form-group">
+            <label for="reg-name">Full Name</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-user auth-input-icon"></i>
+              <input type="text" id="reg-name" class="auth-input" placeholder="e.g. Sophia Laurent" required autocomplete="name">
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <div class="auth-form-group">
+            <label for="reg-email">Email Address</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-envelope auth-input-icon"></i>
+              <input type="email" id="reg-email" class="auth-input" placeholder="e.g. sophia@example.com" required autocomplete="email">
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <div class="auth-form-group">
+            <label for="reg-phone">Phone Number <span style="font-weight: 400; color: var(--dark-charcoal-light);">(optional)</span></label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-phone auth-input-icon"></i>
+              <input type="tel" id="reg-phone" class="auth-input" placeholder="e.g. +94 77 123 4567" autocomplete="tel">
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <div class="auth-form-group">
+            <label for="reg-password">Password</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-lock auth-input-icon"></i>
+              <input type="password" id="reg-password" class="auth-input" placeholder="Min. 8 characters" required autocomplete="new-password">
+              <button type="button" class="auth-password-toggle" aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <div class="auth-form-group">
+            <label for="reg-confirm-password">Confirm Password</label>
+            <div class="auth-input-wrapper">
+              <i class="fa-solid fa-shield-halved auth-input-icon"></i>
+              <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Re-enter password" required autocomplete="new-password">
+              <button type="button" class="auth-password-toggle" aria-label="Toggle password visibility">
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </div>
+            <div class="auth-field-error"></div>
+          </div>
+
+          <button type="submit" class="auth-submit-btn">
+            <span>Create Customer Account</span>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Shared Minimal Footer -->
+  <footer style="background-color: #FFFFFF; border-top: 1px solid var(--border-subtle); padding: 24px 0; text-align: center; font-size: 0.88rem; color: var(--dark-charcoal-light);">
+    <div class="container">
+      <p>&copy; 2026 Floral Delight Boutique Florist. Handcrafted with love &amp; fresh morning blooms.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

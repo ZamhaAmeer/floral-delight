@@ -4,6 +4,29 @@
  * Toast Notifications, and Global Navigation Handlers.
  */
 
+// Auto-load centralized API & Auth subsystem across all pages
+(function ensureApiAndAuthLoaded() {
+  if (typeof document !== 'undefined') {
+    if (!document.querySelector('link[href*="css/auth.css"]')) {
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'css/auth.css?v=1.0';
+      document.head.appendChild(link);
+    }
+    if (!window.apiClient && !document.querySelector('script[src*="js/api.js"]')) {
+      const script = document.createElement('script');
+      script.src = 'js/api.js?v=1.0';
+      document.head.appendChild(script);
+    }
+    if (!document.querySelector('script[src*="js/auth.js"]')) {
+      const authScript = document.createElement('script');
+      authScript.src = 'js/auth.js?v=1.0';
+      authScript.defer = true;
+      document.head.appendChild(authScript);
+    }
+  }
+})();
+
 /* ==========================================================================
    1. Central Flower Catalog (Single Source of Truth)
    ========================================================================== */
