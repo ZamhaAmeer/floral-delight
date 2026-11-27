@@ -2,12 +2,80 @@
  * Floral Delight - Products / Shop Client-Side Controller
  * Renders flower products, search, category & occasion filtering,
  * price sorting, quick-view modal, and builder integration.
+ * Integrated with Django REST Framework backend & PostgreSQL database.
  */
 
 let currentCategory = 'all';
 let currentOccasion = 'all';
 let currentSort = 'default';
 let searchKeyword = '';
+let backendProducts = [];
+let backendCategories = [];
+let isLoadingProducts = false;
+
+/**
+ * Normalizes product object whether loaded from DRF API or static catalog.
+ */
+function normalizeProduct(raw) {
+  if (!raw) return null;
+  const flowerId = raw.slug || (raw.id ? String(raw.id) : '');
+  const categorySlug = raw.category_slug || (raw.category && raw.category.slug) || raw.flower_type || raw.category || 'mixed';
+  const flowerType = raw.flower_type || categorySlug;
+  const priceNum = typeof raw.price === 'string' ? parseFloat(raw.price) : (raw.price || 0);
+  const imageUrl = (window.apiClient && typeof window.apiClient.resolveImageUrl === 'function')
+    ? window.apiClient.resolveImageUrl(raw.image || 'Images/hero-bouquet.jpg')
+    : (raw.image || 'Images/hero-bouquet.jpg');
+
+  return {
+    id: flowerId,
+    slug: flowerId,
+    numericId: raw.id,
+    name: raw.name || 'Floral Arrangement',
+    tagline: raw.tagline || `${raw.color || 'Artisanal'} Harvest`,
+    flowerType: flowerType,
+    category: categorySlug,
+    categoryName: raw.category_name || (raw.category && raw.category.name) || flowerType,
+    price: priceNum,
+    image: imageUrl,
+    occasions: Array.isArray(raw.occasions) ? raw.occasions : (raw.occasions ? [raw.occasions] : []),
+    color: raw.color || 'Blush & Botanical',
+    meaning: raw.meaning || raw.description || 'Elegantly arranged seasonal blooms.',
+    season: raw.season || 'Fresh Harvest',
+    stemLength: raw.stem_length || raw.stemLength || '45-50 cm',
+    fragrance: raw.fragrance || 'Subtle Natural Aroma',
+    description: raw.description || raw.meaning || 'Handcrafted fresh floral stems, carefully wrapped with satin ribbon.',
+    isAvailable: raw.is_available !== false,
+  };
+}
+
+/**
+ * Retrieves a flower product by either slug or integer ID.
+ */
+function getFlowerById(flowerId) {
+  if (!flowerId) return null;
+  const idStr = String(flowerId).toLowerCase();
+
+  // 1. Check in loaded backendProducts
+  if (backendProducts && backendProducts.length > 0) {
+    const match = backendProducts.find(p =>
+      (p.id && String(p.id).toLowerCase() === idStr) ||
+      (p.slug && String(p.slug).toLowerCase() === idStr) ||
+      (p.numericId && String(p.numericId) === idStr)
+    );
+    if (match) return match;
+  }
+
+  // 2. Check in global catalog FLORAL_CATALOG if available
+  if (typeof FLORAL_CATALOG !== 'undefined' && Array.isArray(FLORAL_CATALOG)) {
+    const match = FLORAL_CATALOG.find(p =>
+      (p.id && String(p.id).toLowerCase() === idStr) ||
+      (p.slug && String(p.slug).toLowerCase() === idStr)
+    );
+    if (match) return normalizeProduct(match);
+  }
+
+  return null;
+}
 
 function setupModalHandlers() {
   document.addEventListener('keydown', (e) => {
@@ -16,10 +84,10 @@ function setupModalHandlers() {
 }
 
 function initShopPage() {
-  renderProducts();
   setupFilterListeners();
   setupModalHandlers();
   initBotanicalFlipBook();
+  loadProductsFromBackend();
 }
 
 if (document.readyState === 'loading') {
@@ -28,50 +96,147 @@ if (document.readyState === 'loading') {
   initShopPage();
 }
 
+/**
+ * Asynchronously loads flower products and categories from Django REST API.
+ */
+async function loadProductsFromBackend() {
+  const grid = document.getElementById('products-grid');
+  isLoadingProducts = true;
+
+  if (grid) {
+    grid.innerHTML = `
+      <div class="products-loading-box">
+        <i class="fa-solid fa-circle-notch fa-spin spinner-icon"></i>
+        <h3>Gathering Fresh Morning Harvest...</h3>
+        <p>Connecting to Floral Delight botanical inventory in PostgreSQL...</p>
+      </div>
+    `;
+  }
+
+  try {
+    if (!window.apiClient) {
+      throw new Error('API Client not initialized');
+    }
+
+    const [productsData, categoriesData] = await Promise.all([
+      window.apiClient.get('/api/products/'),
+      window.apiClient.get('/api/products/categories/').catch(err => {
+        console.warn('Category list fetch warning:', err);
+        return [];
+      })
+    ]);
+
+    if (Array.isArray(productsData) && productsData.length > 0) {
+      backendProducts = productsData.map(normalizeProduct);
+      if (Array.isArray(categoriesData)) {
+        backendCategories = categoriesData;
+      }
+      isLoadingProducts = false;
+      renderProducts();
+      return;
+    }
+    throw new Error('Empty product list returned from API');
+  } catch (error) {
+    console.warn('Could not load products from API, checking fallback:', error);
+    isLoadingProducts = false;
+
+    // Graceful fallback to FLORAL_CATALOG if available
+    if (typeof FLORAL_CATALOG !== 'undefined' && Array.isArray(FLORAL_CATALOG) && FLORAL_CATALOG.length > 0) {
+      backendProducts = FLORAL_CATALOG.map(normalizeProduct);
+      renderProducts();
+      if (typeof showToast === 'function') {
+        showToast('Viewing seasonal catalog.', 'fa-leaf');
+      }
+    } else {
+      if (grid) {
+        grid.innerHTML = `
+          <div class="products-error-box">
+            <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+            <h3>Unable to Connect to Flower API</h3>
+            <p>We are currently unable to reach our boutique server at <code>/api/products/</code>. Please ensure the Django backend server is running.</p>
+            <button type="button" class="btn btn-sm btn-primary" onclick="loadProductsFromBackend()">
+              <i class="fa-solid fa-arrow-rotate-right"></i> Retry Connection
+            </button>
+          </div>
+        `;
+      }
+    }
+  }
+}
+
+/**
+ * Renders filtered and sorted product cards into the grid.
+ */
 function renderProducts() {
+  if (isLoadingProducts) return;
+
   const grid = document.getElementById('products-grid');
   const countEl = document.getElementById('results-count');
   if (!grid) return;
 
+  const catalog = (backendProducts && backendProducts.length > 0)
+    ? backendProducts
+    : (typeof FLORAL_CATALOG !== 'undefined' ? FLORAL_CATALOG.map(normalizeProduct) : []);
+
   // Filter products
-  let filtered = FLORAL_CATALOG.filter(flower => {
+  let filtered = catalog.filter(flower => {
     let matchesCategory = true;
+    const fType = (flower.flowerType || flower.category || '').toLowerCase();
+    const fId = (flower.id || '').toLowerCase();
+    const fName = (flower.name || '').toLowerCase();
+
     if (currentCategory === 'all') {
       matchesCategory = true;
     } else if (currentCategory === 'roses') {
-      matchesCategory = flower.flowerType === 'roses' || flower.id.startsWith('rose') || flower.name.toLowerCase().includes('rose');
+      matchesCategory = fType === 'roses' || fId.startsWith('rose') || fName.includes('rose');
     } else if (currentCategory === 'lotus') {
-      matchesCategory = flower.flowerType === 'lotus' || flower.id.startsWith('lotus') || flower.name.toLowerCase().includes('lotus');
+      matchesCategory = fType === 'lotus' || fId.startsWith('lotus') || fName.includes('lotus');
     } else if (currentCategory === 'tulips') {
-      matchesCategory = flower.flowerType === 'tulips' || flower.id.startsWith('tulip') || flower.name.toLowerCase().includes('tulip');
+      matchesCategory = fType === 'tulips' || fId.startsWith('tulip') || fName.includes('tulip');
     } else if (currentCategory === 'lilies') {
-      matchesCategory = flower.flowerType === 'lilies' || flower.id.startsWith('lily') || flower.name.toLowerCase().includes('lily');
+      matchesCategory = fType === 'lilies' || fId.startsWith('lily') || fName.includes('lily');
     } else if (currentCategory === 'orchids') {
-      matchesCategory = flower.flowerType === 'orchids' || flower.id.startsWith('orchid') || flower.name.toLowerCase().includes('orchid');
+      matchesCategory = fType === 'orchids' || fId.startsWith('orchid') || fName.includes('orchid');
     } else if (currentCategory === 'sunflowers') {
-      matchesCategory = flower.flowerType === 'sunflowers' || flower.id.startsWith('sunflower') || flower.name.toLowerCase().includes('sunflower');
+      matchesCategory = fType === 'sunflowers' || fId.startsWith('sunflower') || fName.includes('sunflower');
     } else if (currentCategory === 'carnations') {
-      matchesCategory = flower.flowerType === 'carnations' || flower.id.startsWith('carnation') || flower.name.toLowerCase().includes('carnation');
+      matchesCategory = fType === 'carnations' || fId.startsWith('carnation') || fName.includes('carnation');
     } else if (currentCategory === 'daisies') {
-      matchesCategory = flower.flowerType === 'daisies' || flower.id.startsWith('daisy') || flower.name.toLowerCase().includes('daisy');
+      matchesCategory = fType === 'daisies' || fId.startsWith('daisy') || fName.includes('daisy');
     } else if (currentCategory === 'lavender') {
-      matchesCategory = flower.flowerType === 'lavender' || flower.id.startsWith('lavender') || flower.name.toLowerCase().includes('lavender');
+      matchesCategory = fType === 'lavender' || fId.startsWith('lavender') || fName.includes('lavender');
     } else if (currentCategory === 'anthurium') {
-      matchesCategory = flower.flowerType === 'anthurium' || flower.id.startsWith('anthurium') || flower.name.toLowerCase().includes('anthurium');
+      matchesCategory = fType === 'anthurium' || fId.startsWith('anthurium') || fName.includes('anthurium');
     } else if (currentCategory === 'dahlias' || currentCategory === 'dahlia') {
-      matchesCategory = flower.flowerType === 'dahlias' || flower.id.startsWith('dahlia') || flower.name.toLowerCase().includes('dahlia');
+      matchesCategory = fType === 'dahlias' || fType === 'dahlia' || fId.startsWith('dahlia') || fName.includes('dahlia');
     } else if (currentCategory === 'mixed') {
-      matchesCategory = flower.flowerType === 'mixed' || flower.id.startsWith('mixed') || flower.id === 'all-in-one' || flower.name.toLowerCase().includes('mixed');
+      matchesCategory = fType === 'mixed' || fId.startsWith('mixed') || fId === 'all-in-one' || fName.includes('mixed');
     } else {
-      matchesCategory = flower.category === currentCategory || flower.flowerType === currentCategory;
+      matchesCategory = fType === currentCategory || (flower.category && flower.category.toLowerCase() === currentCategory);
     }
 
-    const matchesOccasion = currentOccasion === 'all' || flower.occasions.includes(currentOccasion);
-    const matchesSearch = searchKeyword === '' || 
-      flower.name.toLowerCase().includes(searchKeyword) ||
-      flower.meaning.toLowerCase().includes(searchKeyword) ||
-      flower.color.toLowerCase().includes(searchKeyword) ||
-      flower.tagline.toLowerCase().includes(searchKeyword);
+    let matchesOccasion = true;
+    if (currentOccasion !== 'all') {
+      if (Array.isArray(flower.occasions)) {
+        matchesOccasion = flower.occasions.includes(currentOccasion);
+      } else if (typeof flower.occasions === 'string') {
+        matchesOccasion = flower.occasions.toLowerCase().includes(currentOccasion.toLowerCase());
+      } else {
+        matchesOccasion = false;
+      }
+    }
+
+    let matchesSearch = true;
+    if (searchKeyword) {
+      const kw = searchKeyword.toLowerCase();
+      matchesSearch =
+        (flower.name && flower.name.toLowerCase().includes(kw)) ||
+        (flower.meaning && flower.meaning.toLowerCase().includes(kw)) ||
+        (flower.color && flower.color.toLowerCase().includes(kw)) ||
+        (flower.tagline && flower.tagline.toLowerCase().includes(kw)) ||
+        (flower.description && flower.description.toLowerCase().includes(kw)) ||
+        (flower.flowerType && flower.flowerType.toLowerCase().includes(kw));
+    }
 
     return matchesCategory && matchesOccasion && matchesSearch;
   });
@@ -86,9 +251,10 @@ function renderProducts() {
   }
 
   // Update count & active category indicator
+  const totalCount = catalog.length;
   if (countEl) {
     if (currentCategory === 'all') {
-      countEl.innerHTML = `Showing <strong>${filtered.length}</strong> of ${FLORAL_CATALOG.length} Curated Bouquets`;
+      countEl.innerHTML = `Showing <strong>${filtered.length}</strong> of ${totalCount} Curated Bouquets`;
     } else {
       const catLabel = getCategoryLabel(currentCategory);
       countEl.innerHTML = `Showing <strong>${filtered.length}</strong> ${catLabel} <button type="button" class="tag-clear-btn" onclick="resetAllFilters()" title="Return to all bouquets">&times; View All</button>`;
@@ -112,7 +278,7 @@ function renderProducts() {
 
   // Render product cards
   grid.innerHTML = filtered.map(flower => {
-    const wishlisted = isWishlisted(flower.id);
+    const wishlisted = typeof isWishlisted === 'function' ? isWishlisted(flower.id) : false;
     return `
       <article class="product-card" id="product-${flower.id}">
         <div class="product-media">
@@ -214,7 +380,9 @@ function resetAllFilters() {
   });
 
   renderProducts();
-  showToast('Showing all bouquet collections', 'fa-arrow-rotate-left');
+  if (typeof showToast === 'function') {
+    showToast('Showing all bouquet collections', 'fa-arrow-rotate-left');
+  }
 }
 
 function getCategoryLabel(cat) {
@@ -241,7 +409,9 @@ function getCategoryLabel(cat) {
 function addFlowerToBuilder(flowerId) {
   try {
     localStorage.setItem('floral_builder_seed', flowerId);
-    showToast('Stem added to Custom Bouquet Builder! 🌿', 'fa-wand-magic-sparkles');
+    if (typeof showToast === 'function') {
+      showToast('Stem added to Custom Bouquet Builder! 🌿', 'fa-wand-magic-sparkles');
+    }
     setTimeout(() => {
       window.location.href = 'bouquet-builder.html';
     }, 700);
@@ -251,16 +421,29 @@ function addFlowerToBuilder(flowerId) {
 }
 
 /* ==========================================================================
-   Quick View Modal Logic
+   Quick View Modal Logic (Connected to Backend Products API)
    ========================================================================== */
-function openProductModal(flowerId) {
-  const flower = getFlowerById(flowerId);
+async function openProductModal(flowerId) {
+  let flower = getFlowerById(flowerId);
+
+  // If not found in memory, attempt fetching from DRF backend endpoint
+  if (!flower && window.apiClient) {
+    try {
+      const data = await window.apiClient.get(`/api/products/${flowerId}/`);
+      if (data) {
+        flower = normalizeProduct(data);
+      }
+    } catch (err) {
+      console.warn('Could not fetch single product detail:', err);
+    }
+  }
+
   if (!flower) return;
 
   const modalContainer = document.getElementById('product-modal-container');
   if (!modalContainer) return;
 
-  const wishlisted = isWishlisted(flower.id);
+  const wishlisted = typeof isWishlisted === 'function' ? isWishlisted(flower.id) : false;
 
   modalContainer.innerHTML = `
     <div class="floral-modal-overlay open" id="active-modal-overlay" onclick="closeProductModal(event)">
@@ -314,7 +497,7 @@ function openProductModal(flowerId) {
               </button>
               <button type="button" 
                       class="btn btn-sm btn-outline card-wishlist-btn-modal ${wishlisted ? 'active' : ''}" 
-                      onclick="toggleWishlist('${flower.id}'); this.classList.toggle('active');">
+                      onclick="if (typeof toggleWishlist === 'function') toggleWishlist('${flower.id}'); this.classList.toggle('active');">
                 <i class="fa-solid fa-heart"></i>
               </button>
             </div>
@@ -337,6 +520,7 @@ function closeProductModal(event) {
     }, 250);
   }
 }
+
 
 /* ==========================================================================
    Botanical Flip-Book Atelier (Interactive 3D Page Turn Controller)

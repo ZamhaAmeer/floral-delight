@@ -1018,3 +1018,61 @@
     padding: 24px;
   }
 }
+
+/* ==========================================================================
+   Backend Integration Loading & Error States
+   ========================================================================== */
+.products-loading-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 24px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: var(--radius-xl);
+  border: 1px dashed var(--dusty-rose-light);
+  margin: 20px 0;
+  backdrop-filter: blur(8px);
+}
+.products-loading-box .spinner-icon {
+  font-size: 2.4rem;
+  color: var(--dusty-rose);
+  margin-bottom: 16px;
+  display: inline-block;
+}
+.products-loading-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--dark-charcoal);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.products-loading-box p {
+  font-size: 0.95rem;
+  color: var(--dark-charcoal-muted);
+}
+.products-error-box {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  background: #FFF8F8;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgba(229, 62, 62, 0.25);
+  margin: 20px 0;
+}
+.products-error-box i.error-icon {
+  font-size: 2.4rem;
+  color: #C53030;
+  margin-bottom: 14px;
+}
+.products-error-box h3 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  color: #9B2C2C;
+  margin-bottom: 8px;
+}
+.products-error-box p {
+  color: var(--dark-charcoal-muted);
+  max-width: 520px;
+  margin: 0 auto 20px auto;
+  font-size: 0.95rem;
+}
+
